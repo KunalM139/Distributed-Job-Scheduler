@@ -1,0 +1,3193 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "id": "backend_jest_config_js",
+      "label": "jest.config",
+      "source_file": ".\\backend\\jest.config.js",
+      "node_type": "file"
+    },
+    {
+      "id": "backend_server_js",
+      "label": "server",
+      "source_file": ".\\backend\\server.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_controllers_authcontroller_js",
+      "label": "authController",
+      "source_file": ".\\src\\controllers\\authController.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_controllers_authcontroller_js_register",
+      "label": "register()",
+      "source_file": ".\\src\\controllers\\authController.js",
+      "source_location": "L12",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_authcontroller_js_login",
+      "label": "login()",
+      "source_file": ".\\src\\controllers\\authController.js",
+      "source_location": "L55",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_dlqcontroller_js",
+      "label": "dlqController",
+      "source_file": ".\\src\\controllers\\dlqController.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_controllers_dlqcontroller_js_listdlq",
+      "label": "listDLQ()",
+      "source_file": ".\\src\\controllers\\dlqController.js",
+      "source_location": "L10",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_dlqcontroller_js_retrydlq",
+      "label": "retryDLQ()",
+      "source_file": ".\\src\\controllers\\dlqController.js",
+      "source_location": "L55",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_jobcontroller_js",
+      "label": "jobController",
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_controllers_jobcontroller_js_verifyqueueaccess",
+      "label": "verifyQueueAccess()",
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L10",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_jobcontroller_js_verifyjobaccess",
+      "label": "verifyJobAccess()",
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L23",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_jobcontroller_js_createjob",
+      "label": "createJob()",
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L47",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_jobcontroller_js_listjobs",
+      "label": "listJobs()",
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L120",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_jobcontroller_js_getjob",
+      "label": "getJob()",
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L169",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_jobcontroller_js_retryjob",
+      "label": "retryJob()",
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L204",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_jobcontroller_js_deletejob",
+      "label": "deleteJob()",
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L239",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_projectcontroller_js",
+      "label": "projectController",
+      "source_file": ".\\src\\controllers\\projectController.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_controllers_projectcontroller_js_listprojects",
+      "label": "listProjects()",
+      "source_file": ".\\src\\controllers\\projectController.js",
+      "source_location": "L9",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_projectcontroller_js_createproject",
+      "label": "createProject()",
+      "source_file": ".\\src\\controllers\\projectController.js",
+      "source_location": "L26",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_projectcontroller_js_deleteproject",
+      "label": "deleteProject()",
+      "source_file": ".\\src\\controllers\\projectController.js",
+      "source_location": "L47",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_queuecontroller_js",
+      "label": "queueController",
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_controllers_queuecontroller_js_getownedqueue",
+      "label": "getOwnedQueue()",
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L11",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_queuecontroller_js_verifyprojectownership",
+      "label": "verifyProjectOwnership()",
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L24",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_queuecontroller_js_listqueues",
+      "label": "listQueues()",
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L37",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_queuecontroller_js_createqueue",
+      "label": "createQueue()",
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L66",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_queuecontroller_js_updatequeue",
+      "label": "updateQueue()",
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L113",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_queuecontroller_js_pausequeue",
+      "label": "pauseQueue()",
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L144",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_queuecontroller_js_resumequeue",
+      "label": "resumeQueue()",
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L168",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_queuecontroller_js_getqueuestats",
+      "label": "getQueueStats()",
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L193",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_statscontroller_js",
+      "label": "statsController",
+      "source_file": ".\\src\\controllers\\statsController.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_controllers_statscontroller_js_getdashboardstats",
+      "label": "getDashboardStats()",
+      "source_file": ".\\src\\controllers\\statsController.js",
+      "source_location": "L8",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_workercontroller_js",
+      "label": "workerController",
+      "source_file": ".\\src\\controllers\\workerController.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_controllers_workercontroller_js_listworkers",
+      "label": "listWorkers()",
+      "source_file": ".\\src\\controllers\\workerController.js",
+      "source_location": "L8",
+      "node_type": "function"
+    },
+    {
+      "id": "src_controllers_workercontroller_js_getworker",
+      "label": "getWorker()",
+      "source_file": ".\\src\\controllers\\workerController.js",
+      "source_location": "L39",
+      "node_type": "function"
+    },
+    {
+      "id": "src_db_index_js",
+      "label": "index",
+      "source_file": ".\\src\\db\\index.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_middleware_auth_js",
+      "label": "auth",
+      "source_file": ".\\src\\middleware\\auth.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_middleware_auth_js_authenticate",
+      "label": "authenticate()",
+      "source_file": ".\\src\\middleware\\auth.js",
+      "source_location": "L7",
+      "node_type": "function"
+    },
+    {
+      "id": "src_middleware_validate_js",
+      "label": "validate",
+      "source_file": ".\\src\\middleware\\validate.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_middleware_validate_js_errorresponse",
+      "label": "errorResponse()",
+      "source_file": ".\\src\\middleware\\validate.js",
+      "source_location": "L10",
+      "node_type": "function"
+    },
+    {
+      "id": "src_middleware_validate_js_validate",
+      "label": "validate()",
+      "source_file": ".\\src\\middleware\\validate.js",
+      "source_location": "L18",
+      "node_type": "function"
+    },
+    {
+      "id": "src_routes_auth_js",
+      "label": "auth",
+      "source_file": ".\\src\\routes\\auth.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_routes_dlq_js",
+      "label": "dlq",
+      "source_file": ".\\src\\routes\\dlq.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_routes_jobs_js",
+      "label": "jobs",
+      "source_file": ".\\src\\routes\\jobs.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_routes_projects_js",
+      "label": "projects",
+      "source_file": ".\\src\\routes\\projects.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_routes_queues_js",
+      "label": "queues",
+      "source_file": ".\\src\\routes\\queues.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_routes_stats_js",
+      "label": "stats",
+      "source_file": ".\\src\\routes\\stats.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_routes_workers_js",
+      "label": "workers",
+      "source_file": ".\\src\\routes\\workers.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_workers_worker_js",
+      "label": "worker",
+      "source_file": ".\\src\\workers\\worker.js",
+      "node_type": "file"
+    },
+    {
+      "id": "src_workers_worker_js_setworkerid",
+      "label": "setWorkerId()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L26",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_getworkerid",
+      "label": "getWorkerId()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L27",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_log",
+      "label": "log()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L42",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_registerworker",
+      "label": "registerWorker()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L49",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_sendheartbeat",
+      "label": "sendHeartbeat()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L64",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_claimjob",
+      "label": "claimJob()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L88",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_simulatework",
+      "label": "simulateWork()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L162",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_executejob",
+      "label": "executeJob()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L172",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_onjobsuccess",
+      "label": "onJobSuccess()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L201",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_onjobfailure",
+      "label": "onJobFailure()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L223",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_computeretrydelay",
+      "label": "computeRetryDelay()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L291",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_poll",
+      "label": "poll()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L310",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_processscheduledjobs",
+      "label": "processScheduledJobs()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L326",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_computenextcronrun",
+      "label": "computeNextCronRun()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L362",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_recoverdeadworkerjobs",
+      "label": "recoverDeadWorkerJobs()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L388",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_shutdown",
+      "label": "shutdown()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L428",
+      "node_type": "function"
+    },
+    {
+      "id": "src_workers_worker_js_start",
+      "label": "start()",
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L480",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_app_jsx",
+      "label": "App",
+      "source_file": ".\\client\\src\\App.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_app_jsx_import_react_router_dom_routes",
+      "label": "react-router-dom/Routes",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_react_router_dom_route",
+      "label": "react-router-dom/Route",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_react_router_dom_navigate",
+      "label": "react-router-dom/Navigate",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_components_layout_layout",
+      "label": "./components/Layout/Layout",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_components_protectedroute_protectedroute",
+      "label": "./components/ProtectedRoute/ProtectedRoute",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_pages_loginpage_loginpage",
+      "label": "./pages/LoginPage/LoginPage",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L4",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_pages_registerpage_registerpage",
+      "label": "./pages/RegisterPage/RegisterPage",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L5",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_pages_dashboardpage_dashboardpage",
+      "label": "./pages/DashboardPage/DashboardPage",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L6",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_pages_queuespage_queuespage",
+      "label": "./pages/QueuesPage/QueuesPage",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L7",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_pages_queuedetailpage_queuedetailpage",
+      "label": "./pages/QueueDetailPage/QueueDetailPage",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L8",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_pages_workerspage_workerspage",
+      "label": "./pages/WorkersPage/WorkersPage",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L9",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_import_pages_deadletterpage_deadletterpage",
+      "label": "./pages/DeadLetterPage/DeadLetterPage",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L10",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_app_jsx_app",
+      "label": "App()",
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L12",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_components_jobdetailmodal_jsx",
+      "label": "JobDetailModal",
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_components_jobdetailmodal_jsx_import_react_useeffect",
+      "label": "react/useEffect",
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_jobdetailmodal_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_jobdetailmodal_jsx_import_services_api_api",
+      "label": "../services/api/api",
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_jobdetailmodal_jsx_import_components_statusbadge_statusbadge",
+      "label": "../components/StatusBadge/StatusBadge",
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_jobdetailmodal_jsx_jobdetailmodal",
+      "label": "JobDetailModal()",
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L11",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_components_jobdetailmodal_jsx_fmt",
+      "label": "fmt()",
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L162",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_components_jobdetailmodal_jsx_infoitem",
+      "label": "InfoItem()",
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L167",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_components_layout_jsx",
+      "label": "Layout",
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_components_layout_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_layout_jsx_import_react_router_dom_navlink",
+      "label": "react-router-dom/NavLink",
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_layout_jsx_import_react_router_dom_outlet",
+      "label": "react-router-dom/Outlet",
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_layout_jsx_import_context_authcontext_useauth",
+      "label": "../context/AuthContext/useAuth",
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_layout_jsx_layout",
+      "label": "Layout()",
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L44",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_components_protectedroute_jsx",
+      "label": "ProtectedRoute",
+      "source_file": ".\\client\\src\\components\\ProtectedRoute.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_components_protectedroute_jsx_import_react_router_dom_navigate",
+      "label": "react-router-dom/Navigate",
+      "source_file": ".\\client\\src\\components\\ProtectedRoute.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_protectedroute_jsx_import_context_authcontext_useauth",
+      "label": "../context/AuthContext/useAuth",
+      "source_file": ".\\client\\src\\components\\ProtectedRoute.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_components_protectedroute_jsx_protectedroute",
+      "label": "ProtectedRoute()",
+      "source_file": ".\\client\\src\\components\\ProtectedRoute.jsx",
+      "source_location": "L4",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_components_statusbadge_jsx",
+      "label": "StatusBadge",
+      "source_file": ".\\client\\src\\components\\StatusBadge.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_components_statusbadge_jsx_statusbadge",
+      "label": "StatusBadge()",
+      "source_file": ".\\client\\src\\components\\StatusBadge.jsx",
+      "source_location": "L19",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx",
+      "label": "AuthContext",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx_import_react_createcontext",
+      "label": "react/createContext",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx_import_react_usecontext",
+      "label": "react/useContext",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx_import_react_useeffect",
+      "label": "react/useEffect",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx_import_react_usecallback",
+      "label": "react/useCallback",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx_import_react_router_dom_usenavigate",
+      "label": "react-router-dom/useNavigate",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx_import_services_api_api",
+      "label": "../services/api/api",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx_authprovider",
+      "label": "AuthProvider()",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L7",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_context_authcontext_jsx_useauth",
+      "label": "useAuth()",
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L72",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_hooks_usepolling_js",
+      "label": "usePolling",
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_hooks_usepolling_js_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_hooks_usepolling_js_import_react_useeffect",
+      "label": "react/useEffect",
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_hooks_usepolling_js_import_react_usecallback",
+      "label": "react/useCallback",
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_hooks_usepolling_js_import_react_useref",
+      "label": "react/useRef",
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_hooks_usepolling_js_usepolling",
+      "label": "usePolling()",
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L11",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_main_jsx",
+      "label": "main",
+      "source_file": ".\\client\\src\\main.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_main_jsx_import_react_strictmode",
+      "label": "react/StrictMode",
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_main_jsx_import_react_dom_client_createroot",
+      "label": "react-dom/client/createRoot",
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_main_jsx_import_react_router_dom_browserrouter",
+      "label": "react-router-dom/BrowserRouter",
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_main_jsx_import_react_hot_toast_toaster",
+      "label": "react-hot-toast/Toaster",
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L4",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_main_jsx_import_context_authcontext_authprovider",
+      "label": "./context/AuthContext/AuthProvider",
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L5",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_main_jsx_import_app_app",
+      "label": "./App/App",
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L6",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_main_jsx_import_index_css",
+      "label": "./index.css",
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L7",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx",
+      "label": "DashboardPage",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_barchart",
+      "label": "recharts/BarChart",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_bar",
+      "label": "recharts/Bar",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_linechart",
+      "label": "recharts/LineChart",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_line",
+      "label": "recharts/Line",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_xaxis",
+      "label": "recharts/XAxis",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_yaxis",
+      "label": "recharts/YAxis",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_cartesiangrid",
+      "label": "recharts/CartesianGrid",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_tooltip",
+      "label": "recharts/Tooltip",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_responsivecontainer",
+      "label": "recharts/ResponsiveContainer",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_recharts_legend",
+      "label": "recharts/Legend",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_services_api_api",
+      "label": "../services/api/api",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L7",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_hooks_usepolling_usepolling",
+      "label": "../hooks/usePolling/usePolling",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L8",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_import_components_statusbadge_statusbadge",
+      "label": "../components/StatusBadge/StatusBadge",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L9",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_dashboardpage",
+      "label": "DashboardPage()",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L19",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_pages_dashboardpage_jsx_statcard",
+      "label": "StatCard()",
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L208",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_pages_deadletterpage_jsx",
+      "label": "DeadLetterPage",
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_pages_deadletterpage_jsx_import_react_useeffect",
+      "label": "react/useEffect",
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_deadletterpage_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_deadletterpage_jsx_import_react_usecallback",
+      "label": "react/useCallback",
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_deadletterpage_jsx_import_services_api_api",
+      "label": "../services/api/api",
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_deadletterpage_jsx_import_react_hot_toast_toast",
+      "label": "react-hot-toast/toast",
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_deadletterpage_jsx_deadletterpage",
+      "label": "DeadLetterPage()",
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L5",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_pages_loginpage_jsx",
+      "label": "LoginPage",
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_pages_loginpage_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_loginpage_jsx_import_react_router_dom_link",
+      "label": "react-router-dom/Link",
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_loginpage_jsx_import_react_router_dom_usenavigate",
+      "label": "react-router-dom/useNavigate",
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_loginpage_jsx_import_context_authcontext_useauth",
+      "label": "../context/AuthContext/useAuth",
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_loginpage_jsx_import_react_hot_toast_toast",
+      "label": "react-hot-toast/toast",
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L4",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_loginpage_jsx_loginpage",
+      "label": "LoginPage()",
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L6",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx",
+      "label": "QueueDetailPage",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_import_react_useeffect",
+      "label": "react/useEffect",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_import_react_usecallback",
+      "label": "react/useCallback",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_import_react_router_dom_useparams",
+      "label": "react-router-dom/useParams",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_import_react_router_dom_link",
+      "label": "react-router-dom/Link",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_import_services_api_api",
+      "label": "../services/api/api",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_import_components_statusbadge_statusbadge",
+      "label": "../components/StatusBadge/StatusBadge",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L4",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_import_components_jobdetailmodal_jobdetailmodal",
+      "label": "../components/JobDetailModal/JobDetailModal",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L5",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_import_react_hot_toast_toast",
+      "label": "react-hot-toast/toast",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L6",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuedetailpage_jsx_queuedetailpage",
+      "label": "QueueDetailPage()",
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L10",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_pages_queuespage_jsx",
+      "label": "QueuesPage",
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_pages_queuespage_jsx_import_react_useeffect",
+      "label": "react/useEffect",
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuespage_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuespage_jsx_import_react_router_dom_link",
+      "label": "react-router-dom/Link",
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuespage_jsx_import_services_api_api",
+      "label": "../services/api/api",
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuespage_jsx_import_components_statusbadge_statusbadge",
+      "label": "../components/StatusBadge/StatusBadge",
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L4",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuespage_jsx_import_react_hot_toast_toast",
+      "label": "react-hot-toast/toast",
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L5",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_queuespage_jsx_queuespage",
+      "label": "QueuesPage()",
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L19",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_pages_registerpage_jsx",
+      "label": "RegisterPage",
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_pages_registerpage_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_registerpage_jsx_import_react_router_dom_link",
+      "label": "react-router-dom/Link",
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_registerpage_jsx_import_react_router_dom_usenavigate",
+      "label": "react-router-dom/useNavigate",
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_registerpage_jsx_import_context_authcontext_useauth",
+      "label": "../context/AuthContext/useAuth",
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_registerpage_jsx_import_react_hot_toast_toast",
+      "label": "react-hot-toast/toast",
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L4",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_registerpage_jsx_registerpage",
+      "label": "RegisterPage()",
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L6",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_pages_workerspage_jsx",
+      "label": "WorkersPage",
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_pages_workerspage_jsx_import_react_usestate",
+      "label": "react/useState",
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_workerspage_jsx_import_services_api_api",
+      "label": "../services/api/api",
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling",
+      "label": "../hooks/usePolling/usePolling",
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_workerspage_jsx_import_components_statusbadge_statusbadge",
+      "label": "../components/StatusBadge/StatusBadge",
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L4",
+      "node_type": "module"
+    },
+    {
+      "id": "client_src_pages_workerspage_jsx_workerspage",
+      "label": "WorkersPage()",
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L6",
+      "node_type": "function"
+    },
+    {
+      "id": "client_src_services_api_js",
+      "label": "api",
+      "source_file": ".\\client\\src\\services\\api.js",
+      "node_type": "file"
+    },
+    {
+      "id": "client_src_services_api_js_import_axios_axios",
+      "label": "axios/axios",
+      "source_file": ".\\client\\src\\services\\api.js",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "frontend_vite_config_js",
+      "label": "vite.config",
+      "source_file": ".\\frontend\\vite.config.js",
+      "node_type": "file"
+    },
+    {
+      "id": "frontend_vite_config_js_import_vite_defineconfig",
+      "label": "vite/defineConfig",
+      "source_file": ".\\frontend\\vite.config.js",
+      "source_location": "L1",
+      "node_type": "module"
+    },
+    {
+      "id": "frontend_vite_config_js_import_vitejs_plugin_react_react",
+      "label": "@vitejs/plugin-react/react",
+      "source_file": ".\\frontend\\vite.config.js",
+      "source_location": "L2",
+      "node_type": "module"
+    },
+    {
+      "id": "frontend_vite_config_js_import_tailwindcss_vite_tailwindcss",
+      "label": "@tailwindcss/vite/tailwindcss",
+      "source_file": ".\\frontend\\vite.config.js",
+      "source_location": "L3",
+      "node_type": "module"
+    },
+    {
+      "id": "tests_auth_test_js",
+      "label": "auth.test",
+      "source_file": ".\\tests\\auth.test.js",
+      "node_type": "file"
+    },
+    {
+      "id": "tests_jobs_test_js",
+      "label": "jobs.test",
+      "source_file": ".\\tests\\jobs.test.js",
+      "node_type": "file"
+    },
+    {
+      "id": "tests_queue_test_js",
+      "label": "queue.test",
+      "source_file": ".\\tests\\queue.test.js",
+      "node_type": "file"
+    },
+    {
+      "id": "tests_setup_js",
+      "label": "setup",
+      "source_file": ".\\tests\\setup.js",
+      "node_type": "file"
+    },
+    {
+      "id": "tests_worker_test_js",
+      "label": "worker.test",
+      "source_file": ".\\tests\\worker.test.js",
+      "node_type": "file"
+    }
+  ],
+  "links": [
+    {
+      "source": "src_controllers_authcontroller_js",
+      "target": "src_controllers_authcontroller_js_register",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\authController.js",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_authcontroller_js",
+      "target": "src_controllers_authcontroller_js_login",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\authController.js",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_dlqcontroller_js",
+      "target": "src_controllers_dlqcontroller_js_listdlq",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\dlqController.js",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_dlqcontroller_js",
+      "target": "src_controllers_dlqcontroller_js_retrydlq",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\dlqController.js",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js",
+      "target": "src_controllers_jobcontroller_js_verifyqueueaccess",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js",
+      "target": "src_controllers_jobcontroller_js_verifyjobaccess",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js",
+      "target": "src_controllers_jobcontroller_js_createjob",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js",
+      "target": "src_controllers_jobcontroller_js_listjobs",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js",
+      "target": "src_controllers_jobcontroller_js_getjob",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L169",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js",
+      "target": "src_controllers_jobcontroller_js_retryjob",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L204",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js",
+      "target": "src_controllers_jobcontroller_js_deletejob",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "source_location": "L239",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js_createjob",
+      "target": "src_controllers_jobcontroller_js_verifyqueueaccess",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js_listjobs",
+      "target": "src_controllers_jobcontroller_js_verifyqueueaccess",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js_getjob",
+      "target": "src_controllers_jobcontroller_js_verifyjobaccess",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js_retryjob",
+      "target": "src_controllers_jobcontroller_js_verifyjobaccess",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_jobcontroller_js_deletejob",
+      "target": "src_controllers_jobcontroller_js_verifyjobaccess",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\jobController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_projectcontroller_js",
+      "target": "src_controllers_projectcontroller_js_listprojects",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\projectController.js",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_projectcontroller_js",
+      "target": "src_controllers_projectcontroller_js_createproject",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\projectController.js",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_projectcontroller_js",
+      "target": "src_controllers_projectcontroller_js_deleteproject",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\projectController.js",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js",
+      "target": "src_controllers_queuecontroller_js_getownedqueue",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js",
+      "target": "src_controllers_queuecontroller_js_verifyprojectownership",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js",
+      "target": "src_controllers_queuecontroller_js_listqueues",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js",
+      "target": "src_controllers_queuecontroller_js_createqueue",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js",
+      "target": "src_controllers_queuecontroller_js_updatequeue",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js",
+      "target": "src_controllers_queuecontroller_js_pausequeue",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js",
+      "target": "src_controllers_queuecontroller_js_resumequeue",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js",
+      "target": "src_controllers_queuecontroller_js_getqueuestats",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "source_location": "L193",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js_listqueues",
+      "target": "src_controllers_queuecontroller_js_verifyprojectownership",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js_createqueue",
+      "target": "src_controllers_queuecontroller_js_verifyprojectownership",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js_updatequeue",
+      "target": "src_controllers_queuecontroller_js_getownedqueue",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js_pausequeue",
+      "target": "src_controllers_queuecontroller_js_getownedqueue",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js_resumequeue",
+      "target": "src_controllers_queuecontroller_js_getownedqueue",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_queuecontroller_js_getqueuestats",
+      "target": "src_controllers_queuecontroller_js_getownedqueue",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\controllers\\queueController.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_statscontroller_js",
+      "target": "src_controllers_statscontroller_js_getdashboardstats",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\statsController.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_workercontroller_js",
+      "target": "src_controllers_workercontroller_js_listworkers",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\workerController.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_workercontroller_js",
+      "target": "src_controllers_workercontroller_js_getworker",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\controllers\\workerController.js",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_auth_js",
+      "target": "src_middleware_auth_js_authenticate",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\middleware\\auth.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_validate_js",
+      "target": "src_middleware_validate_js_errorresponse",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\middleware\\validate.js",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_validate_js",
+      "target": "src_middleware_validate_js_validate",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\middleware\\validate.js",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_validate_js_validate",
+      "target": "src_middleware_validate_js_errorresponse",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\middleware\\validate.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_setworkerid",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_getworkerid",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_log",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_registerworker",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_sendheartbeat",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_claimjob",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_simulatework",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L162",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_executejob",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L172",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_onjobsuccess",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L201",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_onjobfailure",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L223",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_computeretrydelay",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L291",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_poll",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L310",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_processscheduledjobs",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L326",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_computenextcronrun",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L362",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_recoverdeadworkerjobs",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L388",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_shutdown",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L428",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js",
+      "target": "src_workers_worker_js_start",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\src\\workers\\worker.js",
+      "source_location": "L480",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_registerworker",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_sendheartbeat",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_claimjob",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_executejob",
+      "target": "src_workers_worker_js_onjobfailure",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_executejob",
+      "target": "src_workers_worker_js_onjobsuccess",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_executejob",
+      "target": "src_workers_worker_js_simulatework",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_executejob",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_onjobsuccess",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_onjobfailure",
+      "target": "src_workers_worker_js_computeretrydelay",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_onjobfailure",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_poll",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_poll",
+      "target": "src_workers_worker_js_claimjob",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_poll",
+      "target": "src_workers_worker_js_executejob",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_processscheduledjobs",
+      "target": "src_workers_worker_js_computenextcronrun",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_processscheduledjobs",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_recoverdeadworkerjobs",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_shutdown",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_start",
+      "target": "src_workers_worker_js_registerworker",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_start",
+      "target": "src_workers_worker_js_sendheartbeat",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "src_workers_worker_js_start",
+      "target": "src_workers_worker_js_log",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\src\\workers\\worker.js",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_react_router_dom_routes",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_react_router_dom_route",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_react_router_dom_navigate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_components_layout_layout",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_components_protectedroute_protectedroute",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_pages_loginpage_loginpage",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_pages_registerpage_registerpage",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_pages_dashboardpage_dashboardpage",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_pages_queuespage_queuespage",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_pages_queuedetailpage_queuedetailpage",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_pages_workerspage_workerspage",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_import_pages_deadletterpage_deadletterpage",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_app_jsx",
+      "target": "client_src_app_jsx_app",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\App.jsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_jobdetailmodal_jsx",
+      "target": "client_src_components_jobdetailmodal_jsx_import_react_useeffect",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_jobdetailmodal_jsx",
+      "target": "client_src_components_jobdetailmodal_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_jobdetailmodal_jsx",
+      "target": "client_src_components_jobdetailmodal_jsx_import_services_api_api",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_jobdetailmodal_jsx",
+      "target": "client_src_components_jobdetailmodal_jsx_import_components_statusbadge_statusbadge",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_jobdetailmodal_jsx",
+      "target": "client_src_components_jobdetailmodal_jsx_jobdetailmodal",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_jobdetailmodal_jsx",
+      "target": "client_src_components_jobdetailmodal_jsx_fmt",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L162",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_jobdetailmodal_jsx",
+      "target": "client_src_components_jobdetailmodal_jsx_infoitem",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "source_location": "L167",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_jobdetailmodal_jsx_jobdetailmodal",
+      "target": "client_src_components_jobdetailmodal_jsx_fmt",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": ".\\client\\src\\components\\JobDetailModal.jsx",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_layout_jsx",
+      "target": "client_src_components_layout_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_layout_jsx",
+      "target": "client_src_components_layout_jsx_import_react_router_dom_navlink",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_layout_jsx",
+      "target": "client_src_components_layout_jsx_import_react_router_dom_outlet",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_layout_jsx",
+      "target": "client_src_components_layout_jsx_import_context_authcontext_useauth",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_layout_jsx",
+      "target": "client_src_components_layout_jsx_layout",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\Layout.jsx",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_protectedroute_jsx",
+      "target": "client_src_components_protectedroute_jsx_import_react_router_dom_navigate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\ProtectedRoute.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_protectedroute_jsx",
+      "target": "client_src_components_protectedroute_jsx_import_context_authcontext_useauth",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\ProtectedRoute.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_protectedroute_jsx",
+      "target": "client_src_components_protectedroute_jsx_protectedroute",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\ProtectedRoute.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_components_statusbadge_jsx",
+      "target": "client_src_components_statusbadge_jsx_statusbadge",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\components\\StatusBadge.jsx",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_context_authcontext_jsx",
+      "target": "client_src_context_authcontext_jsx_import_react_createcontext",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_context_authcontext_jsx",
+      "target": "client_src_context_authcontext_jsx_import_react_usecontext",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_context_authcontext_jsx",
+      "target": "client_src_context_authcontext_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_context_authcontext_jsx",
+      "target": "client_src_context_authcontext_jsx_import_react_useeffect",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_context_authcontext_jsx",
+      "target": "client_src_context_authcontext_jsx_import_react_usecallback",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_context_authcontext_jsx",
+      "target": "client_src_context_authcontext_jsx_import_react_router_dom_usenavigate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_context_authcontext_jsx",
+      "target": "client_src_context_authcontext_jsx_import_services_api_api",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_context_authcontext_jsx",
+      "target": "client_src_context_authcontext_jsx_authprovider",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_context_authcontext_jsx",
+      "target": "client_src_context_authcontext_jsx_useauth",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\context\\AuthContext.jsx",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_hooks_usepolling_js",
+      "target": "client_src_hooks_usepolling_js_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_hooks_usepolling_js",
+      "target": "client_src_hooks_usepolling_js_import_react_useeffect",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_hooks_usepolling_js",
+      "target": "client_src_hooks_usepolling_js_import_react_usecallback",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_hooks_usepolling_js",
+      "target": "client_src_hooks_usepolling_js_import_react_useref",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_hooks_usepolling_js",
+      "target": "client_src_hooks_usepolling_js_usepolling",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\hooks\\usePolling.js",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_main_jsx",
+      "target": "client_src_main_jsx_import_react_strictmode",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_main_jsx",
+      "target": "client_src_main_jsx_import_react_dom_client_createroot",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_main_jsx",
+      "target": "client_src_main_jsx_import_react_router_dom_browserrouter",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_main_jsx",
+      "target": "client_src_main_jsx_import_react_hot_toast_toaster",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_main_jsx",
+      "target": "client_src_main_jsx_import_context_authcontext_authprovider",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_main_jsx",
+      "target": "client_src_main_jsx_import_app_app",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_main_jsx",
+      "target": "client_src_main_jsx_import_index_css",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\main.jsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_barchart",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_bar",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_linechart",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_line",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_xaxis",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_yaxis",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_cartesiangrid",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_tooltip",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_responsivecontainer",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_recharts_legend",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_services_api_api",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_hooks_usepolling_usepolling",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_import_components_statusbadge_statusbadge",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_dashboardpage",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_dashboardpage_jsx",
+      "target": "client_src_pages_dashboardpage_jsx_statcard",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DashboardPage.jsx",
+      "source_location": "L208",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_deadletterpage_jsx",
+      "target": "client_src_pages_deadletterpage_jsx_import_react_useeffect",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_deadletterpage_jsx",
+      "target": "client_src_pages_deadletterpage_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_deadletterpage_jsx",
+      "target": "client_src_pages_deadletterpage_jsx_import_react_usecallback",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_deadletterpage_jsx",
+      "target": "client_src_pages_deadletterpage_jsx_import_services_api_api",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_deadletterpage_jsx",
+      "target": "client_src_pages_deadletterpage_jsx_import_react_hot_toast_toast",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_deadletterpage_jsx",
+      "target": "client_src_pages_deadletterpage_jsx_deadletterpage",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\DeadLetterPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_loginpage_jsx",
+      "target": "client_src_pages_loginpage_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_loginpage_jsx",
+      "target": "client_src_pages_loginpage_jsx_import_react_router_dom_link",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_loginpage_jsx",
+      "target": "client_src_pages_loginpage_jsx_import_react_router_dom_usenavigate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_loginpage_jsx",
+      "target": "client_src_pages_loginpage_jsx_import_context_authcontext_useauth",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_loginpage_jsx",
+      "target": "client_src_pages_loginpage_jsx_import_react_hot_toast_toast",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_loginpage_jsx",
+      "target": "client_src_pages_loginpage_jsx_loginpage",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\LoginPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_import_react_useeffect",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_import_react_usecallback",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_import_react_router_dom_useparams",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_import_react_router_dom_link",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_import_services_api_api",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_import_components_statusbadge_statusbadge",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_import_components_jobdetailmodal_jobdetailmodal",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_import_react_hot_toast_toast",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuedetailpage_jsx",
+      "target": "client_src_pages_queuedetailpage_jsx_queuedetailpage",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueueDetailPage.jsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuespage_jsx",
+      "target": "client_src_pages_queuespage_jsx_import_react_useeffect",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuespage_jsx",
+      "target": "client_src_pages_queuespage_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuespage_jsx",
+      "target": "client_src_pages_queuespage_jsx_import_react_router_dom_link",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuespage_jsx",
+      "target": "client_src_pages_queuespage_jsx_import_services_api_api",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuespage_jsx",
+      "target": "client_src_pages_queuespage_jsx_import_components_statusbadge_statusbadge",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuespage_jsx",
+      "target": "client_src_pages_queuespage_jsx_import_react_hot_toast_toast",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_queuespage_jsx",
+      "target": "client_src_pages_queuespage_jsx_queuespage",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\QueuesPage.jsx",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_registerpage_jsx",
+      "target": "client_src_pages_registerpage_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_registerpage_jsx",
+      "target": "client_src_pages_registerpage_jsx_import_react_router_dom_link",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_registerpage_jsx",
+      "target": "client_src_pages_registerpage_jsx_import_react_router_dom_usenavigate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_registerpage_jsx",
+      "target": "client_src_pages_registerpage_jsx_import_context_authcontext_useauth",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_registerpage_jsx",
+      "target": "client_src_pages_registerpage_jsx_import_react_hot_toast_toast",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_registerpage_jsx",
+      "target": "client_src_pages_registerpage_jsx_registerpage",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\RegisterPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_workerspage_jsx",
+      "target": "client_src_pages_workerspage_jsx_import_react_usestate",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_workerspage_jsx",
+      "target": "client_src_pages_workerspage_jsx_import_services_api_api",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_workerspage_jsx",
+      "target": "client_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_workerspage_jsx",
+      "target": "client_src_pages_workerspage_jsx_import_components_statusbadge_statusbadge",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_pages_workerspage_jsx",
+      "target": "client_src_pages_workerspage_jsx_workerspage",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\pages\\WorkersPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "client_src_services_api_js",
+      "target": "client_src_services_api_js_import_axios_axios",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\client\\src\\services\\api.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_vite_config_js",
+      "target": "frontend_vite_config_js_import_vite_defineconfig",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\frontend\\vite.config.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_vite_config_js",
+      "target": "frontend_vite_config_js_import_vitejs_plugin_react_react",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\frontend\\vite.config.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_vite_config_js",
+      "target": "frontend_vite_config_js_import_tailwindcss_vite_tailwindcss",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".\\frontend\\vite.config.js",
+      "source_location": "L3",
+      "weight": 1.0
+    }
+  ]
+}

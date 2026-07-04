@@ -1,0 +1,2128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="label" for="node" attr.name="label" attr.type="string"/>
+  <key id="node_type" for="node" attr.name="node_type" attr.type="string"/>
+  <key id="source_file" for="node" attr.name="source_file" attr.type="string"/>
+  <key id="community" for="node" attr.name="community" attr.type="int"/>
+  <key id="relation" for="edge" attr.name="relation" attr.type="string"/>
+  <key id="confidence" for="edge" attr.name="confidence" attr.type="string"/>
+  <key id="confidence_score" for="edge" attr.name="confidence_score" attr.type="double"/>
+  <key id="weight" for="edge" attr.name="weight" attr.type="double"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="backend_jest_config_js">
+      <data key="label">jest.config</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\backend\jest.config.js</data>
+    </node>
+    <node id="backend_server_js">
+      <data key="label">server</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\backend\server.js</data>
+    </node>
+    <node id="src_controllers_authcontroller_js">
+      <data key="label">authController</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\controllers\authController.js</data>
+    </node>
+    <node id="src_controllers_authcontroller_js_register">
+      <data key="label">register()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\authController.js</data>
+    </node>
+    <node id="src_controllers_authcontroller_js_login">
+      <data key="label">login()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\authController.js</data>
+    </node>
+    <node id="src_controllers_dlqcontroller_js">
+      <data key="label">dlqController</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\controllers\dlqController.js</data>
+    </node>
+    <node id="src_controllers_dlqcontroller_js_listdlq">
+      <data key="label">listDLQ()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\dlqController.js</data>
+    </node>
+    <node id="src_controllers_dlqcontroller_js_retrydlq">
+      <data key="label">retryDLQ()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\dlqController.js</data>
+    </node>
+    <node id="src_controllers_jobcontroller_js">
+      <data key="label">jobController</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\controllers\jobController.js</data>
+    </node>
+    <node id="src_controllers_jobcontroller_js_verifyqueueaccess">
+      <data key="label">verifyQueueAccess()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\jobController.js</data>
+    </node>
+    <node id="src_controllers_jobcontroller_js_verifyjobaccess">
+      <data key="label">verifyJobAccess()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\jobController.js</data>
+    </node>
+    <node id="src_controllers_jobcontroller_js_createjob">
+      <data key="label">createJob()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\jobController.js</data>
+    </node>
+    <node id="src_controllers_jobcontroller_js_listjobs">
+      <data key="label">listJobs()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\jobController.js</data>
+    </node>
+    <node id="src_controllers_jobcontroller_js_getjob">
+      <data key="label">getJob()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\jobController.js</data>
+    </node>
+    <node id="src_controllers_jobcontroller_js_retryjob">
+      <data key="label">retryJob()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\jobController.js</data>
+    </node>
+    <node id="src_controllers_jobcontroller_js_deletejob">
+      <data key="label">deleteJob()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\jobController.js</data>
+    </node>
+    <node id="src_controllers_projectcontroller_js">
+      <data key="label">projectController</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\controllers\projectController.js</data>
+    </node>
+    <node id="src_controllers_projectcontroller_js_listprojects">
+      <data key="label">listProjects()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\projectController.js</data>
+    </node>
+    <node id="src_controllers_projectcontroller_js_createproject">
+      <data key="label">createProject()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\projectController.js</data>
+    </node>
+    <node id="src_controllers_projectcontroller_js_deleteproject">
+      <data key="label">deleteProject()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\projectController.js</data>
+    </node>
+    <node id="src_controllers_queuecontroller_js">
+      <data key="label">queueController</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\controllers\queueController.js</data>
+    </node>
+    <node id="src_controllers_queuecontroller_js_getownedqueue">
+      <data key="label">getOwnedQueue()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\queueController.js</data>
+    </node>
+    <node id="src_controllers_queuecontroller_js_verifyprojectownership">
+      <data key="label">verifyProjectOwnership()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\queueController.js</data>
+    </node>
+    <node id="src_controllers_queuecontroller_js_listqueues">
+      <data key="label">listQueues()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\queueController.js</data>
+    </node>
+    <node id="src_controllers_queuecontroller_js_createqueue">
+      <data key="label">createQueue()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\queueController.js</data>
+    </node>
+    <node id="src_controllers_queuecontroller_js_updatequeue">
+      <data key="label">updateQueue()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\queueController.js</data>
+    </node>
+    <node id="src_controllers_queuecontroller_js_pausequeue">
+      <data key="label">pauseQueue()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\queueController.js</data>
+    </node>
+    <node id="src_controllers_queuecontroller_js_resumequeue">
+      <data key="label">resumeQueue()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\queueController.js</data>
+    </node>
+    <node id="src_controllers_queuecontroller_js_getqueuestats">
+      <data key="label">getQueueStats()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\queueController.js</data>
+    </node>
+    <node id="src_controllers_statscontroller_js">
+      <data key="label">statsController</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\controllers\statsController.js</data>
+    </node>
+    <node id="src_controllers_statscontroller_js_getdashboardstats">
+      <data key="label">getDashboardStats()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\statsController.js</data>
+    </node>
+    <node id="src_controllers_workercontroller_js">
+      <data key="label">workerController</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\controllers\workerController.js</data>
+    </node>
+    <node id="src_controllers_workercontroller_js_listworkers">
+      <data key="label">listWorkers()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\workerController.js</data>
+    </node>
+    <node id="src_controllers_workercontroller_js_getworker">
+      <data key="label">getWorker()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\controllers\workerController.js</data>
+    </node>
+    <node id="src_db_index_js">
+      <data key="label">index</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\db\index.js</data>
+    </node>
+    <node id="src_middleware_auth_js">
+      <data key="label">auth</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\middleware\auth.js</data>
+    </node>
+    <node id="src_middleware_auth_js_authenticate">
+      <data key="label">authenticate()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\middleware\auth.js</data>
+    </node>
+    <node id="src_middleware_validate_js">
+      <data key="label">validate</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\middleware\validate.js</data>
+    </node>
+    <node id="src_middleware_validate_js_errorresponse">
+      <data key="label">errorResponse()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\middleware\validate.js</data>
+    </node>
+    <node id="src_middleware_validate_js_validate">
+      <data key="label">validate()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\middleware\validate.js</data>
+    </node>
+    <node id="src_routes_auth_js">
+      <data key="label">auth</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\routes\auth.js</data>
+    </node>
+    <node id="src_routes_dlq_js">
+      <data key="label">dlq</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\routes\dlq.js</data>
+    </node>
+    <node id="src_routes_jobs_js">
+      <data key="label">jobs</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\routes\jobs.js</data>
+    </node>
+    <node id="src_routes_projects_js">
+      <data key="label">projects</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\routes\projects.js</data>
+    </node>
+    <node id="src_routes_queues_js">
+      <data key="label">queues</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\routes\queues.js</data>
+    </node>
+    <node id="src_routes_stats_js">
+      <data key="label">stats</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\routes\stats.js</data>
+    </node>
+    <node id="src_routes_workers_js">
+      <data key="label">workers</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\routes\workers.js</data>
+    </node>
+    <node id="src_workers_worker_js">
+      <data key="label">worker</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_setworkerid">
+      <data key="label">setWorkerId()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_getworkerid">
+      <data key="label">getWorkerId()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_log">
+      <data key="label">log()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_registerworker">
+      <data key="label">registerWorker()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_sendheartbeat">
+      <data key="label">sendHeartbeat()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_claimjob">
+      <data key="label">claimJob()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_simulatework">
+      <data key="label">simulateWork()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_executejob">
+      <data key="label">executeJob()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_onjobsuccess">
+      <data key="label">onJobSuccess()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_onjobfailure">
+      <data key="label">onJobFailure()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_computeretrydelay">
+      <data key="label">computeRetryDelay()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_poll">
+      <data key="label">poll()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_processscheduledjobs">
+      <data key="label">processScheduledJobs()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_computenextcronrun">
+      <data key="label">computeNextCronRun()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_recoverdeadworkerjobs">
+      <data key="label">recoverDeadWorkerJobs()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_shutdown">
+      <data key="label">shutdown()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="src_workers_worker_js_start">
+      <data key="label">start()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\src\workers\worker.js</data>
+    </node>
+    <node id="client_src_app_jsx">
+      <data key="label">App</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_react_router_dom_routes">
+      <data key="label">react-router-dom/Routes</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_react_router_dom_route">
+      <data key="label">react-router-dom/Route</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_react_router_dom_navigate">
+      <data key="label">react-router-dom/Navigate</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_components_layout_layout">
+      <data key="label">./components/Layout/Layout</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_components_protectedroute_protectedroute">
+      <data key="label">./components/ProtectedRoute/ProtectedRoute</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_pages_loginpage_loginpage">
+      <data key="label">./pages/LoginPage/LoginPage</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_pages_registerpage_registerpage">
+      <data key="label">./pages/RegisterPage/RegisterPage</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_pages_dashboardpage_dashboardpage">
+      <data key="label">./pages/DashboardPage/DashboardPage</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_pages_queuespage_queuespage">
+      <data key="label">./pages/QueuesPage/QueuesPage</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_pages_queuedetailpage_queuedetailpage">
+      <data key="label">./pages/QueueDetailPage/QueueDetailPage</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_pages_workerspage_workerspage">
+      <data key="label">./pages/WorkersPage/WorkersPage</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_import_pages_deadletterpage_deadletterpage">
+      <data key="label">./pages/DeadLetterPage/DeadLetterPage</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_app_jsx_app">
+      <data key="label">App()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\App.jsx</data>
+    </node>
+    <node id="client_src_components_jobdetailmodal_jsx">
+      <data key="label">JobDetailModal</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\components\JobDetailModal.jsx</data>
+    </node>
+    <node id="client_src_components_jobdetailmodal_jsx_import_react_useeffect">
+      <data key="label">react/useEffect</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\JobDetailModal.jsx</data>
+    </node>
+    <node id="client_src_components_jobdetailmodal_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\JobDetailModal.jsx</data>
+    </node>
+    <node id="client_src_components_jobdetailmodal_jsx_import_services_api_api">
+      <data key="label">../services/api/api</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\JobDetailModal.jsx</data>
+    </node>
+    <node id="client_src_components_jobdetailmodal_jsx_import_components_statusbadge_statusbadge">
+      <data key="label">../components/StatusBadge/StatusBadge</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\JobDetailModal.jsx</data>
+    </node>
+    <node id="client_src_components_jobdetailmodal_jsx_jobdetailmodal">
+      <data key="label">JobDetailModal()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\components\JobDetailModal.jsx</data>
+    </node>
+    <node id="client_src_components_jobdetailmodal_jsx_fmt">
+      <data key="label">fmt()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\components\JobDetailModal.jsx</data>
+    </node>
+    <node id="client_src_components_jobdetailmodal_jsx_infoitem">
+      <data key="label">InfoItem()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\components\JobDetailModal.jsx</data>
+    </node>
+    <node id="client_src_components_layout_jsx">
+      <data key="label">Layout</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\components\Layout.jsx</data>
+    </node>
+    <node id="client_src_components_layout_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\Layout.jsx</data>
+    </node>
+    <node id="client_src_components_layout_jsx_import_react_router_dom_navlink">
+      <data key="label">react-router-dom/NavLink</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\Layout.jsx</data>
+    </node>
+    <node id="client_src_components_layout_jsx_import_react_router_dom_outlet">
+      <data key="label">react-router-dom/Outlet</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\Layout.jsx</data>
+    </node>
+    <node id="client_src_components_layout_jsx_import_context_authcontext_useauth">
+      <data key="label">../context/AuthContext/useAuth</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\Layout.jsx</data>
+    </node>
+    <node id="client_src_components_layout_jsx_layout">
+      <data key="label">Layout()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\components\Layout.jsx</data>
+    </node>
+    <node id="client_src_components_protectedroute_jsx">
+      <data key="label">ProtectedRoute</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\components\ProtectedRoute.jsx</data>
+    </node>
+    <node id="client_src_components_protectedroute_jsx_import_react_router_dom_navigate">
+      <data key="label">react-router-dom/Navigate</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\ProtectedRoute.jsx</data>
+    </node>
+    <node id="client_src_components_protectedroute_jsx_import_context_authcontext_useauth">
+      <data key="label">../context/AuthContext/useAuth</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\components\ProtectedRoute.jsx</data>
+    </node>
+    <node id="client_src_components_protectedroute_jsx_protectedroute">
+      <data key="label">ProtectedRoute()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\components\ProtectedRoute.jsx</data>
+    </node>
+    <node id="client_src_components_statusbadge_jsx">
+      <data key="label">StatusBadge</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\components\StatusBadge.jsx</data>
+    </node>
+    <node id="client_src_components_statusbadge_jsx_statusbadge">
+      <data key="label">StatusBadge()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\components\StatusBadge.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx">
+      <data key="label">AuthContext</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx_import_react_createcontext">
+      <data key="label">react/createContext</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx_import_react_usecontext">
+      <data key="label">react/useContext</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx_import_react_useeffect">
+      <data key="label">react/useEffect</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx_import_react_usecallback">
+      <data key="label">react/useCallback</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx_import_react_router_dom_usenavigate">
+      <data key="label">react-router-dom/useNavigate</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx_import_services_api_api">
+      <data key="label">../services/api/api</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx_authprovider">
+      <data key="label">AuthProvider()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_context_authcontext_jsx_useauth">
+      <data key="label">useAuth()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\context\AuthContext.jsx</data>
+    </node>
+    <node id="client_src_hooks_usepolling_js">
+      <data key="label">usePolling</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\hooks\usePolling.js</data>
+    </node>
+    <node id="client_src_hooks_usepolling_js_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\hooks\usePolling.js</data>
+    </node>
+    <node id="client_src_hooks_usepolling_js_import_react_useeffect">
+      <data key="label">react/useEffect</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\hooks\usePolling.js</data>
+    </node>
+    <node id="client_src_hooks_usepolling_js_import_react_usecallback">
+      <data key="label">react/useCallback</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\hooks\usePolling.js</data>
+    </node>
+    <node id="client_src_hooks_usepolling_js_import_react_useref">
+      <data key="label">react/useRef</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\hooks\usePolling.js</data>
+    </node>
+    <node id="client_src_hooks_usepolling_js_usepolling">
+      <data key="label">usePolling()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\hooks\usePolling.js</data>
+    </node>
+    <node id="client_src_main_jsx">
+      <data key="label">main</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\main.jsx</data>
+    </node>
+    <node id="client_src_main_jsx_import_react_strictmode">
+      <data key="label">react/StrictMode</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\main.jsx</data>
+    </node>
+    <node id="client_src_main_jsx_import_react_dom_client_createroot">
+      <data key="label">react-dom/client/createRoot</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\main.jsx</data>
+    </node>
+    <node id="client_src_main_jsx_import_react_router_dom_browserrouter">
+      <data key="label">react-router-dom/BrowserRouter</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\main.jsx</data>
+    </node>
+    <node id="client_src_main_jsx_import_react_hot_toast_toaster">
+      <data key="label">react-hot-toast/Toaster</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\main.jsx</data>
+    </node>
+    <node id="client_src_main_jsx_import_context_authcontext_authprovider">
+      <data key="label">./context/AuthContext/AuthProvider</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\main.jsx</data>
+    </node>
+    <node id="client_src_main_jsx_import_app_app">
+      <data key="label">./App/App</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\main.jsx</data>
+    </node>
+    <node id="client_src_main_jsx_import_index_css">
+      <data key="label">./index.css</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\main.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx">
+      <data key="label">DashboardPage</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_barchart">
+      <data key="label">recharts/BarChart</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_bar">
+      <data key="label">recharts/Bar</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_linechart">
+      <data key="label">recharts/LineChart</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_line">
+      <data key="label">recharts/Line</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_xaxis">
+      <data key="label">recharts/XAxis</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_yaxis">
+      <data key="label">recharts/YAxis</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_cartesiangrid">
+      <data key="label">recharts/CartesianGrid</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_tooltip">
+      <data key="label">recharts/Tooltip</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_responsivecontainer">
+      <data key="label">recharts/ResponsiveContainer</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_recharts_legend">
+      <data key="label">recharts/Legend</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_services_api_api">
+      <data key="label">../services/api/api</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_hooks_usepolling_usepolling">
+      <data key="label">../hooks/usePolling/usePolling</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_import_components_statusbadge_statusbadge">
+      <data key="label">../components/StatusBadge/StatusBadge</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_dashboardpage">
+      <data key="label">DashboardPage()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_dashboardpage_jsx_statcard">
+      <data key="label">StatCard()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\pages\DashboardPage.jsx</data>
+    </node>
+    <node id="client_src_pages_deadletterpage_jsx">
+      <data key="label">DeadLetterPage</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\pages\DeadLetterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_deadletterpage_jsx_import_react_useeffect">
+      <data key="label">react/useEffect</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DeadLetterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_deadletterpage_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DeadLetterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_deadletterpage_jsx_import_react_usecallback">
+      <data key="label">react/useCallback</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DeadLetterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_deadletterpage_jsx_import_services_api_api">
+      <data key="label">../services/api/api</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DeadLetterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_deadletterpage_jsx_import_react_hot_toast_toast">
+      <data key="label">react-hot-toast/toast</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\DeadLetterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_deadletterpage_jsx_deadletterpage">
+      <data key="label">DeadLetterPage()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\pages\DeadLetterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_loginpage_jsx">
+      <data key="label">LoginPage</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\pages\LoginPage.jsx</data>
+    </node>
+    <node id="client_src_pages_loginpage_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\LoginPage.jsx</data>
+    </node>
+    <node id="client_src_pages_loginpage_jsx_import_react_router_dom_link">
+      <data key="label">react-router-dom/Link</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\LoginPage.jsx</data>
+    </node>
+    <node id="client_src_pages_loginpage_jsx_import_react_router_dom_usenavigate">
+      <data key="label">react-router-dom/useNavigate</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\LoginPage.jsx</data>
+    </node>
+    <node id="client_src_pages_loginpage_jsx_import_context_authcontext_useauth">
+      <data key="label">../context/AuthContext/useAuth</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\LoginPage.jsx</data>
+    </node>
+    <node id="client_src_pages_loginpage_jsx_import_react_hot_toast_toast">
+      <data key="label">react-hot-toast/toast</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\LoginPage.jsx</data>
+    </node>
+    <node id="client_src_pages_loginpage_jsx_loginpage">
+      <data key="label">LoginPage()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\pages\LoginPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx">
+      <data key="label">QueueDetailPage</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_import_react_useeffect">
+      <data key="label">react/useEffect</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_import_react_usecallback">
+      <data key="label">react/useCallback</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_import_react_router_dom_useparams">
+      <data key="label">react-router-dom/useParams</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_import_react_router_dom_link">
+      <data key="label">react-router-dom/Link</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_import_services_api_api">
+      <data key="label">../services/api/api</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_import_components_statusbadge_statusbadge">
+      <data key="label">../components/StatusBadge/StatusBadge</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_import_components_jobdetailmodal_jobdetailmodal">
+      <data key="label">../components/JobDetailModal/JobDetailModal</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_import_react_hot_toast_toast">
+      <data key="label">react-hot-toast/toast</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuedetailpage_jsx_queuedetailpage">
+      <data key="label">QueueDetailPage()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\pages\QueueDetailPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuespage_jsx">
+      <data key="label">QueuesPage</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\pages\QueuesPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuespage_jsx_import_react_useeffect">
+      <data key="label">react/useEffect</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueuesPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuespage_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueuesPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuespage_jsx_import_react_router_dom_link">
+      <data key="label">react-router-dom/Link</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueuesPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuespage_jsx_import_services_api_api">
+      <data key="label">../services/api/api</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueuesPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuespage_jsx_import_components_statusbadge_statusbadge">
+      <data key="label">../components/StatusBadge/StatusBadge</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueuesPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuespage_jsx_import_react_hot_toast_toast">
+      <data key="label">react-hot-toast/toast</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\QueuesPage.jsx</data>
+    </node>
+    <node id="client_src_pages_queuespage_jsx_queuespage">
+      <data key="label">QueuesPage()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\pages\QueuesPage.jsx</data>
+    </node>
+    <node id="client_src_pages_registerpage_jsx">
+      <data key="label">RegisterPage</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\pages\RegisterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_registerpage_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\RegisterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_registerpage_jsx_import_react_router_dom_link">
+      <data key="label">react-router-dom/Link</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\RegisterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_registerpage_jsx_import_react_router_dom_usenavigate">
+      <data key="label">react-router-dom/useNavigate</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\RegisterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_registerpage_jsx_import_context_authcontext_useauth">
+      <data key="label">../context/AuthContext/useAuth</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\RegisterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_registerpage_jsx_import_react_hot_toast_toast">
+      <data key="label">react-hot-toast/toast</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\RegisterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_registerpage_jsx_registerpage">
+      <data key="label">RegisterPage()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\pages\RegisterPage.jsx</data>
+    </node>
+    <node id="client_src_pages_workerspage_jsx">
+      <data key="label">WorkersPage</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\pages\WorkersPage.jsx</data>
+    </node>
+    <node id="client_src_pages_workerspage_jsx_import_react_usestate">
+      <data key="label">react/useState</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\WorkersPage.jsx</data>
+    </node>
+    <node id="client_src_pages_workerspage_jsx_import_services_api_api">
+      <data key="label">../services/api/api</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\WorkersPage.jsx</data>
+    </node>
+    <node id="client_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling">
+      <data key="label">../hooks/usePolling/usePolling</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\WorkersPage.jsx</data>
+    </node>
+    <node id="client_src_pages_workerspage_jsx_import_components_statusbadge_statusbadge">
+      <data key="label">../components/StatusBadge/StatusBadge</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\pages\WorkersPage.jsx</data>
+    </node>
+    <node id="client_src_pages_workerspage_jsx_workerspage">
+      <data key="label">WorkersPage()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\client\src\pages\WorkersPage.jsx</data>
+    </node>
+    <node id="client_src_services_api_js">
+      <data key="label">api</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\client\src\services\api.js</data>
+    </node>
+    <node id="client_src_services_api_js_import_axios_axios">
+      <data key="label">axios/axios</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\client\src\services\api.js</data>
+    </node>
+    <node id="frontend_vite_config_js">
+      <data key="label">vite.config</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\frontend\vite.config.js</data>
+    </node>
+    <node id="frontend_vite_config_js_import_vite_defineconfig">
+      <data key="label">vite/defineConfig</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\frontend\vite.config.js</data>
+    </node>
+    <node id="frontend_vite_config_js_import_vitejs_plugin_react_react">
+      <data key="label">@vitejs/plugin-react/react</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\frontend\vite.config.js</data>
+    </node>
+    <node id="frontend_vite_config_js_import_tailwindcss_vite_tailwindcss">
+      <data key="label">@tailwindcss/vite/tailwindcss</data>
+      <data key="node_type">Module</data>
+      <data key="source_file">.\frontend\vite.config.js</data>
+    </node>
+    <node id="tests_auth_test_js">
+      <data key="label">auth.test</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\tests\auth.test.js</data>
+    </node>
+    <node id="tests_jobs_test_js">
+      <data key="label">jobs.test</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\tests\jobs.test.js</data>
+    </node>
+    <node id="tests_queue_test_js">
+      <data key="label">queue.test</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\tests\queue.test.js</data>
+    </node>
+    <node id="tests_setup_js">
+      <data key="label">setup</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\tests\setup.js</data>
+    </node>
+    <node id="tests_worker_test_js">
+      <data key="label">worker.test</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\tests\worker.test.js</data>
+    </node>
+    <edge id="e0" source="src_controllers_authcontroller_js" target="src_controllers_authcontroller_js_register">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e1" source="src_controllers_authcontroller_js" target="src_controllers_authcontroller_js_login">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e2" source="src_controllers_dlqcontroller_js" target="src_controllers_dlqcontroller_js_listdlq">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e3" source="src_controllers_dlqcontroller_js" target="src_controllers_dlqcontroller_js_retrydlq">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e4" source="src_controllers_jobcontroller_js" target="src_controllers_jobcontroller_js_verifyqueueaccess">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e5" source="src_controllers_jobcontroller_js" target="src_controllers_jobcontroller_js_verifyjobaccess">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e6" source="src_controllers_jobcontroller_js" target="src_controllers_jobcontroller_js_createjob">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e7" source="src_controllers_jobcontroller_js" target="src_controllers_jobcontroller_js_listjobs">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e8" source="src_controllers_jobcontroller_js" target="src_controllers_jobcontroller_js_getjob">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e9" source="src_controllers_jobcontroller_js" target="src_controllers_jobcontroller_js_retryjob">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e10" source="src_controllers_jobcontroller_js" target="src_controllers_jobcontroller_js_deletejob">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e11" source="src_controllers_jobcontroller_js_createjob" target="src_controllers_jobcontroller_js_verifyqueueaccess">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e12" source="src_controllers_jobcontroller_js_listjobs" target="src_controllers_jobcontroller_js_verifyqueueaccess">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e13" source="src_controllers_jobcontroller_js_getjob" target="src_controllers_jobcontroller_js_verifyjobaccess">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e14" source="src_controllers_jobcontroller_js_retryjob" target="src_controllers_jobcontroller_js_verifyjobaccess">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e15" source="src_controllers_jobcontroller_js_deletejob" target="src_controllers_jobcontroller_js_verifyjobaccess">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e16" source="src_controllers_projectcontroller_js" target="src_controllers_projectcontroller_js_listprojects">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e17" source="src_controllers_projectcontroller_js" target="src_controllers_projectcontroller_js_createproject">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e18" source="src_controllers_projectcontroller_js" target="src_controllers_projectcontroller_js_deleteproject">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e19" source="src_controllers_queuecontroller_js" target="src_controllers_queuecontroller_js_getownedqueue">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e20" source="src_controllers_queuecontroller_js" target="src_controllers_queuecontroller_js_verifyprojectownership">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e21" source="src_controllers_queuecontroller_js" target="src_controllers_queuecontroller_js_listqueues">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e22" source="src_controllers_queuecontroller_js" target="src_controllers_queuecontroller_js_createqueue">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e23" source="src_controllers_queuecontroller_js" target="src_controllers_queuecontroller_js_updatequeue">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e24" source="src_controllers_queuecontroller_js" target="src_controllers_queuecontroller_js_pausequeue">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e25" source="src_controllers_queuecontroller_js" target="src_controllers_queuecontroller_js_resumequeue">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e26" source="src_controllers_queuecontroller_js" target="src_controllers_queuecontroller_js_getqueuestats">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e27" source="src_controllers_queuecontroller_js_listqueues" target="src_controllers_queuecontroller_js_verifyprojectownership">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e28" source="src_controllers_queuecontroller_js_createqueue" target="src_controllers_queuecontroller_js_verifyprojectownership">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e29" source="src_controllers_queuecontroller_js_updatequeue" target="src_controllers_queuecontroller_js_getownedqueue">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e30" source="src_controllers_queuecontroller_js_pausequeue" target="src_controllers_queuecontroller_js_getownedqueue">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e31" source="src_controllers_queuecontroller_js_resumequeue" target="src_controllers_queuecontroller_js_getownedqueue">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e32" source="src_controllers_queuecontroller_js_getqueuestats" target="src_controllers_queuecontroller_js_getownedqueue">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e33" source="src_controllers_statscontroller_js" target="src_controllers_statscontroller_js_getdashboardstats">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e34" source="src_controllers_workercontroller_js" target="src_controllers_workercontroller_js_listworkers">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e35" source="src_controllers_workercontroller_js" target="src_controllers_workercontroller_js_getworker">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e36" source="src_middleware_auth_js" target="src_middleware_auth_js_authenticate">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e37" source="src_middleware_validate_js" target="src_middleware_validate_js_errorresponse">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e38" source="src_middleware_validate_js" target="src_middleware_validate_js_validate">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e39" source="src_middleware_validate_js_validate" target="src_middleware_validate_js_errorresponse">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e40" source="src_workers_worker_js" target="src_workers_worker_js_setworkerid">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e41" source="src_workers_worker_js" target="src_workers_worker_js_getworkerid">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e42" source="src_workers_worker_js" target="src_workers_worker_js_log">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e43" source="src_workers_worker_js" target="src_workers_worker_js_registerworker">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e44" source="src_workers_worker_js" target="src_workers_worker_js_sendheartbeat">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e45" source="src_workers_worker_js" target="src_workers_worker_js_claimjob">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e46" source="src_workers_worker_js" target="src_workers_worker_js_simulatework">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e47" source="src_workers_worker_js" target="src_workers_worker_js_executejob">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e48" source="src_workers_worker_js" target="src_workers_worker_js_onjobsuccess">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e49" source="src_workers_worker_js" target="src_workers_worker_js_onjobfailure">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e50" source="src_workers_worker_js" target="src_workers_worker_js_computeretrydelay">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e51" source="src_workers_worker_js" target="src_workers_worker_js_poll">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e52" source="src_workers_worker_js" target="src_workers_worker_js_processscheduledjobs">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e53" source="src_workers_worker_js" target="src_workers_worker_js_computenextcronrun">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e54" source="src_workers_worker_js" target="src_workers_worker_js_recoverdeadworkerjobs">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e55" source="src_workers_worker_js" target="src_workers_worker_js_shutdown">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e56" source="src_workers_worker_js" target="src_workers_worker_js_start">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e57" source="src_workers_worker_js_registerworker" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e58" source="src_workers_worker_js_sendheartbeat" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e59" source="src_workers_worker_js_claimjob" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e60" source="src_workers_worker_js_executejob" target="src_workers_worker_js_onjobfailure">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e61" source="src_workers_worker_js_executejob" target="src_workers_worker_js_onjobsuccess">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e62" source="src_workers_worker_js_executejob" target="src_workers_worker_js_simulatework">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e63" source="src_workers_worker_js_executejob" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e64" source="src_workers_worker_js_onjobsuccess" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e65" source="src_workers_worker_js_onjobfailure" target="src_workers_worker_js_computeretrydelay">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e66" source="src_workers_worker_js_onjobfailure" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e67" source="src_workers_worker_js_poll" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e68" source="src_workers_worker_js_poll" target="src_workers_worker_js_claimjob">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e69" source="src_workers_worker_js_poll" target="src_workers_worker_js_executejob">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e70" source="src_workers_worker_js_processscheduledjobs" target="src_workers_worker_js_computenextcronrun">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e71" source="src_workers_worker_js_processscheduledjobs" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e72" source="src_workers_worker_js_recoverdeadworkerjobs" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e73" source="src_workers_worker_js_shutdown" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e74" source="src_workers_worker_js_start" target="src_workers_worker_js_registerworker">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e75" source="src_workers_worker_js_start" target="src_workers_worker_js_sendheartbeat">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e76" source="src_workers_worker_js_start" target="src_workers_worker_js_log">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e77" source="client_src_app_jsx" target="client_src_app_jsx_import_react_router_dom_routes">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e78" source="client_src_app_jsx" target="client_src_app_jsx_import_react_router_dom_route">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e79" source="client_src_app_jsx" target="client_src_app_jsx_import_react_router_dom_navigate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e80" source="client_src_app_jsx" target="client_src_app_jsx_import_components_layout_layout">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e81" source="client_src_app_jsx" target="client_src_app_jsx_import_components_protectedroute_protectedroute">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e82" source="client_src_app_jsx" target="client_src_app_jsx_import_pages_loginpage_loginpage">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e83" source="client_src_app_jsx" target="client_src_app_jsx_import_pages_registerpage_registerpage">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e84" source="client_src_app_jsx" target="client_src_app_jsx_import_pages_dashboardpage_dashboardpage">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e85" source="client_src_app_jsx" target="client_src_app_jsx_import_pages_queuespage_queuespage">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e86" source="client_src_app_jsx" target="client_src_app_jsx_import_pages_queuedetailpage_queuedetailpage">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e87" source="client_src_app_jsx" target="client_src_app_jsx_import_pages_workerspage_workerspage">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e88" source="client_src_app_jsx" target="client_src_app_jsx_import_pages_deadletterpage_deadletterpage">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e89" source="client_src_app_jsx" target="client_src_app_jsx_app">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e90" source="client_src_components_jobdetailmodal_jsx" target="client_src_components_jobdetailmodal_jsx_import_react_useeffect">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e91" source="client_src_components_jobdetailmodal_jsx" target="client_src_components_jobdetailmodal_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e92" source="client_src_components_jobdetailmodal_jsx" target="client_src_components_jobdetailmodal_jsx_import_services_api_api">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e93" source="client_src_components_jobdetailmodal_jsx" target="client_src_components_jobdetailmodal_jsx_import_components_statusbadge_statusbadge">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e94" source="client_src_components_jobdetailmodal_jsx" target="client_src_components_jobdetailmodal_jsx_jobdetailmodal">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e95" source="client_src_components_jobdetailmodal_jsx" target="client_src_components_jobdetailmodal_jsx_fmt">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e96" source="client_src_components_jobdetailmodal_jsx" target="client_src_components_jobdetailmodal_jsx_infoitem">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e97" source="client_src_components_jobdetailmodal_jsx_jobdetailmodal" target="client_src_components_jobdetailmodal_jsx_fmt">
+      <data key="relation">calls</data>
+      <data key="confidence">Inferred</data>
+      <data key="confidence_score">0.7</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e98" source="client_src_components_layout_jsx" target="client_src_components_layout_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e99" source="client_src_components_layout_jsx" target="client_src_components_layout_jsx_import_react_router_dom_navlink">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e100" source="client_src_components_layout_jsx" target="client_src_components_layout_jsx_import_react_router_dom_outlet">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e101" source="client_src_components_layout_jsx" target="client_src_components_layout_jsx_import_context_authcontext_useauth">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e102" source="client_src_components_layout_jsx" target="client_src_components_layout_jsx_layout">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e103" source="client_src_components_protectedroute_jsx" target="client_src_components_protectedroute_jsx_import_react_router_dom_navigate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e104" source="client_src_components_protectedroute_jsx" target="client_src_components_protectedroute_jsx_import_context_authcontext_useauth">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e105" source="client_src_components_protectedroute_jsx" target="client_src_components_protectedroute_jsx_protectedroute">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e106" source="client_src_components_statusbadge_jsx" target="client_src_components_statusbadge_jsx_statusbadge">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e107" source="client_src_context_authcontext_jsx" target="client_src_context_authcontext_jsx_import_react_createcontext">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e108" source="client_src_context_authcontext_jsx" target="client_src_context_authcontext_jsx_import_react_usecontext">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e109" source="client_src_context_authcontext_jsx" target="client_src_context_authcontext_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e110" source="client_src_context_authcontext_jsx" target="client_src_context_authcontext_jsx_import_react_useeffect">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e111" source="client_src_context_authcontext_jsx" target="client_src_context_authcontext_jsx_import_react_usecallback">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e112" source="client_src_context_authcontext_jsx" target="client_src_context_authcontext_jsx_import_react_router_dom_usenavigate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e113" source="client_src_context_authcontext_jsx" target="client_src_context_authcontext_jsx_import_services_api_api">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e114" source="client_src_context_authcontext_jsx" target="client_src_context_authcontext_jsx_authprovider">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e115" source="client_src_context_authcontext_jsx" target="client_src_context_authcontext_jsx_useauth">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e116" source="client_src_hooks_usepolling_js" target="client_src_hooks_usepolling_js_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e117" source="client_src_hooks_usepolling_js" target="client_src_hooks_usepolling_js_import_react_useeffect">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e118" source="client_src_hooks_usepolling_js" target="client_src_hooks_usepolling_js_import_react_usecallback">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e119" source="client_src_hooks_usepolling_js" target="client_src_hooks_usepolling_js_import_react_useref">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e120" source="client_src_hooks_usepolling_js" target="client_src_hooks_usepolling_js_usepolling">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e121" source="client_src_main_jsx" target="client_src_main_jsx_import_react_strictmode">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e122" source="client_src_main_jsx" target="client_src_main_jsx_import_react_dom_client_createroot">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e123" source="client_src_main_jsx" target="client_src_main_jsx_import_react_router_dom_browserrouter">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e124" source="client_src_main_jsx" target="client_src_main_jsx_import_react_hot_toast_toaster">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e125" source="client_src_main_jsx" target="client_src_main_jsx_import_context_authcontext_authprovider">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e126" source="client_src_main_jsx" target="client_src_main_jsx_import_app_app">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e127" source="client_src_main_jsx" target="client_src_main_jsx_import_index_css">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e128" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e129" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_barchart">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e130" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_bar">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e131" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_linechart">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e132" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_line">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e133" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_xaxis">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e134" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_yaxis">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e135" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_cartesiangrid">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e136" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_tooltip">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e137" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_responsivecontainer">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e138" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_recharts_legend">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e139" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_services_api_api">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e140" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_hooks_usepolling_usepolling">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e141" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_import_components_statusbadge_statusbadge">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e142" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_dashboardpage">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e143" source="client_src_pages_dashboardpage_jsx" target="client_src_pages_dashboardpage_jsx_statcard">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e144" source="client_src_pages_deadletterpage_jsx" target="client_src_pages_deadletterpage_jsx_import_react_useeffect">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e145" source="client_src_pages_deadletterpage_jsx" target="client_src_pages_deadletterpage_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e146" source="client_src_pages_deadletterpage_jsx" target="client_src_pages_deadletterpage_jsx_import_react_usecallback">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e147" source="client_src_pages_deadletterpage_jsx" target="client_src_pages_deadletterpage_jsx_import_services_api_api">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e148" source="client_src_pages_deadletterpage_jsx" target="client_src_pages_deadletterpage_jsx_import_react_hot_toast_toast">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e149" source="client_src_pages_deadletterpage_jsx" target="client_src_pages_deadletterpage_jsx_deadletterpage">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e150" source="client_src_pages_loginpage_jsx" target="client_src_pages_loginpage_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e151" source="client_src_pages_loginpage_jsx" target="client_src_pages_loginpage_jsx_import_react_router_dom_link">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e152" source="client_src_pages_loginpage_jsx" target="client_src_pages_loginpage_jsx_import_react_router_dom_usenavigate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e153" source="client_src_pages_loginpage_jsx" target="client_src_pages_loginpage_jsx_import_context_authcontext_useauth">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e154" source="client_src_pages_loginpage_jsx" target="client_src_pages_loginpage_jsx_import_react_hot_toast_toast">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e155" source="client_src_pages_loginpage_jsx" target="client_src_pages_loginpage_jsx_loginpage">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e156" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_import_react_useeffect">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e157" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e158" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_import_react_usecallback">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e159" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_import_react_router_dom_useparams">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e160" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_import_react_router_dom_link">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e161" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_import_services_api_api">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e162" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_import_components_statusbadge_statusbadge">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e163" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_import_components_jobdetailmodal_jobdetailmodal">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e164" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_import_react_hot_toast_toast">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e165" source="client_src_pages_queuedetailpage_jsx" target="client_src_pages_queuedetailpage_jsx_queuedetailpage">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e166" source="client_src_pages_queuespage_jsx" target="client_src_pages_queuespage_jsx_import_react_useeffect">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e167" source="client_src_pages_queuespage_jsx" target="client_src_pages_queuespage_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e168" source="client_src_pages_queuespage_jsx" target="client_src_pages_queuespage_jsx_import_react_router_dom_link">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e169" source="client_src_pages_queuespage_jsx" target="client_src_pages_queuespage_jsx_import_services_api_api">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e170" source="client_src_pages_queuespage_jsx" target="client_src_pages_queuespage_jsx_import_components_statusbadge_statusbadge">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e171" source="client_src_pages_queuespage_jsx" target="client_src_pages_queuespage_jsx_import_react_hot_toast_toast">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e172" source="client_src_pages_queuespage_jsx" target="client_src_pages_queuespage_jsx_queuespage">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e173" source="client_src_pages_registerpage_jsx" target="client_src_pages_registerpage_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e174" source="client_src_pages_registerpage_jsx" target="client_src_pages_registerpage_jsx_import_react_router_dom_link">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e175" source="client_src_pages_registerpage_jsx" target="client_src_pages_registerpage_jsx_import_react_router_dom_usenavigate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e176" source="client_src_pages_registerpage_jsx" target="client_src_pages_registerpage_jsx_import_context_authcontext_useauth">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e177" source="client_src_pages_registerpage_jsx" target="client_src_pages_registerpage_jsx_import_react_hot_toast_toast">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e178" source="client_src_pages_registerpage_jsx" target="client_src_pages_registerpage_jsx_registerpage">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e179" source="client_src_pages_workerspage_jsx" target="client_src_pages_workerspage_jsx_import_react_usestate">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e180" source="client_src_pages_workerspage_jsx" target="client_src_pages_workerspage_jsx_import_services_api_api">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e181" source="client_src_pages_workerspage_jsx" target="client_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e182" source="client_src_pages_workerspage_jsx" target="client_src_pages_workerspage_jsx_import_components_statusbadge_statusbadge">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e183" source="client_src_pages_workerspage_jsx" target="client_src_pages_workerspage_jsx_workerspage">
+      <data key="relation">defines</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e184" source="client_src_services_api_js" target="client_src_services_api_js_import_axios_axios">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e185" source="frontend_vite_config_js" target="frontend_vite_config_js_import_vite_defineconfig">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e186" source="frontend_vite_config_js" target="frontend_vite_config_js_import_vitejs_plugin_react_react">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+    <edge id="e187" source="frontend_vite_config_js" target="frontend_vite_config_js_import_tailwindcss_vite_tailwindcss">
+      <data key="relation">imports</data>
+      <data key="confidence">Extracted</data>
+      <data key="confidence_score">1</data>
+      <data key="weight">1</data>
+    </edge>
+  </graph>
+</graphml>
