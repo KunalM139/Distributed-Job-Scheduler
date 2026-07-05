@@ -8,6 +8,7 @@ A full-stack, production-inspired platform that reliably executes asynchronous b
 **What it does:**
 Users log in, create Projects, and manage Queues within those projects. Jobs are submitted to Queues via a REST API. Worker processes continuously poll the database, atomically claim jobs, execute them, and write back the results. A React dashboard provides live queue health, worker status, job logs, and overall system metrics.
 
+![Architecture Diagram](./architecture-diagram.png)
 ## 2. Tech Stack
 * **Backend:** Node.js, Express.js
 * **Database:** PostgreSQL (serves as both datastore and job queue)
@@ -57,6 +58,9 @@ distributed-job-scheduler/
 ```
 
 ## 4. Database Schema (PostgreSQL)
+
+![ER Diagram](./er-diagram.png)
+
 The system operates on 11 core tables:
 1. **`users`**: `id` (uuid PK), `email` (unique), `password_hash`, `name`, `created_at`
 2. **`projects`**: `id`, `user_id` (FK), `name`, `description`, `created_at`

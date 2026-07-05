@@ -1,19 +1,19 @@
-# Community 18: memberController
+# Community 18: useSocketEvent
 
 **Members:** 5
 
 ## Nodes
 
-- **memberController** (`backend_src_controllers_membercontroller_js`, File, degree: 4)
-- **addMember()** (`backend_src_controllers_membercontroller_js_addmember`, Function, degree: 1)
-- **listMembers()** (`backend_src_controllers_membercontroller_js_listmembers`, Function, degree: 1)
-- **removeMember()** (`backend_src_controllers_membercontroller_js_removemember`, Function, degree: 1)
-- **updateMember()** (`backend_src_controllers_membercontroller_js_updatemember`, Function, degree: 1)
+- **useSocketEvent** (`frontend_src_hooks_usesocketevent_js`, File, degree: 4)
+- **../context/SocketContext/useSocket** (`frontend_src_hooks_usesocketevent_js_import_context_socketcontext_usesocket`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_hooks_usesocketevent_js_import_react_useeffect`, Module, degree: 1)
+- **react/useRef** (`frontend_src_hooks_usesocketevent_js_import_react_useref`, Module, degree: 1)
+- **useSocketEvent()** (`frontend_src_hooks_usesocketevent_js_usesocketevent`, Function, degree: 1)
 
 ## Relationships
 
-- backend_src_controllers_membercontroller_js → backend_src_controllers_membercontroller_js_listmembers (defines)
-- backend_src_controllers_membercontroller_js → backend_src_controllers_membercontroller_js_addmember (defines)
-- backend_src_controllers_membercontroller_js → backend_src_controllers_membercontroller_js_updatemember (defines)
-- backend_src_controllers_membercontroller_js → backend_src_controllers_membercontroller_js_removemember (defines)
+- frontend_src_hooks_usesocketevent_js → frontend_src_hooks_usesocketevent_js_import_react_useeffect (imports)
+- frontend_src_hooks_usesocketevent_js → frontend_src_hooks_usesocketevent_js_import_react_useref (imports)
+- frontend_src_hooks_usesocketevent_js → frontend_src_hooks_usesocketevent_js_import_context_socketcontext_usesocket (imports)
+- frontend_src_hooks_usesocketevent_js → frontend_src_hooks_usesocketevent_js_usesocketevent (defines)
 

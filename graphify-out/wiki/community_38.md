@@ -1,13 +1,13 @@
-# Community 38: test-list-queues
+# Community 38: emitHelper
 
 **Members:** 2
 
 ## Nodes
 
-- **test-list-queues** (`backend_test_list_queues_js`, File, degree: 1)
-- **test()** (`backend_test_list_queues_js_test`, Function, degree: 1)
+- **emitHelper** (`backend_src_services_emithelper_js`, File, degree: 1)
+- **emitEvent()** (`backend_src_services_emithelper_js_emitevent`, Function, degree: 1)
 
 ## Relationships
 
-- backend_test_list_queues_js → backend_test_list_queues_js_test (defines)
+- backend_src_services_emithelper_js → backend_src_services_emithelper_js_emitevent (defines)
 

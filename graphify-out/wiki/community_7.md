@@ -1,27 +1,27 @@
-# Community 7: main
+# Community 7: SocketContext
 
 **Members:** 9
 
 ## Nodes
 
-- **main** (`frontend_src_main_jsx`, File, degree: 8)
-- **./App/App** (`frontend_src_main_jsx_import_app_app`, Module, degree: 1)
-- **./context/AuthContext/AuthProvider** (`frontend_src_main_jsx_import_context_authcontext_authprovider`, Module, degree: 1)
-- **./context/SocketContext/SocketProvider** (`frontend_src_main_jsx_import_context_socketcontext_socketprovider`, Module, degree: 1)
-- **./index.css** (`frontend_src_main_jsx_import_index_css`, Module, degree: 1)
-- **react-dom/client/createRoot** (`frontend_src_main_jsx_import_react_dom_client_createroot`, Module, degree: 1)
-- **react-hot-toast/Toaster** (`frontend_src_main_jsx_import_react_hot_toast_toaster`, Module, degree: 1)
-- **react-router-dom/BrowserRouter** (`frontend_src_main_jsx_import_react_router_dom_browserrouter`, Module, degree: 1)
-- **react/StrictMode** (`frontend_src_main_jsx_import_react_strictmode`, Module, degree: 1)
+- **SocketContext** (`frontend_src_context_socketcontext_jsx`, File, degree: 8)
+- **./AuthContext/useAuth** (`frontend_src_context_socketcontext_jsx_import_authcontext_useauth`, Module, degree: 1)
+- **react/createContext** (`frontend_src_context_socketcontext_jsx_import_react_createcontext`, Module, degree: 1)
+- **react/useContext** (`frontend_src_context_socketcontext_jsx_import_react_usecontext`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_context_socketcontext_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useState** (`frontend_src_context_socketcontext_jsx_import_react_usestate`, Module, degree: 1)
+- **socket.io-client/io** (`frontend_src_context_socketcontext_jsx_import_socket_io_client_io`, Module, degree: 1)
+- **SocketProvider()** (`frontend_src_context_socketcontext_jsx_socketprovider`, Function, degree: 1)
+- **useSocket()** (`frontend_src_context_socketcontext_jsx_usesocket`, Function, degree: 1)
 
 ## Relationships
 
-- frontend_src_main_jsx → frontend_src_main_jsx_import_react_strictmode (imports)
-- frontend_src_main_jsx → frontend_src_main_jsx_import_react_dom_client_createroot (imports)
-- frontend_src_main_jsx → frontend_src_main_jsx_import_react_router_dom_browserrouter (imports)
-- frontend_src_main_jsx → frontend_src_main_jsx_import_react_hot_toast_toaster (imports)
-- frontend_src_main_jsx → frontend_src_main_jsx_import_context_authcontext_authprovider (imports)
-- frontend_src_main_jsx → frontend_src_main_jsx_import_context_socketcontext_socketprovider (imports)
-- frontend_src_main_jsx → frontend_src_main_jsx_import_app_app (imports)
-- frontend_src_main_jsx → frontend_src_main_jsx_import_index_css (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_createcontext (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_usecontext (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_useeffect (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_usestate (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_socket_io_client_io (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_authcontext_useauth (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_socketprovider (defines)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_usesocket (defines)
 

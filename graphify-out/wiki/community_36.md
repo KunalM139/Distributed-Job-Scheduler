@@ -1,13 +1,13 @@
-# Community 36: emitHelper
+# Community 36: api
 
 **Members:** 2
 
 ## Nodes
 
-- **emitHelper** (`backend_src_services_emithelper_js`, File, degree: 1)
-- **emitEvent()** (`backend_src_services_emithelper_js_emitevent`, Function, degree: 1)
+- **api** (`frontend_src_services_api_js`, File, degree: 1)
+- **axios/axios** (`frontend_src_services_api_js_import_axios_axios`, Module, degree: 1)
 
 ## Relationships
 
-- backend_src_services_emithelper_js → backend_src_services_emithelper_js_emitevent (defines)
+- frontend_src_services_api_js → frontend_src_services_api_js_import_axios_axios (imports)
 

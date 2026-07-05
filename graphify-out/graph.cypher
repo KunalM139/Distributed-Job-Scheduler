@@ -1,9 +1,3 @@
-CREATE (nbackend_check_all_js:File {id: 'backend_check_all_js', label: 'check-all', source_file: '.\\backend\\check-all.js'});
-CREATE (nbackend_check_all_js_checkall:Function {id: 'backend_check_all_js_checkall', label: 'checkAll()', source_file: '.\\backend\\check-all.js', source_location: 'L3'});
-CREATE (nbackend_check_members_js:File {id: 'backend_check_members_js', label: 'check-members', source_file: '.\\backend\\check-members.js'});
-CREATE (nbackend_check_members_js_checkmembers:Function {id: 'backend_check_members_js_checkmembers', label: 'checkMembers()', source_file: '.\\backend\\check-members.js', source_location: 'L3'});
-CREATE (nbackend_check_schema_js:File {id: 'backend_check_schema_js', label: 'check-schema', source_file: '.\\backend\\check-schema.js'});
-CREATE (nbackend_check_schema_js_checkschema:Function {id: 'backend_check_schema_js_checkschema', label: 'checkSchema()', source_file: '.\\backend\\check-schema.js', source_location: 'L3'});
 CREATE (nbackend_jest_config_js:File {id: 'backend_jest_config_js', label: 'jest.config', source_file: '.\\backend\\jest.config.js'});
 CREATE (nbackend_migrate_js:File {id: 'backend_migrate_js', label: 'migrate', source_file: '.\\backend\\migrate.js'});
 CREATE (nbackend_migrate_js_run:Function {id: 'backend_migrate_js_run', label: 'run()', source_file: '.\\backend\\migrate.js', source_location: 'L6'});
@@ -93,12 +87,6 @@ CREATE (nbackend_src_workers_worker_js_computenextcronrun:Function {id: 'backend
 CREATE (nbackend_src_workers_worker_js_recoverdeadworkerjobs:Function {id: 'backend_src_workers_worker_js_recoverdeadworkerjobs', label: 'recoverDeadWorkerJobs()', source_file: '.\\backend\\src\\workers\\worker.js', source_location: 'L403'});
 CREATE (nbackend_src_workers_worker_js_shutdown:Function {id: 'backend_src_workers_worker_js_shutdown', label: 'shutdown()', source_file: '.\\backend\\src\\workers\\worker.js', source_location: 'L445'});
 CREATE (nbackend_src_workers_worker_js_start:Function {id: 'backend_src_workers_worker_js_start', label: 'start()', source_file: '.\\backend\\src\\workers\\worker.js', source_location: 'L497'});
-CREATE (nbackend_test_api_js:File {id: 'backend_test_api_js', label: 'test-api', source_file: '.\\backend\\test-api.js'});
-CREATE (nbackend_test_api_js_testapi:Function {id: 'backend_test_api_js_testapi', label: 'testApi()', source_file: '.\\backend\\test-api.js', source_location: 'L4'});
-CREATE (nbackend_test_list_projects_js:File {id: 'backend_test_list_projects_js', label: 'test-list-projects', source_file: '.\\backend\\test-list-projects.js'});
-CREATE (nbackend_test_list_projects_js_test:Function {id: 'backend_test_list_projects_js_test', label: 'test()', source_file: '.\\backend\\test-list-projects.js', source_location: 'L3'});
-CREATE (nbackend_test_list_queues_js:File {id: 'backend_test_list_queues_js', label: 'test-list-queues', source_file: '.\\backend\\test-list-queues.js'});
-CREATE (nbackend_test_list_queues_js_test:Function {id: 'backend_test_list_queues_js_test', label: 'test()', source_file: '.\\backend\\test-list-queues.js', source_location: 'L3'});
 CREATE (nbackend_tests_auth_test_js:File {id: 'backend_tests_auth_test_js', label: 'auth.test', source_file: '.\\backend\\tests\\auth.test.js'});
 CREATE (nbackend_tests_dlq_test_js:File {id: 'backend_tests_dlq_test_js', label: 'dlq.test', source_file: '.\\backend\\tests\\dlq.test.js'});
 CREATE (nbackend_tests_jobs_test_js:File {id: 'backend_tests_jobs_test_js', label: 'jobs.test', source_file: '.\\backend\\tests\\jobs.test.js'});
@@ -265,9 +253,6 @@ CREATE (nfrontend_vite_config_js_import_vite_defineconfig:Module {id: 'frontend_
 CREATE (nfrontend_vite_config_js_import_vitejs_plugin_react_react:Module {id: 'frontend_vite_config_js_import_vitejs_plugin_react_react', label: '@vitejs/plugin-react/react', source_file: '.\\frontend\\vite.config.js', source_location: 'L2'});
 CREATE (nfrontend_vite_config_js_import_tailwindcss_vite_tailwindcss:Module {id: 'frontend_vite_config_js_import_tailwindcss_vite_tailwindcss', label: '@tailwindcss/vite/tailwindcss', source_file: '.\\frontend\\vite.config.js', source_location: 'L3'});
 
-CREATE (nbackend_check_all_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\check-all.js', weight: 1.00}]->(nbackend_check_all_js_checkall);
-CREATE (nbackend_check_members_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\check-members.js', weight: 1.00}]->(nbackend_check_members_js_checkmembers);
-CREATE (nbackend_check_schema_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\check-schema.js', weight: 1.00}]->(nbackend_check_schema_js_checkschema);
 CREATE (nbackend_migrate_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\migrate.js', weight: 1.00}]->(nbackend_migrate_js_run);
 CREATE (nbackend_scripts_backfill_project_members_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\scripts\\backfill-project-members.js', weight: 1.00}]->(nbackend_scripts_backfill_project_members_js_runmigration);
 CREATE (nbackend_src_controllers_authcontroller_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\src\\controllers\\authController.js', weight: 1.00}]->(nbackend_src_controllers_authcontroller_js_register);
@@ -359,9 +344,6 @@ CREATE (nbackend_src_workers_worker_js_shutdown)-[:CALLS  {relation: 'calls', co
 CREATE (nbackend_src_workers_worker_js_start)-[:CALLS  {relation: 'calls', confidence: 'Inferred', confidence_score: 0.70, source_file: '.\\backend\\src\\workers\\worker.js', weight: 1.00}]->(nbackend_src_workers_worker_js_log);
 CREATE (nbackend_src_workers_worker_js_start)-[:CALLS  {relation: 'calls', confidence: 'Inferred', confidence_score: 0.70, source_file: '.\\backend\\src\\workers\\worker.js', weight: 1.00}]->(nbackend_src_workers_worker_js_sendheartbeat);
 CREATE (nbackend_src_workers_worker_js_start)-[:CALLS  {relation: 'calls', confidence: 'Inferred', confidence_score: 0.70, source_file: '.\\backend\\src\\workers\\worker.js', weight: 1.00}]->(nbackend_src_workers_worker_js_registerworker);
-CREATE (nbackend_test_api_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\test-api.js', weight: 1.00}]->(nbackend_test_api_js_testapi);
-CREATE (nbackend_test_list_projects_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\test-list-projects.js', weight: 1.00}]->(nbackend_test_list_projects_js_test);
-CREATE (nbackend_test_list_queues_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\test-list-queues.js', weight: 1.00}]->(nbackend_test_list_queues_js_test);
 CREATE (nfrontend_src_app_jsx)-[:IMPORTS  {relation: 'imports', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\frontend\\src\\App.jsx', weight: 1.00}]->(nfrontend_src_app_jsx_import_react_router_dom_routes);
 CREATE (nfrontend_src_app_jsx)-[:IMPORTS  {relation: 'imports', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\frontend\\src\\App.jsx', weight: 1.00}]->(nfrontend_src_app_jsx_import_react_router_dom_route);
 CREATE (nfrontend_src_app_jsx)-[:IMPORTS  {relation: 'imports', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\frontend\\src\\App.jsx', weight: 1.00}]->(nfrontend_src_app_jsx_import_react_router_dom_navigate);

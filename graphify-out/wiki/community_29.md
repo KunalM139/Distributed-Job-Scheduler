@@ -1,15 +1,15 @@
-# Community 29: workerController
+# Community 29: dlqController
 
 **Members:** 3
 
 ## Nodes
 
-- **workerController** (`src_controllers_workercontroller_js`, File, degree: 2)
-- **getWorker()** (`src_controllers_workercontroller_js_getworker`, Function, degree: 1)
-- **listWorkers()** (`src_controllers_workercontroller_js_listworkers`, Function, degree: 1)
+- **dlqController** (`backend_src_controllers_dlqcontroller_js`, File, degree: 2)
+- **listDLQ()** (`backend_src_controllers_dlqcontroller_js_listdlq`, Function, degree: 1)
+- **retryDLQ()** (`backend_src_controllers_dlqcontroller_js_retrydlq`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_workercontroller_js → src_controllers_workercontroller_js_listworkers (defines)
-- src_controllers_workercontroller_js → src_controllers_workercontroller_js_getworker (defines)
+- backend_src_controllers_dlqcontroller_js → backend_src_controllers_dlqcontroller_js_listdlq (defines)
+- backend_src_controllers_dlqcontroller_js → backend_src_controllers_dlqcontroller_js_retrydlq (defines)
 

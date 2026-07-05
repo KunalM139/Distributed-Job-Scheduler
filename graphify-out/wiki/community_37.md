@@ -1,13 +1,13 @@
-# Community 37: migrate
+# Community 37: auth
 
 **Members:** 2
 
 ## Nodes
 
-- **migrate** (`backend_migrate_js`, File, degree: 1)
-- **run()** (`backend_migrate_js_run`, Function, degree: 1)
+- **auth** (`backend_src_middleware_auth_js`, File, degree: 1)
+- **authenticate()** (`backend_src_middleware_auth_js_authenticate`, Function, degree: 1)
 
 ## Relationships
 
-- backend_migrate_js → backend_migrate_js_run (defines)
+- backend_src_middleware_auth_js → backend_src_middleware_auth_js_authenticate (defines)
 

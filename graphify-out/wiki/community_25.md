@@ -1,15 +1,15 @@
-# Community 25: dlqController
+# Community 25: AISummaryModal
 
 **Members:** 3
 
 ## Nodes
 
-- **dlqController** (`backend_src_controllers_dlqcontroller_js`, File, degree: 2)
-- **listDLQ()** (`backend_src_controllers_dlqcontroller_js_listdlq`, Function, degree: 1)
-- **retryDLQ()** (`backend_src_controllers_dlqcontroller_js_retrydlq`, Function, degree: 1)
+- **AISummaryModal** (`frontend_src_components_aisummarymodal_jsx`, File, degree: 2)
+- **AISummaryModal()** (`frontend_src_components_aisummarymodal_jsx_aisummarymodal`, Function, degree: 1)
+- **react/useEffect** (`frontend_src_components_aisummarymodal_jsx_import_react_useeffect`, Module, degree: 1)
 
 ## Relationships
 
-- backend_src_controllers_dlqcontroller_js → backend_src_controllers_dlqcontroller_js_listdlq (defines)
-- backend_src_controllers_dlqcontroller_js → backend_src_controllers_dlqcontroller_js_retrydlq (defines)
+- frontend_src_components_aisummarymodal_jsx → frontend_src_components_aisummarymodal_jsx_import_react_useeffect (imports)
+- frontend_src_components_aisummarymodal_jsx → frontend_src_components_aisummarymodal_jsx_aisummarymodal (defines)
 

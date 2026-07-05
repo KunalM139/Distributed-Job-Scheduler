@@ -1,13 +1,13 @@
-# Community 31: StatusBadge
+# Community 31: backfill-project-members
 
 **Members:** 2
 
 ## Nodes
 
-- **StatusBadge** (`client_src_components_statusbadge_jsx`, File, degree: 1)
-- **StatusBadge()** (`client_src_components_statusbadge_jsx_statusbadge`, Function, degree: 1)
+- **backfill-project-members** (`backend_scripts_backfill_project_members_js`, File, degree: 1)
+- **runMigration()** (`backend_scripts_backfill_project_members_js_runmigration`, Function, degree: 1)
 
 ## Relationships
 
-- client_src_components_statusbadge_jsx → client_src_components_statusbadge_jsx_statusbadge (defines)
+- backend_scripts_backfill_project_members_js → backend_scripts_backfill_project_members_js_runmigration (defines)
 

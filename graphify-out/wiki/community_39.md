@@ -1,13 +1,8 @@
-# Community 39: check-schema
+# Community 39: rateLimiter
 
-**Members:** 2
+**Members:** 1
 
 ## Nodes
 
-- **check-schema** (`backend_check_schema_js`, File, degree: 1)
-- **checkSchema()** (`backend_check_schema_js_checkschema`, Function, degree: 1)
-
-## Relationships
-
-- backend_check_schema_js → backend_check_schema_js_checkschema (defines)
+- **rateLimiter** (`backend_src_middleware_ratelimiter_js`, File, degree: 0)
 

@@ -1,27 +1,27 @@
-# Community 5: SocketContext
+# Community 5: DeadLetterPage
 
 **Members:** 9
 
 ## Nodes
 
-- **SocketContext** (`frontend_src_context_socketcontext_jsx`, File, degree: 8)
-- **./AuthContext/useAuth** (`frontend_src_context_socketcontext_jsx_import_authcontext_useauth`, Module, degree: 1)
-- **react/createContext** (`frontend_src_context_socketcontext_jsx_import_react_createcontext`, Module, degree: 1)
-- **react/useContext** (`frontend_src_context_socketcontext_jsx_import_react_usecontext`, Module, degree: 1)
-- **react/useEffect** (`frontend_src_context_socketcontext_jsx_import_react_useeffect`, Module, degree: 1)
-- **react/useState** (`frontend_src_context_socketcontext_jsx_import_react_usestate`, Module, degree: 1)
-- **socket.io-client/io** (`frontend_src_context_socketcontext_jsx_import_socket_io_client_io`, Module, degree: 1)
-- **SocketProvider()** (`frontend_src_context_socketcontext_jsx_socketprovider`, Function, degree: 1)
-- **useSocket()** (`frontend_src_context_socketcontext_jsx_usesocket`, Function, degree: 1)
+- **DeadLetterPage** (`frontend_src_pages_deadletterpage_jsx`, File, degree: 8)
+- **DeadLetterPage()** (`frontend_src_pages_deadletterpage_jsx_deadletterpage`, Function, degree: 1)
+- **../components/AISummaryModal/AISummaryModal** (`frontend_src_pages_deadletterpage_jsx_import_components_aisummarymodal_aisummarymodal`, Module, degree: 1)
+- **../hooks/useSocketEvent/useSocketEvent** (`frontend_src_pages_deadletterpage_jsx_import_hooks_usesocketevent_usesocketevent`, Module, degree: 1)
+- **react-hot-toast/toast** (`frontend_src_pages_deadletterpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
+- **react/useCallback** (`frontend_src_pages_deadletterpage_jsx_import_react_usecallback`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_pages_deadletterpage_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useState** (`frontend_src_pages_deadletterpage_jsx_import_react_usestate`, Module, degree: 1)
+- **../services/api/api** (`frontend_src_pages_deadletterpage_jsx_import_services_api_api`, Module, degree: 1)
 
 ## Relationships
 
-- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_createcontext (imports)
-- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_usecontext (imports)
-- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_useeffect (imports)
-- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_usestate (imports)
-- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_socket_io_client_io (imports)
-- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_authcontext_useauth (imports)
-- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_socketprovider (defines)
-- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_usesocket (defines)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_useeffect (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_usestate (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_usecallback (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_services_api_api (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_hooks_usesocketevent_usesocketevent (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_hot_toast_toast (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_components_aisummarymodal_aisummarymodal (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_deadletterpage (defines)
 

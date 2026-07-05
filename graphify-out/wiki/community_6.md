@@ -1,33 +1,27 @@
-# Community 6: queueController
+# Community 6: main
 
 **Members:** 9
 
 ## Nodes
 
-- **queueController** (`backend_src_controllers_queuecontroller_js`, File, degree: 8)
-- **createQueue()** (`backend_src_controllers_queuecontroller_js_createqueue`, Function, degree: 2)
-- **getAccessibleQueue()** (`backend_src_controllers_queuecontroller_js_getaccessiblequeue`, Function, degree: 5)
-- **getQueueStats()** (`backend_src_controllers_queuecontroller_js_getqueuestats`, Function, degree: 2)
-- **listQueues()** (`backend_src_controllers_queuecontroller_js_listqueues`, Function, degree: 2)
-- **pauseQueue()** (`backend_src_controllers_queuecontroller_js_pausequeue`, Function, degree: 2)
-- **resumeQueue()** (`backend_src_controllers_queuecontroller_js_resumequeue`, Function, degree: 2)
-- **updateQueue()** (`backend_src_controllers_queuecontroller_js_updatequeue`, Function, degree: 2)
-- **verifyProjectAccess()** (`backend_src_controllers_queuecontroller_js_verifyprojectaccess`, Function, degree: 3)
+- **main** (`frontend_src_main_jsx`, File, degree: 8)
+- **./App/App** (`frontend_src_main_jsx_import_app_app`, Module, degree: 1)
+- **./context/AuthContext/AuthProvider** (`frontend_src_main_jsx_import_context_authcontext_authprovider`, Module, degree: 1)
+- **./context/SocketContext/SocketProvider** (`frontend_src_main_jsx_import_context_socketcontext_socketprovider`, Module, degree: 1)
+- **./index.css** (`frontend_src_main_jsx_import_index_css`, Module, degree: 1)
+- **react-dom/client/createRoot** (`frontend_src_main_jsx_import_react_dom_client_createroot`, Module, degree: 1)
+- **react-hot-toast/Toaster** (`frontend_src_main_jsx_import_react_hot_toast_toaster`, Module, degree: 1)
+- **react-router-dom/BrowserRouter** (`frontend_src_main_jsx_import_react_router_dom_browserrouter`, Module, degree: 1)
+- **react/StrictMode** (`frontend_src_main_jsx_import_react_strictmode`, Module, degree: 1)
 
 ## Relationships
 
-- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_getaccessiblequeue (defines)
-- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_verifyprojectaccess (defines)
-- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_listqueues (defines)
-- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_createqueue (defines)
-- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_updatequeue (defines)
-- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_pausequeue (defines)
-- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_resumequeue (defines)
-- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_getqueuestats (defines)
-- backend_src_controllers_queuecontroller_js_listqueues → backend_src_controllers_queuecontroller_js_verifyprojectaccess (calls)
-- backend_src_controllers_queuecontroller_js_createqueue → backend_src_controllers_queuecontroller_js_verifyprojectaccess (calls)
-- backend_src_controllers_queuecontroller_js_updatequeue → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
-- backend_src_controllers_queuecontroller_js_pausequeue → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
-- backend_src_controllers_queuecontroller_js_resumequeue → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
-- backend_src_controllers_queuecontroller_js_getqueuestats → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_react_strictmode (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_react_dom_client_createroot (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_react_router_dom_browserrouter (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_react_hot_toast_toaster (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_context_authcontext_authprovider (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_context_socketcontext_socketprovider (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_app_app (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_index_css (imports)
 

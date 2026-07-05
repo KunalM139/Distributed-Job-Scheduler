@@ -1,27 +1,33 @@
-# Community 9: DeadLetterPage
+# Community 9: queueController
 
 **Members:** 9
 
 ## Nodes
 
-- **DeadLetterPage** (`frontend_src_pages_deadletterpage_jsx`, File, degree: 8)
-- **DeadLetterPage()** (`frontend_src_pages_deadletterpage_jsx_deadletterpage`, Function, degree: 1)
-- **../components/AISummaryModal/AISummaryModal** (`frontend_src_pages_deadletterpage_jsx_import_components_aisummarymodal_aisummarymodal`, Module, degree: 1)
-- **../hooks/useSocketEvent/useSocketEvent** (`frontend_src_pages_deadletterpage_jsx_import_hooks_usesocketevent_usesocketevent`, Module, degree: 1)
-- **react-hot-toast/toast** (`frontend_src_pages_deadletterpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
-- **react/useCallback** (`frontend_src_pages_deadletterpage_jsx_import_react_usecallback`, Module, degree: 1)
-- **react/useEffect** (`frontend_src_pages_deadletterpage_jsx_import_react_useeffect`, Module, degree: 1)
-- **react/useState** (`frontend_src_pages_deadletterpage_jsx_import_react_usestate`, Module, degree: 1)
-- **../services/api/api** (`frontend_src_pages_deadletterpage_jsx_import_services_api_api`, Module, degree: 1)
+- **queueController** (`backend_src_controllers_queuecontroller_js`, File, degree: 8)
+- **createQueue()** (`backend_src_controllers_queuecontroller_js_createqueue`, Function, degree: 2)
+- **getAccessibleQueue()** (`backend_src_controllers_queuecontroller_js_getaccessiblequeue`, Function, degree: 5)
+- **getQueueStats()** (`backend_src_controllers_queuecontroller_js_getqueuestats`, Function, degree: 2)
+- **listQueues()** (`backend_src_controllers_queuecontroller_js_listqueues`, Function, degree: 2)
+- **pauseQueue()** (`backend_src_controllers_queuecontroller_js_pausequeue`, Function, degree: 2)
+- **resumeQueue()** (`backend_src_controllers_queuecontroller_js_resumequeue`, Function, degree: 2)
+- **updateQueue()** (`backend_src_controllers_queuecontroller_js_updatequeue`, Function, degree: 2)
+- **verifyProjectAccess()** (`backend_src_controllers_queuecontroller_js_verifyprojectaccess`, Function, degree: 3)
 
 ## Relationships
 
-- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_useeffect (imports)
-- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_usestate (imports)
-- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_usecallback (imports)
-- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_services_api_api (imports)
-- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_hooks_usesocketevent_usesocketevent (imports)
-- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_hot_toast_toast (imports)
-- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_components_aisummarymodal_aisummarymodal (imports)
-- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_deadletterpage (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_getaccessiblequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_verifyprojectaccess (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_listqueues (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_createqueue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_updatequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_pausequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_resumequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_getqueuestats (defines)
+- backend_src_controllers_queuecontroller_js_listqueues → backend_src_controllers_queuecontroller_js_verifyprojectaccess (calls)
+- backend_src_controllers_queuecontroller_js_createqueue → backend_src_controllers_queuecontroller_js_verifyprojectaccess (calls)
+- backend_src_controllers_queuecontroller_js_updatequeue → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
+- backend_src_controllers_queuecontroller_js_pausequeue → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
+- backend_src_controllers_queuecontroller_js_resumequeue → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
+- backend_src_controllers_queuecontroller_js_getqueuestats → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
 

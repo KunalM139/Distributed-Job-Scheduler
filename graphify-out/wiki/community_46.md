@@ -1,8 +1,8 @@
-# Community 46: worker.test
+# Community 46: projects
 
 **Members:** 1
 
 ## Nodes
 
-- **worker.test** (`backend_tests_worker_test_js`, File, degree: 0)
+- **projects** (`backend_src_routes_projects_js`, File, degree: 0)
 

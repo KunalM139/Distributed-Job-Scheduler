@@ -1,8 +1,8 @@
-# Community 47: queue.test
+# Community 47: queues
 
 **Members:** 1
 
 ## Nodes
 
-- **queue.test** (`backend_tests_queue_test_js`, File, degree: 0)
+- **queues** (`backend_src_routes_queues_js`, File, degree: 0)
 

@@ -13,6 +13,10 @@ export default function ProjectsPage() {
   const [newMemberEmail, setNewMemberEmail] = useState('');
   const [newMemberRole, setNewMemberRole] = useState('viewer');
   
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [createForm, setCreateForm] = useState({ name: '', description: '' });
+  const [creating, setCreating] = useState(false);
+  
   const fetchProjects = async () => {
     try {
       const res = await api.get('/api/projects');
@@ -98,6 +102,27 @@ export default function ProjectsPage() {
     }
   };
 
+  const handleCreateProject = async (e) => {
+    e.preventDefault();
+    if (!createForm.name.trim()) return;
+    setCreating(true);
+    try {
+      const res = await api.post('/api/projects', {
+        name: createForm.name,
+        description: createForm.description,
+      });
+      toast.success('Project created');
+      setCreateModalOpen(false);
+      setCreateForm({ name: '', description: '' });
+      fetchProjects();
+      handleSelectProject(res.data.data);
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to create project');
+    } finally {
+      setCreating(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
@@ -108,7 +133,18 @@ export default function ProjectsPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-surface-900 dark:text-white">Projects & Members</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-2xl font-bold text-surface-900 dark:text-white">Projects & Members</h1>
+        <button
+          onClick={() => {
+            setCreateForm({ name: '', description: '' });
+            setCreateModalOpen(true);
+          }}
+          className="rounded-lg bg-gradient-to-r from-accent-500 to-accent-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-accent-500/25 transition hover:from-accent-600 hover:to-accent-700"
+        >
+          + Create Project
+        </button>
+      </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Projects List */}
@@ -247,6 +283,59 @@ export default function ProjectsPage() {
           )}
         </div>
       </div>
+
+      {/* ── Create Project Modal ────────────────────────────────────────────── */}
+      {createModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setCreateModalOpen(false)} />
+
+          {/* Panel */}
+          <div className="relative z-10 w-full max-w-lg rounded-2xl border border-surface-200 bg-white p-6 shadow-2xl dark:border-surface-700 dark:bg-surface-900">
+            <h2 className="mb-5 text-lg font-bold text-surface-900 dark:text-white">Create Project</h2>
+
+            <form onSubmit={handleCreateProject} className="space-y-4">
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-surface-700 dark:text-surface-300">Project Name</label>
+                <input
+                  required
+                  value={createForm.name}
+                  onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
+                  className="w-full rounded-lg border border-surface-300 bg-surface-50 px-3 py-2 text-sm dark:border-surface-700 dark:bg-surface-800 dark:text-white"
+                  placeholder="My awesome project"
+                />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-sm font-medium text-surface-700 dark:text-surface-300">Description (Optional)</label>
+                <textarea
+                  value={createForm.description}
+                  onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
+                  rows={3}
+                  className="w-full rounded-lg border border-surface-300 bg-surface-50 px-3 py-2 text-sm dark:border-surface-700 dark:bg-surface-800 dark:text-white resize-none"
+                  placeholder="A brief description..."
+                />
+              </div>
+
+              <div className="mt-6 flex justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setCreateModalOpen(false)}
+                  className="rounded-lg border border-surface-300 px-4 py-2 text-sm font-medium text-surface-600 transition hover:bg-surface-100 dark:border-surface-600 dark:text-surface-300 dark:hover:bg-surface-800"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={creating}
+                  className="rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-600 disabled:opacity-50"
+                >
+                  {creating ? 'Creating…' : 'Create Project'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

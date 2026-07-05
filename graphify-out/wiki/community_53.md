@@ -1,8 +1,8 @@
-# Community 53: workers
+# Community 53: jest.config
 
 **Members:** 1
 
 ## Nodes
 
-- **workers** (`src_routes_workers_js`, File, degree: 0)
+- **jest.config** (`backend_jest_config_js`, File, degree: 0)
 

@@ -1,8 +1,8 @@
-# Community 52: dlq
+# Community 52: index
 
 **Members:** 1
 
 ## Nodes
 
-- **dlq** (`backend_src_routes_dlq_js`, File, degree: 0)
+- **index** (`src_db_index_js`, File, degree: 0)
 

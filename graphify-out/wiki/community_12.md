@@ -1,23 +1,23 @@
-# Community 12: WorkersPage
+# Community 12: LoginPage
 
 **Members:** 7
 
 ## Nodes
 
-- **WorkersPage** (`frontend_src_pages_workerspage_jsx`, File, degree: 6)
-- **../components/StatusBadge/StatusBadge** (`frontend_src_pages_workerspage_jsx_import_components_statusbadge_statusbadge`, Module, degree: 1)
-- **../hooks/usePolling/usePolling** (`frontend_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling`, Module, degree: 1)
-- **../hooks/useSocketEvent/useSocketEvent** (`frontend_src_pages_workerspage_jsx_import_hooks_usesocketevent_usesocketevent`, Module, degree: 1)
-- **react/useState** (`frontend_src_pages_workerspage_jsx_import_react_usestate`, Module, degree: 1)
-- **../services/api/api** (`frontend_src_pages_workerspage_jsx_import_services_api_api`, Module, degree: 1)
-- **WorkersPage()** (`frontend_src_pages_workerspage_jsx_workerspage`, Function, degree: 1)
+- **LoginPage** (`frontend_src_pages_loginpage_jsx`, File, degree: 6)
+- **../context/AuthContext/useAuth** (`frontend_src_pages_loginpage_jsx_import_context_authcontext_useauth`, Module, degree: 1)
+- **react-hot-toast/toast** (`frontend_src_pages_loginpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
+- **react-router-dom/Link** (`frontend_src_pages_loginpage_jsx_import_react_router_dom_link`, Module, degree: 1)
+- **react-router-dom/useNavigate** (`frontend_src_pages_loginpage_jsx_import_react_router_dom_usenavigate`, Module, degree: 1)
+- **react/useState** (`frontend_src_pages_loginpage_jsx_import_react_usestate`, Module, degree: 1)
+- **LoginPage()** (`frontend_src_pages_loginpage_jsx_loginpage`, Function, degree: 1)
 
 ## Relationships
 
-- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_import_react_usestate (imports)
-- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_import_services_api_api (imports)
-- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling (imports)
-- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_import_hooks_usesocketevent_usesocketevent (imports)
-- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_import_components_statusbadge_statusbadge (imports)
-- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_workerspage (defines)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_react_usestate (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_react_router_dom_link (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_react_router_dom_usenavigate (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_context_authcontext_useauth (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_react_hot_toast_toast (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_loginpage (defines)
 

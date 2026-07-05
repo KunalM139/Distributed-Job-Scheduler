@@ -14,7 +14,7 @@ Authorization: Bearer <your_jwt_token>
 ## Rate Limiting
 The API enforces rate limits to prevent abuse. If you exceed a limit, you will receive an HTTP `429 Too Many Requests` response containing an `error: true` and a `message` explaining the limit.
 
-- **General API**: 100 requests / 15 minutes
+- **General API**: 100 requests / 15 minutes (Exempts GET requests for Dashboard/Polling)
 - **Authentication** (`/api/auth/*`): 10 requests / 15 minutes
 - **Job Creation** (`POST /api/queues/:id/jobs`): 30 requests / minute
 
@@ -25,7 +25,8 @@ The API enforces rate limits to prevent abuse. If you exceed a limit, you will r
 ### Register
 **Method:** `POST`  
 **Path:** `/auth/register`  
-**Description:** Create a new user account.
+**Description:** Create a new user account.  
+**Permissions:** Public
 
 **Request Body:**
 ```json
@@ -36,46 +37,17 @@ The API enforces rate limits to prevent abuse. If you exceed a limit, you will r
 }
 ```
 
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "user": {
-      "id": "a1b2c3d4-...",
-      "name": "Jane Doe",
-      "email": "jane@example.com"
-    },
-    "token": "eyJhbGciOiJIUzI1NiIsInR..."
-  }
-}
-```
-
 ### Login
 **Method:** `POST`  
 **Path:** `/auth/login`  
-**Description:** Authenticate a user and receive a JWT token.
+**Description:** Authenticate a user and receive a JWT token.  
+**Permissions:** Public
 
 **Request Body:**
 ```json
 {
   "email": "jane@example.com",
   "password": "securepassword123"
-}
-```
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "user": {
-      "id": "a1b2c3d4-...",
-      "name": "Jane Doe",
-      "email": "jane@example.com"
-    },
-    "token": "eyJhbGciOiJIUzI1NiIsInR..."
-  }
 }
 ```
 
@@ -86,61 +58,56 @@ The API enforces rate limits to prevent abuse. If you exceed a limit, you will r
 ### List Projects
 **Method:** `GET`  
 **Path:** `/projects`  
-**Description:** Retrieve all projects owned by the authenticated user.
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": "p1-uuid",
-      "name": "Email Notifications",
-      "description": "Handles all outgoing transactional emails",
-      "created_at": "2026-07-04T10:00:00Z"
-    }
-  ]
-}
-```
+**Description:** Retrieve all projects the authenticated user is a member of.  
+**Permissions:** Authenticated User
 
 ### Create Project
 **Method:** `POST`  
 **Path:** `/projects`  
-**Description:** Create a new project.
-
-**Request Body:**
-```json
-{
-  "name": "Data Processing",
-  "description": "Background ETL tasks"
-}
-```
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "id": "p2-uuid",
-    "name": "Data Processing",
-    "description": "Background ETL tasks",
-    "created_at": "2026-07-04T10:05:00Z"
-  }
-}
-```
+**Description:** Create a new project. The creator is automatically assigned the `owner` role.  
+**Permissions:** Authenticated User
 
 ### Delete Project
 **Method:** `DELETE`  
 **Path:** `/projects/:id`  
-**Description:** Delete a project and all its associated queues and jobs.
+**Description:** Delete a project and all its associated queues and jobs.  
+**Permissions:** Owner only
 
-**Response Example:**
+---
+
+## Project Members (RBAC)
+
+### List Members
+**Method:** `GET`  
+**Path:** `/projects/:projectId/members`  
+**Description:** List all members and their roles for a project.  
+**Permissions:** Owner, Admin, Viewer
+
+### Add Member
+**Method:** `POST`  
+**Path:** `/projects/:projectId/members`  
+**Description:** Add a user to the project.  
+**Permissions:** Owner, Admin
+
+**Request Body:**
 ```json
 {
-  "success": true,
-  "message": "Project deleted successfully"
+  "email": "teammate@example.com",
+  "role": "viewer" // owner, admin, viewer
 }
 ```
+
+### Update Member Role
+**Method:** `PATCH`  
+**Path:** `/projects/:projectId/members/:userId`  
+**Description:** Change a member's role.  
+**Permissions:** Owner only
+
+### Remove Member
+**Method:** `DELETE`  
+**Path:** `/projects/:projectId/members/:userId`  
+**Description:** Remove a member from the project.  
+**Permissions:** Owner, Admin (Admins cannot remove Owners)
 
 ---
 
@@ -149,130 +116,32 @@ The API enforces rate limits to prevent abuse. If you exceed a limit, you will r
 ### List Queues
 **Method:** `GET`  
 **Path:** `/projects/:projectId/queues`  
-**Description:** Retrieve all queues belonging to a specific project.
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": "q1-uuid",
-      "name": "high-priority-emails",
-      "priority": 10,
-      "concurrency_limit": 5,
-      "status": "active",
-      "strategy": "exponential",
-      "max_attempts": 5,
-      "delay_seconds": 10
-    }
-  ]
-}
-```
+**Description:** Retrieve all queues belonging to a specific project.  
+**Permissions:** Owner, Admin, Viewer
 
 ### Create Queue
 **Method:** `POST`  
 **Path:** `/projects/:projectId/queues`  
-**Description:** Create a new job queue in a project with a specific retry policy.
-
-**Request Body:**
-```json
-{
-  "name": "video-processing",
-  "priority": 5,
-  "concurrency_limit": 2,
-  "retry_policy": {
-    "strategy": "exponential",
-    "max_attempts": 3,
-    "delay_seconds": 60
-  }
-}
-```
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "id": "q2-uuid",
-    "name": "video-processing",
-    "status": "active"
-  }
-}
-```
+**Description:** Create a new job queue in a project with a specific retry policy.  
+**Permissions:** Owner, Admin
 
 ### Update Queue
 **Method:** `PATCH`  
 **Path:** `/queues/:id`  
-**Description:** Update a queue's configuration.
+**Description:** Update a queue's configuration (priority, concurrency, status).  
+**Permissions:** Owner, Admin
 
-**Request Body:**
-```json
-{
-  "priority": 8,
-  "concurrency_limit": 10,
-  "status": "active"
-}
-```
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "id": "q1-uuid",
-    "priority": 8,
-    "concurrency_limit": 10,
-    "status": "active"
-  }
-}
-```
-
-### Pause Queue
+### Pause Queue / Resume Queue
 **Method:** `POST`  
-**Path:** `/queues/:id/pause`  
-**Description:** Pauses job execution for the queue (status = `paused`).
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "message": "Queue paused successfully"
-}
-```
-
-### Resume Queue
-**Method:** `POST`  
-**Path:** `/queues/:id/resume`  
-**Description:** Resumes job execution for the queue (status = `active`).
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "message": "Queue resumed successfully"
-}
-```
+**Path:** `/queues/:id/pause` | `/queues/:id/resume`  
+**Description:** Pauses or resumes job execution for the queue.  
+**Permissions:** Owner, Admin
 
 ### Queue Stats
 **Method:** `GET`  
 **Path:** `/queues/:id/stats`  
-**Description:** Get current job count grouped by status for a specific queue.
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "stats": {
-      "queued": 45,
-      "running": 5,
-      "completed": 1204,
-      "failed": 12
-    }
-  }
-}
-```
+**Description:** Get current job count grouped by status for a specific queue.  
+**Permissions:** Owner, Admin, Viewer
 
 ---
 
@@ -281,143 +150,64 @@ The API enforces rate limits to prevent abuse. If you exceed a limit, you will r
 ### Create Job(s)
 **Method:** `POST`  
 **Path:** `/queues/:queueId/jobs`  
-**Description:** Enqueue one or multiple jobs. Supports immediate execution, delayed execution, and cron schedules.
+**Description:** Enqueue one or multiple jobs.  
+**Permissions:** Owner, Admin
 
-#### Example 1: Immediate Execution
+**Immediate Jobs:**
 ```json
-{
-  "type": "send-email",
-  "payload": {
-    "to": "user@example.com",
-    "subject": "Welcome!"
-  },
-  "priority": 10
-}
+{ "type": "send-email", "payload": { "to": "user@example.com" }, "priority": 10 }
 ```
 
-#### Example 2: Delayed Execution
+**Delayed Jobs:**
 ```json
-{
-  "type": "generate-report",
-  "payload": { "reportId": 123 },
-  "scheduled_at": "2026-07-05T00:00:00Z"
-}
+{ "type": "generate-report", "payload": { "id": 123 }, "scheduled_at": "2026-07-05T00:00:00Z" }
 ```
 
-#### Example 3: Cron Schedule
+**Cron Jobs:**
 ```json
-{
-  "type": "daily-cleanup",
-  "payload": {},
-  "cron_expression": "0 0 * * *"
-}
+{ "type": "daily-cleanup", "payload": {}, "cron_expression": "0 0 * * *" }
 ```
 
-#### Example 4: Batch Jobs (Array)
+**Batch Jobs (Array):**
 ```json
 [
   { "type": "process-image", "payload": { "id": 1 } },
-  { "type": "process-image", "payload": { "id": 2 } },
-  { "type": "process-image", "payload": { "id": 3 } }
+  { "type": "process-image", "payload": { "id": 2 } }
 ]
-```
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "id": "j1-uuid",
-    "type": "send-email",
-    "status": "queued"
-  }
-}
 ```
 
 ### List Jobs
 **Method:** `GET`  
 **Path:** `/queues/:queueId/jobs`  
-**Description:** List jobs in a queue with optional status filtering and pagination.
-**Query Parameters:** `?page=1&limit=20&status=failed`
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": "j1-uuid",
-      "type": "send-email",
-      "status": "failed",
-      "priority": 10,
-      "attempt_count": 3,
-      "created_at": "2026-07-04T10:00:00Z"
-    }
-  ],
-  "total": 1
-}
-```
+**Description:** List jobs in a queue with optional status filtering and pagination.  
+**Permissions:** Owner, Admin, Viewer
 
 ### Get Job Details
 **Method:** `GET`  
 **Path:** `/jobs/:id`  
-**Description:** Fetch full details of a specific job, including its payload, execution history, and logs.
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "id": "j1-uuid",
-    "type": "send-email",
-    "status": "failed",
-    "attempt_count": 3,
-    "payload": { "to": "user@example.com" },
-    "executions": [
-      {
-        "attempt_number": 1,
-        "worker_id": "w1-uuid",
-        "status": "failed",
-        "started_at": "2026-07-04T10:01:00Z",
-        "error_message": "Connection timeout"
-      }
-    ],
-    "logs": [
-      {
-        "level": "error",
-        "message": "Failed to connect to SMTP server",
-        "created_at": "2026-07-04T10:01:05Z"
-      }
-    ]
-  }
-}
-```
+**Description:** Fetch full details of a specific job, including its payload, execution history, and logs.  
+**Permissions:** Owner, Admin, Viewer
 
 ### Retry Job
 **Method:** `POST`  
 **Path:** `/jobs/:id/retry`  
-**Description:** Manually reset a failed or dead job back to `queued` status to be processed again.
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "message": "Job re-queued successfully"
-}
-```
+**Description:** Manually reset a failed job back to `queued` status to be processed again.  
+**Permissions:** Owner, Admin
 
 ### Delete Job
 **Method:** `DELETE`  
 **Path:** `/jobs/:id`  
-**Description:** Permanently delete a job.
+**Description:** Permanently delete a job.  
+**Permissions:** Owner, Admin
 
-**Response Example:**
-```json
-{
-  "success": true,
-  "message": "Job deleted successfully"
-}
-```
+---
+
+## Scheduled / Cron Jobs
+
+### List Scheduled Jobs
+**Method:** `GET`  
+**Path:** `/queues/:queueId/scheduled-jobs` (or embedded in job listing depending on implementation)  
+**Description:** Managed via the cron expression on the jobs endpoint. The backend daemon translates these into discrete job executions automatically.
 
 ---
 
@@ -426,48 +216,14 @@ The API enforces rate limits to prevent abuse. If you exceed a limit, you will r
 ### List Workers
 **Method:** `GET`  
 **Path:** `/workers`  
-**Description:** Retrieve all active and offline workers, including their live status, heartbeat timestamps, and the number of jobs they are currently running.
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": "w1-uuid",
-      "hostname": "worker-node-01",
-      "status": "busy",
-      "current_job_count": 2,
-      "last_heartbeat_at": "2026-07-04T10:15:30Z",
-      "registered_at": "2026-07-04T08:00:00Z"
-    }
-  ]
-}
-```
+**Description:** Retrieve all active and offline workers globally.  
+**Permissions:** Authenticated User
 
 ### Get Worker Details
 **Method:** `GET`  
 **Path:** `/workers/:id`  
-**Description:** Get detailed information about a worker, including an array of the specific jobs it is currently executing.
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "id": "w1-uuid",
-    "hostname": "worker-node-01",
-    "status": "busy",
-    "current_jobs": [
-      {
-        "id": "j1-uuid",
-        "type": "send-email",
-        "status": "running"
-      }
-    ]
-  }
-}
-```
+**Description:** Get detailed information about a worker and its current executing jobs.  
+**Permissions:** Authenticated User
 
 ---
 
@@ -476,80 +232,32 @@ The API enforces rate limits to prevent abuse. If you exceed a limit, you will r
 ### List DLQ Entries
 **Method:** `GET`  
 **Path:** `/dlq`  
-**Description:** List all jobs that have exhausted their retry attempts and have been permanently parked. Supports pagination via `?page=1&limit=20`.
+**Description:** List all jobs that have exhausted their retry attempts. Includes Gemini AI generated failure summaries.  
+**Permissions:** Authenticated User (Filtered by project membership)
 
-**Response Example:**
+**Response Example Payload Snippet:**
 ```json
 {
-  "success": true,
-  "data": [
-    {
-      "id": "dlq1-uuid",
-      "job_id": "j1-uuid",
-      "job_type": "send-email",
-      "queue_name": "high-priority-emails",
-      "total_attempts": 5,
-      "failure_reason": "SMTP Authentication Failed",
-      "failed_at": "2026-07-04T10:10:00Z"
-    }
-  ],
-  "total": 1
+  "id": "dlq-uuid",
+  "job_id": "job-uuid",
+  "failure_reason": "SMTP timeout",
+  "ai_summary": "The SMTP server timed out. Check network connectivity or credentials.",
+  "total_attempts": 3
 }
 ```
 
 ### Retry DLQ Job
 **Method:** `POST`  
 **Path:** `/dlq/:id/retry`  
-**Description:** Remove a job from the DLQ and move it back into its original queue as `queued` for processing.
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "message": "Job re-queued successfully"
-}
-```
+**Description:** Remove a job from the DLQ and move it back into its original queue as `queued`.  
+**Permissions:** Owner, Admin
 
 ---
 
-## Stats
+## Statistics
 
 ### Global Dashboard Stats
 **Method:** `GET`  
 **Path:** `/stats`  
-**Description:** Retrieve high-level aggregate statistics for the entire system, suitable for dashboard visualization.
-
-**Response Example:**
-```json
-{
-  "success": true,
-  "data": {
-    "total_jobs": 1261,
-    "jobs_by_status": {
-      "queued": 45,
-      "running": 5,
-      "completed": 1204,
-      "failed": 7
-    },
-    "active_workers": 3,
-    "throughput_last_hour": 850,
-    "failed_last_hour": 2,
-    "queues_summary": [
-      {
-        "queue_name": "high-priority-emails",
-        "total_jobs": 1000,
-        "pending": 20,
-        "running": 3,
-        "failed": 2
-      },
-      {
-        "queue_name": "video-processing",
-        "total_jobs": 261,
-        "pending": 25,
-        "running": 2,
-        "failed": 5
-      }
-    ]
-  }
-}
-```
+**Description:** Retrieve high-level aggregate statistics for the entire system scoped to the user's projects.  
+**Permissions:** Authenticated User

@@ -1,13 +1,13 @@
-# Community 33: aiSummaryService
+# Community 33: statsController
 
 **Members:** 2
 
 ## Nodes
 
-- **aiSummaryService** (`backend_src_services_aisummaryservice_js`, File, degree: 1)
-- **generateFailureSummary()** (`backend_src_services_aisummaryservice_js_generatefailuresummary`, Function, degree: 1)
+- **statsController** (`backend_src_controllers_statscontroller_js`, File, degree: 1)
+- **getDashboardStats()** (`backend_src_controllers_statscontroller_js_getdashboardstats`, Function, degree: 1)
 
 ## Relationships
 
-- backend_src_services_aisummaryservice_js → backend_src_services_aisummaryservice_js_generatefailuresummary (defines)
+- backend_src_controllers_statscontroller_js → backend_src_controllers_statscontroller_js_getdashboardstats (defines)
 

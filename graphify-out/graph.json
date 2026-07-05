@@ -4,45 +4,6 @@
   "graph": {},
   "nodes": [
     {
-      "id": "backend_check_all_js",
-      "label": "check-all",
-      "source_file": ".\\backend\\check-all.js",
-      "node_type": "file"
-    },
-    {
-      "id": "backend_check_all_js_checkall",
-      "label": "checkAll()",
-      "source_file": ".\\backend\\check-all.js",
-      "source_location": "L3",
-      "node_type": "function"
-    },
-    {
-      "id": "backend_check_members_js",
-      "label": "check-members",
-      "source_file": ".\\backend\\check-members.js",
-      "node_type": "file"
-    },
-    {
-      "id": "backend_check_members_js_checkmembers",
-      "label": "checkMembers()",
-      "source_file": ".\\backend\\check-members.js",
-      "source_location": "L3",
-      "node_type": "function"
-    },
-    {
-      "id": "backend_check_schema_js",
-      "label": "check-schema",
-      "source_file": ".\\backend\\check-schema.js",
-      "node_type": "file"
-    },
-    {
-      "id": "backend_check_schema_js_checkschema",
-      "label": "checkSchema()",
-      "source_file": ".\\backend\\check-schema.js",
-      "source_location": "L3",
-      "node_type": "function"
-    },
-    {
       "id": "backend_jest_config_js",
       "label": "jest.config",
       "source_file": ".\\backend\\jest.config.js",
@@ -633,45 +594,6 @@
       "label": "start()",
       "source_file": ".\\backend\\src\\workers\\worker.js",
       "source_location": "L497",
-      "node_type": "function"
-    },
-    {
-      "id": "backend_test_api_js",
-      "label": "test-api",
-      "source_file": ".\\backend\\test-api.js",
-      "node_type": "file"
-    },
-    {
-      "id": "backend_test_api_js_testapi",
-      "label": "testApi()",
-      "source_file": ".\\backend\\test-api.js",
-      "source_location": "L4",
-      "node_type": "function"
-    },
-    {
-      "id": "backend_test_list_projects_js",
-      "label": "test-list-projects",
-      "source_file": ".\\backend\\test-list-projects.js",
-      "node_type": "file"
-    },
-    {
-      "id": "backend_test_list_projects_js_test",
-      "label": "test()",
-      "source_file": ".\\backend\\test-list-projects.js",
-      "source_location": "L3",
-      "node_type": "function"
-    },
-    {
-      "id": "backend_test_list_queues_js",
-      "label": "test-list-queues",
-      "source_file": ".\\backend\\test-list-queues.js",
-      "node_type": "file"
-    },
-    {
-      "id": "backend_test_list_queues_js_test",
-      "label": "test()",
-      "source_file": ".\\backend\\test-list-queues.js",
-      "source_location": "L3",
       "node_type": "function"
     },
     {
@@ -1804,36 +1726,6 @@
   ],
   "links": [
     {
-      "source": "backend_check_all_js",
-      "target": "backend_check_all_js_checkall",
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".\\backend\\check-all.js",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "backend_check_members_js",
-      "target": "backend_check_members_js_checkmembers",
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".\\backend\\check-members.js",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "backend_check_schema_js",
-      "target": "backend_check_schema_js_checkschema",
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".\\backend\\check-schema.js",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
       "source": "backend_migrate_js",
       "target": "backend_migrate_js_run",
       "relation": "defines",
@@ -2709,36 +2601,6 @@
       "confidence": "INFERRED",
       "confidence_score": 0.7,
       "source_file": ".\\backend\\src\\workers\\worker.js",
-      "weight": 1.0
-    },
-    {
-      "source": "backend_test_api_js",
-      "target": "backend_test_api_js_testapi",
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".\\backend\\test-api.js",
-      "source_location": "L4",
-      "weight": 1.0
-    },
-    {
-      "source": "backend_test_list_projects_js",
-      "target": "backend_test_list_projects_js_test",
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".\\backend\\test-list-projects.js",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "backend_test_list_queues_js",
-      "target": "backend_test_list_queues_js_test",
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".\\backend\\test-list-queues.js",
-      "source_location": "L3",
       "weight": 1.0
     },
     {

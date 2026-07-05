@@ -1,17 +1,17 @@
-# Community 20: socketService
+# Community 20: projectController
 
 **Members:** 4
 
 ## Nodes
 
-- **socketService** (`backend_src_services_socketservice_js`, File, degree: 3)
-- **emit()** (`backend_src_services_socketservice_js_emit`, Function, degree: 1)
-- **getIO()** (`backend_src_services_socketservice_js_getio`, Function, degree: 1)
-- **init()** (`backend_src_services_socketservice_js_init`, Function, degree: 1)
+- **projectController** (`backend_src_controllers_projectcontroller_js`, File, degree: 3)
+- **createProject()** (`backend_src_controllers_projectcontroller_js_createproject`, Function, degree: 1)
+- **deleteProject()** (`backend_src_controllers_projectcontroller_js_deleteproject`, Function, degree: 1)
+- **listProjects()** (`backend_src_controllers_projectcontroller_js_listprojects`, Function, degree: 1)
 
 ## Relationships
 
-- backend_src_services_socketservice_js → backend_src_services_socketservice_js_init (defines)
-- backend_src_services_socketservice_js → backend_src_services_socketservice_js_getio (defines)
-- backend_src_services_socketservice_js → backend_src_services_socketservice_js_emit (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_listprojects (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_createproject (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_deleteproject (defines)
 

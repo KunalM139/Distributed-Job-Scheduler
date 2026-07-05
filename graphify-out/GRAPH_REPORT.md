@@ -6,17 +6,17 @@
 
 | Metric | Value |
 |--------|-------|
-| Nodes | 266 |
-| Edges | 235 |
-| Communities | 64 |
+| Nodes | 254 |
+| Edges | 229 |
+| Communities | 58 |
 | Hyperedges | 0 |
 
 ### Confidence Breakdown
 
 | Level | Count | Percentage |
 |-------|-------|------------|
-| EXTRACTED | 202 | 86.0% |
-| INFERRED | 33 | 14.0% |
+| EXTRACTED | 196 | 85.6% |
+| INFERRED | 33 | 14.4% |
 | AMBIGUOUS | 0 | 0.0% |
 
 ## 🌟 God Nodes (Most Connected)
@@ -29,9 +29,9 @@
 | log() | 0 | – |
 | QueueDetailPage | 0 | – |
 | AuthContext | 0 | – |
-| main | 0 | – |
 | DeadLetterPage | 0 | – |
 | QueuesPage | 0 | – |
+| main | 0 | – |
 | SocketContext | 0 | – |
 
 ## 🔮 Surprising Connections
@@ -44,28 +44,7 @@
 
 ## 🏘️ Communities
 
-### Community 0 — DashboardPage (18 nodes, cohesion: 0.11)
-
-- DashboardPage
-- DashboardPage()
-- ../components/StatusBadge/StatusBadge
-- ../hooks/usePolling/usePolling
-- ../hooks/useSocketEvent/useSocketEvent
-- react/useState
-- recharts/Bar
-- recharts/BarChart
-- recharts/CartesianGrid
-- recharts/Legend
-- recharts/Line
-- recharts/LineChart
-- recharts/ResponsiveContainer
-- recharts/Tooltip
-- recharts/XAxis
-- recharts/YAxis
-- ../services/api/api
-- StatCard()
-
-### Community 1 — worker (18 nodes, cohesion: 0.24)
+### Community 0 — worker (18 nodes, cohesion: 0.24)
 
 - worker
 - claimJob()
@@ -85,6 +64,27 @@
 - shutdown()
 - simulateWork()
 - start()
+
+### Community 1 — DashboardPage (18 nodes, cohesion: 0.11)
+
+- DashboardPage
+- DashboardPage()
+- ../components/StatusBadge/StatusBadge
+- ../hooks/usePolling/usePolling
+- ../hooks/useSocketEvent/useSocketEvent
+- react/useState
+- recharts/Bar
+- recharts/BarChart
+- recharts/CartesianGrid
+- recharts/Legend
+- recharts/Line
+- recharts/LineChart
+- recharts/ResponsiveContainer
+- recharts/Tooltip
+- recharts/XAxis
+- recharts/YAxis
+- ../services/api/api
+- StatCard()
 
 ### Community 2 — App (15 nodes, cohesion: 0.13)
 
@@ -132,31 +132,19 @@
 - ../services/api/api
 - useAuth()
 
-### Community 5 — SocketContext (9 nodes, cohesion: 0.22)
+### Community 5 — DeadLetterPage (9 nodes, cohesion: 0.22)
 
-- SocketContext
-- ./AuthContext/useAuth
-- react/createContext
-- react/useContext
+- DeadLetterPage
+- DeadLetterPage()
+- ../components/AISummaryModal/AISummaryModal
+- ../hooks/useSocketEvent/useSocketEvent
+- react-hot-toast/toast
+- react/useCallback
 - react/useEffect
 - react/useState
-- socket.io-client/io
-- SocketProvider()
-- useSocket()
+- ../services/api/api
 
-### Community 6 — queueController (9 nodes, cohesion: 0.39)
-
-- queueController
-- createQueue()
-- getAccessibleQueue()
-- getQueueStats()
-- listQueues()
-- pauseQueue()
-- resumeQueue()
-- updateQueue()
-- verifyProjectAccess()
-
-### Community 7 — main (9 nodes, cohesion: 0.22)
+### Community 6 — main (9 nodes, cohesion: 0.22)
 
 - main
 - ./App/App
@@ -167,6 +155,18 @@
 - react-hot-toast/Toaster
 - react-router-dom/BrowserRouter
 - react/StrictMode
+
+### Community 7 — SocketContext (9 nodes, cohesion: 0.22)
+
+- SocketContext
+- ./AuthContext/useAuth
+- react/createContext
+- react/useContext
+- react/useEffect
+- react/useState
+- socket.io-client/io
+- SocketProvider()
+- useSocket()
 
 ### Community 8 — QueuesPage (9 nodes, cohesion: 0.22)
 
@@ -180,17 +180,17 @@
 - ../services/api/api
 - QueuesPage()
 
-### Community 9 — DeadLetterPage (9 nodes, cohesion: 0.22)
+### Community 9 — queueController (9 nodes, cohesion: 0.39)
 
-- DeadLetterPage
-- DeadLetterPage()
-- ../components/AISummaryModal/AISummaryModal
-- ../hooks/useSocketEvent/useSocketEvent
-- react-hot-toast/toast
-- react/useCallback
-- react/useEffect
-- react/useState
-- ../services/api/api
+- queueController
+- createQueue()
+- getAccessibleQueue()
+- getQueueStats()
+- listQueues()
+- pauseQueue()
+- resumeQueue()
+- updateQueue()
+- verifyProjectAccess()
 
 ### Community 10 — jobController (8 nodes, cohesion: 0.43)
 
@@ -214,27 +214,7 @@
 - InfoItem()
 - JobDetailModal()
 
-### Community 12 — WorkersPage (7 nodes, cohesion: 0.29)
-
-- WorkersPage
-- ../components/StatusBadge/StatusBadge
-- ../hooks/usePolling/usePolling
-- ../hooks/useSocketEvent/useSocketEvent
-- react/useState
-- ../services/api/api
-- WorkersPage()
-
-### Community 13 — RegisterPage (7 nodes, cohesion: 0.29)
-
-- RegisterPage
-- ../context/AuthContext/useAuth
-- react-hot-toast/toast
-- react-router-dom/Link
-- react-router-dom/useNavigate
-- react/useState
-- RegisterPage()
-
-### Community 14 — LoginPage (7 nodes, cohesion: 0.29)
+### Community 12 — LoginPage (7 nodes, cohesion: 0.29)
 
 - LoginPage
 - ../context/AuthContext/useAuth
@@ -244,14 +224,34 @@
 - react/useState
 - LoginPage()
 
-### Community 15 — usePolling (6 nodes, cohesion: 0.33)
+### Community 13 — WorkersPage (7 nodes, cohesion: 0.29)
 
-- usePolling
-- react/useCallback
-- react/useEffect
-- react/useRef
+- WorkersPage
+- ../components/StatusBadge/StatusBadge
+- ../hooks/usePolling/usePolling
+- ../hooks/useSocketEvent/useSocketEvent
 - react/useState
-- usePolling()
+- ../services/api/api
+- WorkersPage()
+
+### Community 14 — RegisterPage (7 nodes, cohesion: 0.29)
+
+- RegisterPage
+- ../context/AuthContext/useAuth
+- react-hot-toast/toast
+- react-router-dom/Link
+- react-router-dom/useNavigate
+- react/useState
+- RegisterPage()
+
+### Community 15 — ProjectsPage (6 nodes, cohesion: 0.33)
+
+- ProjectsPage
+- react-hot-toast/toast
+- react/useEffect
+- react/useState
+- ../services/api/api
+- ProjectsPage()
 
 ### Community 16 — Layout (6 nodes, cohesion: 0.33)
 
@@ -262,24 +262,16 @@
 - react/useState
 - Layout()
 
-### Community 17 — ProjectsPage (6 nodes, cohesion: 0.33)
+### Community 17 — usePolling (6 nodes, cohesion: 0.33)
 
-- ProjectsPage
-- react-hot-toast/toast
+- usePolling
+- react/useCallback
 - react/useEffect
+- react/useRef
 - react/useState
-- ../services/api/api
-- ProjectsPage()
+- usePolling()
 
-### Community 18 — memberController (5 nodes, cohesion: 0.40)
-
-- memberController
-- addMember()
-- listMembers()
-- removeMember()
-- updateMember()
-
-### Community 19 — useSocketEvent (5 nodes, cohesion: 0.40)
+### Community 18 — useSocketEvent (5 nodes, cohesion: 0.40)
 
 - useSocketEvent
 - ../context/SocketContext/useSocket
@@ -287,220 +279,198 @@
 - react/useRef
 - useSocketEvent()
 
-### Community 20 — socketService (4 nodes, cohesion: 0.50)
+### Community 19 — memberController (5 nodes, cohesion: 0.40)
 
-- socketService
-- emit()
-- getIO()
-- init()
+- memberController
+- addMember()
+- listMembers()
+- removeMember()
+- updateMember()
 
-### Community 21 — projectController (4 nodes, cohesion: 0.50)
+### Community 20 — projectController (4 nodes, cohesion: 0.50)
 
 - projectController
 - createProject()
 - deleteProject()
 - listProjects()
 
-### Community 22 — vite.config (4 nodes, cohesion: 0.50)
-
-- vite.config
-- @tailwindcss/vite/tailwindcss
-- vite/defineConfig
-- @vitejs/plugin-react/react
-
-### Community 23 — ProtectedRoute (4 nodes, cohesion: 0.50)
+### Community 21 — ProtectedRoute (4 nodes, cohesion: 0.50)
 
 - ProtectedRoute
 - ../context/AuthContext/useAuth
 - react-router-dom/Navigate
 - ProtectedRoute()
 
-### Community 24 — AISummaryModal (3 nodes, cohesion: 0.67)
+### Community 22 — socketService (4 nodes, cohesion: 0.50)
 
-- AISummaryModal
-- AISummaryModal()
-- react/useEffect
+- socketService
+- emit()
+- getIO()
+- init()
 
-### Community 25 — dlqController (3 nodes, cohesion: 0.67)
+### Community 23 — vite.config (4 nodes, cohesion: 0.50)
 
-- dlqController
-- listDLQ()
-- retryDLQ()
+- vite.config
+- @tailwindcss/vite/tailwindcss
+- vite/defineConfig
+- @vitejs/plugin-react/react
 
-### Community 26 — notifyService (3 nodes, cohesion: 0.67)
+### Community 24 — notifyService (3 nodes, cohesion: 0.67)
 
 - notifyService
 - start()
 - stop()
 
-### Community 27 — validate (3 nodes, cohesion: 1.00)
+### Community 25 — AISummaryModal (3 nodes, cohesion: 0.67)
 
-- validate
-- errorResponse()
-- validate()
+- AISummaryModal
+- AISummaryModal()
+- react/useEffect
 
-### Community 28 — authController (3 nodes, cohesion: 0.67)
+### Community 26 — authController (3 nodes, cohesion: 0.67)
 
 - authController
 - login()
 - register()
 
-### Community 29 — workerController (3 nodes, cohesion: 0.67)
+### Community 27 — workerController (3 nodes, cohesion: 0.67)
 
 - workerController
 - getWorker()
 - listWorkers()
 
-### Community 30 — auth (2 nodes, cohesion: 1.00)
+### Community 28 — validate (3 nodes, cohesion: 1.00)
 
-- auth
-- authenticate()
+- validate
+- errorResponse()
+- validate()
 
-### Community 31 — StatusBadge (2 nodes, cohesion: 1.00)
+### Community 29 — dlqController (3 nodes, cohesion: 0.67)
 
-- StatusBadge
-- StatusBadge()
+- dlqController
+- listDLQ()
+- retryDLQ()
 
-### Community 32 — api (2 nodes, cohesion: 1.00)
-
-- api
-- axios/axios
-
-### Community 33 — aiSummaryService (2 nodes, cohesion: 1.00)
-
-- aiSummaryService
-- generateFailureSummary()
-
-### Community 34 — check-all (2 nodes, cohesion: 1.00)
-
-- check-all
-- checkAll()
-
-### Community 35 — rbac (2 nodes, cohesion: 1.00)
-
-- rbac
-- requireRole()
-
-### Community 36 — emitHelper (2 nodes, cohesion: 1.00)
-
-- emitHelper
-- emitEvent()
-
-### Community 37 — migrate (2 nodes, cohesion: 1.00)
+### Community 30 — migrate (2 nodes, cohesion: 1.00)
 
 - migrate
 - run()
 
-### Community 38 — test-list-queues (2 nodes, cohesion: 1.00)
-
-- test-list-queues
-- test()
-
-### Community 39 — check-schema (2 nodes, cohesion: 1.00)
-
-- check-schema
-- checkSchema()
-
-### Community 40 — test-list-projects (2 nodes, cohesion: 1.00)
-
-- test-list-projects
-- test()
-
-### Community 41 — statsController (2 nodes, cohesion: 1.00)
-
-- statsController
-- getDashboardStats()
-
-### Community 42 — backfill-project-members (2 nodes, cohesion: 1.00)
+### Community 31 — backfill-project-members (2 nodes, cohesion: 1.00)
 
 - backfill-project-members
 - runMigration()
 
-### Community 43 — check-members (2 nodes, cohesion: 1.00)
+### Community 32 — aiSummaryService (2 nodes, cohesion: 1.00)
 
-- check-members
-- checkMembers()
+- aiSummaryService
+- generateFailureSummary()
 
-### Community 44 — test-api (2 nodes, cohesion: 1.00)
+### Community 33 — statsController (2 nodes, cohesion: 1.00)
 
-- test-api
-- testApi()
+- statsController
+- getDashboardStats()
+
+### Community 34 — rbac (2 nodes, cohesion: 1.00)
+
+- rbac
+- requireRole()
+
+### Community 35 — StatusBadge (2 nodes, cohesion: 1.00)
+
+- StatusBadge
+- StatusBadge()
+
+### Community 36 — api (2 nodes, cohesion: 1.00)
+
+- api
+- axios/axios
+
+### Community 37 — auth (2 nodes, cohesion: 1.00)
+
+- auth
+- authenticate()
+
+### Community 38 — emitHelper (2 nodes, cohesion: 1.00)
+
+- emitHelper
+- emitEvent()
+
+### Community 39 — rateLimiter (1 nodes, cohesion: 1.00)
+
+- rateLimiter
+
+### Community 40 — members (1 nodes, cohesion: 1.00)
+
+- members
+
+### Community 41 — jobs.test (1 nodes, cohesion: 1.00)
+
+- jobs.test
+
+### Community 42 — auth.test (1 nodes, cohesion: 1.00)
+
+- auth.test
+
+### Community 43 — worker.test (1 nodes, cohesion: 1.00)
+
+- worker.test
+
+### Community 44 — server (1 nodes, cohesion: 1.00)
+
+- server
 
 ### Community 45 — setup (1 nodes, cohesion: 1.00)
 
 - setup
 
-### Community 46 — worker.test (1 nodes, cohesion: 1.00)
-
-- worker.test
-
-### Community 47 — queue.test (1 nodes, cohesion: 1.00)
-
-- queue.test
-
-### Community 48 — jest.config (1 nodes, cohesion: 1.00)
-
-- jest.config
-
-### Community 49 — projects (1 nodes, cohesion: 1.00)
+### Community 46 — projects (1 nodes, cohesion: 1.00)
 
 - projects
 
-### Community 50 — auth.test (1 nodes, cohesion: 1.00)
+### Community 47 — queues (1 nodes, cohesion: 1.00)
 
-- auth.test
+- queues
+
+### Community 48 — workers (1 nodes, cohesion: 1.00)
+
+- workers
+
+### Community 49 — stats (1 nodes, cohesion: 1.00)
+
+- stats
+
+### Community 50 — dlq.test (1 nodes, cohesion: 1.00)
+
+- dlq.test
 
 ### Community 51 — jobs (1 nodes, cohesion: 1.00)
 
 - jobs
 
-### Community 52 — dlq (1 nodes, cohesion: 1.00)
+### Community 52 — index (1 nodes, cohesion: 1.00)
+
+- index
+
+### Community 53 — jest.config (1 nodes, cohesion: 1.00)
+
+- jest.config
+
+### Community 54 — dlq (1 nodes, cohesion: 1.00)
 
 - dlq
-
-### Community 53 — workers (1 nodes, cohesion: 1.00)
-
-- workers
-
-### Community 54 — members (1 nodes, cohesion: 1.00)
-
-- members
 
 ### Community 55 — projects.test (1 nodes, cohesion: 1.00)
 
 - projects.test
 
-### Community 56 — rateLimiter (1 nodes, cohesion: 1.00)
+### Community 56 — queue.test (1 nodes, cohesion: 1.00)
 
-- rateLimiter
+- queue.test
 
-### Community 57 — jobs.test (1 nodes, cohesion: 1.00)
-
-- jobs.test
-
-### Community 58 — server (1 nodes, cohesion: 1.00)
-
-- server
-
-### Community 59 — dlq.test (1 nodes, cohesion: 1.00)
-
-- dlq.test
-
-### Community 60 — index (1 nodes, cohesion: 1.00)
-
-- index
-
-### Community 61 — auth (1 nodes, cohesion: 1.00)
+### Community 57 — auth (1 nodes, cohesion: 1.00)
 
 - auth
-
-### Community 62 — stats (1 nodes, cohesion: 1.00)
-
-- stats
-
-### Community 63 — queues (1 nodes, cohesion: 1.00)
-
-- queues
 
 ## 🕳️ Knowledge Gaps
 
@@ -525,7 +495,7 @@
 - setup
 - worker.test
 
-**Thin communities** (< 3 nodes): 34 communities
+**Thin communities** (< 3 nodes): 28 communities
 
 ## 💰 Token Cost
 
@@ -538,12 +508,12 @@
 ## ❓ Suggested Questions
 
 1. Can you verify the inferred relationships of 'log()' (degree 12)?
-1. What role does 'jobs.test' play? It has no connections in the graph.
-1. What role does 'queues' play? It has no connections in the graph.
-1. What role does 'stats' play? It has no connections in the graph.
+1. What role does 'members' play? It has no connections in the graph.
 1. What role does 'server' play? It has no connections in the graph.
-1. What role does 'auth' play? It has no connections in the graph.
 1. What role does 'index' play? It has no connections in the graph.
+1. What role does 'workers' play? It has no connections in the graph.
+1. What role does 'jobs' play? It has no connections in the graph.
+1. What role does 'projects' play? It has no connections in the graph.
 
 ---
 _Generated by graphify-rs_

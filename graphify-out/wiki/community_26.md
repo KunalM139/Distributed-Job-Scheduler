@@ -1,15 +1,15 @@
-# Community 26: notifyService
+# Community 26: authController
 
 **Members:** 3
 
 ## Nodes
 
-- **notifyService** (`backend_src_services_notifyservice_js`, File, degree: 2)
-- **start()** (`backend_src_services_notifyservice_js_start`, Function, degree: 1)
-- **stop()** (`backend_src_services_notifyservice_js_stop`, Function, degree: 1)
+- **authController** (`backend_src_controllers_authcontroller_js`, File, degree: 2)
+- **login()** (`backend_src_controllers_authcontroller_js_login`, Function, degree: 1)
+- **register()** (`backend_src_controllers_authcontroller_js_register`, Function, degree: 1)
 
 ## Relationships
 
-- backend_src_services_notifyservice_js → backend_src_services_notifyservice_js_start (defines)
-- backend_src_services_notifyservice_js → backend_src_services_notifyservice_js_stop (defines)
+- backend_src_controllers_authcontroller_js → backend_src_controllers_authcontroller_js_register (defines)
+- backend_src_controllers_authcontroller_js → backend_src_controllers_authcontroller_js_login (defines)
 

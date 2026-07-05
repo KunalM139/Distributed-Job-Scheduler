@@ -1,8 +1,8 @@
-# Community 49: projects
+# Community 49: stats
 
 **Members:** 1
 
 ## Nodes
 
-- **projects** (`backend_src_routes_projects_js`, File, degree: 0)
+- **stats** (`src_routes_stats_js`, File, degree: 0)
 

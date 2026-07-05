@@ -1,8 +1,8 @@
-# Community 56: rateLimiter
+# Community 56: queue.test
 
 **Members:** 1
 
 ## Nodes
 
-- **rateLimiter** (`backend_src_middleware_ratelimiter_js`, File, degree: 0)
+- **queue.test** (`backend_tests_queue_test_js`, File, degree: 0)
 
