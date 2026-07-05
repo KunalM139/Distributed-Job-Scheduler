@@ -1,30 +1,27 @@
-# Community 9: jobController
+# Community 9: DeadLetterPage
 
-**Members:** 8
+**Members:** 9
 
 ## Nodes
 
-- **jobController** (`src_controllers_jobcontroller_js`, File, degree: 7)
-- **createJob()** (`src_controllers_jobcontroller_js_createjob`, Function, degree: 2)
-- **deleteJob()** (`src_controllers_jobcontroller_js_deletejob`, Function, degree: 2)
-- **getJob()** (`src_controllers_jobcontroller_js_getjob`, Function, degree: 2)
-- **listJobs()** (`src_controllers_jobcontroller_js_listjobs`, Function, degree: 2)
-- **retryJob()** (`src_controllers_jobcontroller_js_retryjob`, Function, degree: 2)
-- **verifyJobAccess()** (`src_controllers_jobcontroller_js_verifyjobaccess`, Function, degree: 4)
-- **verifyQueueAccess()** (`src_controllers_jobcontroller_js_verifyqueueaccess`, Function, degree: 3)
+- **DeadLetterPage** (`frontend_src_pages_deadletterpage_jsx`, File, degree: 8)
+- **DeadLetterPage()** (`frontend_src_pages_deadletterpage_jsx_deadletterpage`, Function, degree: 1)
+- **../components/AISummaryModal/AISummaryModal** (`frontend_src_pages_deadletterpage_jsx_import_components_aisummarymodal_aisummarymodal`, Module, degree: 1)
+- **../hooks/useSocketEvent/useSocketEvent** (`frontend_src_pages_deadletterpage_jsx_import_hooks_usesocketevent_usesocketevent`, Module, degree: 1)
+- **react-hot-toast/toast** (`frontend_src_pages_deadletterpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
+- **react/useCallback** (`frontend_src_pages_deadletterpage_jsx_import_react_usecallback`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_pages_deadletterpage_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useState** (`frontend_src_pages_deadletterpage_jsx_import_react_usestate`, Module, degree: 1)
+- **../services/api/api** (`frontend_src_pages_deadletterpage_jsx_import_services_api_api`, Module, degree: 1)
 
 ## Relationships
 
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_verifyqueueaccess (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_verifyjobaccess (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_createjob (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_listjobs (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_getjob (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_retryjob (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_deletejob (defines)
-- src_controllers_jobcontroller_js_createjob → src_controllers_jobcontroller_js_verifyqueueaccess (calls)
-- src_controllers_jobcontroller_js_listjobs → src_controllers_jobcontroller_js_verifyqueueaccess (calls)
-- src_controllers_jobcontroller_js_getjob → src_controllers_jobcontroller_js_verifyjobaccess (calls)
-- src_controllers_jobcontroller_js_retryjob → src_controllers_jobcontroller_js_verifyjobaccess (calls)
-- src_controllers_jobcontroller_js_deletejob → src_controllers_jobcontroller_js_verifyjobaccess (calls)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_useeffect (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_usestate (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_usecallback (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_services_api_api (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_hooks_usesocketevent_usesocketevent (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_hot_toast_toast (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_components_aisummarymodal_aisummarymodal (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_deadletterpage (defines)
 

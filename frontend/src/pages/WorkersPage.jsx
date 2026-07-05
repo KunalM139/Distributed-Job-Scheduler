@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import api from '../services/api';
 import usePolling from '../hooks/usePolling';
+import useSocketEvent from '../hooks/useSocketEvent';
 import StatusBadge from '../components/StatusBadge';
 
 export default function WorkersPage() {
   const [now, setNow] = useState(Date.now());
+  const [refreshSignal, setRefreshSignal] = useState(0);
 
   // Live tick for "X seconds ago" — runs every 1 s
   useState(() => {
@@ -12,12 +14,20 @@ export default function WorkersPage() {
     return () => clearInterval(id);
   });
 
+  // Listen for real-time worker updates
+  useSocketEvent('worker:updated', () => {
+    setRefreshSignal((n) => n + 1);
+  });
+  useSocketEvent('stats:refresh', () => {
+    setRefreshSignal((n) => n + 1);
+  });
+
   const fetchWorkers = async () => {
     const res = await api.get('/api/workers');
     return res.data.data;
   };
 
-  const { data: workers, loading } = usePolling(fetchWorkers, 10_000);
+  const { data: workers, loading } = usePolling(fetchWorkers, 10_000, refreshSignal);
 
   const timeAgo = (ts) => {
     if (!ts) return '—';

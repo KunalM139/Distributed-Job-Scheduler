@@ -1,15 +1,17 @@
-# Community 20: authController
+# Community 20: socketService
 
-**Members:** 3
+**Members:** 4
 
 ## Nodes
 
-- **authController** (`src_controllers_authcontroller_js`, File, degree: 2)
-- **login()** (`src_controllers_authcontroller_js_login`, Function, degree: 1)
-- **register()** (`src_controllers_authcontroller_js_register`, Function, degree: 1)
+- **socketService** (`backend_src_services_socketservice_js`, File, degree: 3)
+- **emit()** (`backend_src_services_socketservice_js_emit`, Function, degree: 1)
+- **getIO()** (`backend_src_services_socketservice_js_getio`, Function, degree: 1)
+- **init()** (`backend_src_services_socketservice_js_init`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_authcontroller_js → src_controllers_authcontroller_js_register (defines)
-- src_controllers_authcontroller_js → src_controllers_authcontroller_js_login (defines)
+- backend_src_services_socketservice_js → backend_src_services_socketservice_js_init (defines)
+- backend_src_services_socketservice_js → backend_src_services_socketservice_js_getio (defines)
+- backend_src_services_socketservice_js → backend_src_services_socketservice_js_emit (defines)
 

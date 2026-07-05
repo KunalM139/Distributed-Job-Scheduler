@@ -1,8 +1,13 @@
-# Community 31: dlq
+# Community 31: StatusBadge
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 
-- **dlq** (`src_routes_dlq_js`, File, degree: 0)
+- **StatusBadge** (`client_src_components_statusbadge_jsx`, File, degree: 1)
+- **StatusBadge()** (`client_src_components_statusbadge_jsx_statusbadge`, Function, degree: 1)
+
+## Relationships
+
+- client_src_components_statusbadge_jsx → client_src_components_statusbadge_jsx_statusbadge (defines)
 

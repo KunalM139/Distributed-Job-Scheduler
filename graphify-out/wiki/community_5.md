@@ -1,33 +1,27 @@
-# Community 5: queueController
+# Community 5: SocketContext
 
 **Members:** 9
 
 ## Nodes
 
-- **queueController** (`src_controllers_queuecontroller_js`, File, degree: 8)
-- **createQueue()** (`src_controllers_queuecontroller_js_createqueue`, Function, degree: 2)
-- **getOwnedQueue()** (`src_controllers_queuecontroller_js_getownedqueue`, Function, degree: 5)
-- **getQueueStats()** (`src_controllers_queuecontroller_js_getqueuestats`, Function, degree: 2)
-- **listQueues()** (`src_controllers_queuecontroller_js_listqueues`, Function, degree: 2)
-- **pauseQueue()** (`src_controllers_queuecontroller_js_pausequeue`, Function, degree: 2)
-- **resumeQueue()** (`src_controllers_queuecontroller_js_resumequeue`, Function, degree: 2)
-- **updateQueue()** (`src_controllers_queuecontroller_js_updatequeue`, Function, degree: 2)
-- **verifyProjectOwnership()** (`src_controllers_queuecontroller_js_verifyprojectownership`, Function, degree: 3)
+- **SocketContext** (`frontend_src_context_socketcontext_jsx`, File, degree: 8)
+- **./AuthContext/useAuth** (`frontend_src_context_socketcontext_jsx_import_authcontext_useauth`, Module, degree: 1)
+- **react/createContext** (`frontend_src_context_socketcontext_jsx_import_react_createcontext`, Module, degree: 1)
+- **react/useContext** (`frontend_src_context_socketcontext_jsx_import_react_usecontext`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_context_socketcontext_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useState** (`frontend_src_context_socketcontext_jsx_import_react_usestate`, Module, degree: 1)
+- **socket.io-client/io** (`frontend_src_context_socketcontext_jsx_import_socket_io_client_io`, Module, degree: 1)
+- **SocketProvider()** (`frontend_src_context_socketcontext_jsx_socketprovider`, Function, degree: 1)
+- **useSocket()** (`frontend_src_context_socketcontext_jsx_usesocket`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_getownedqueue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_verifyprojectownership (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_listqueues (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_createqueue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_updatequeue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_pausequeue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_resumequeue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_getqueuestats (defines)
-- src_controllers_queuecontroller_js_listqueues → src_controllers_queuecontroller_js_verifyprojectownership (calls)
-- src_controllers_queuecontroller_js_createqueue → src_controllers_queuecontroller_js_verifyprojectownership (calls)
-- src_controllers_queuecontroller_js_updatequeue → src_controllers_queuecontroller_js_getownedqueue (calls)
-- src_controllers_queuecontroller_js_pausequeue → src_controllers_queuecontroller_js_getownedqueue (calls)
-- src_controllers_queuecontroller_js_resumequeue → src_controllers_queuecontroller_js_getownedqueue (calls)
-- src_controllers_queuecontroller_js_getqueuestats → src_controllers_queuecontroller_js_getownedqueue (calls)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_createcontext (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_usecontext (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_useeffect (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_react_usestate (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_socket_io_client_io (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_import_authcontext_useauth (imports)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_socketprovider (defines)
+- frontend_src_context_socketcontext_jsx → frontend_src_context_socketcontext_jsx_usesocket (defines)
 

@@ -30,7 +30,7 @@ const register = async (req, res) => {
       'INSERT INTO users (id, email, password_hash, name) VALUES ($1, $2, $3, $4)',
       [id, email, passwordHash, name]
     );
-
+    
     const token = jwt.sign(
       { id, email, name },
       process.env.JWT_SECRET,
@@ -71,7 +71,6 @@ const login = async (req, res) => {
     if (!validPassword) {
       return res.status(401).json({ error: 'Invalid email or password.' });
     }
-
     const token = jwt.sign(
       { id: user.id, email: user.email, name: user.name },
       process.env.JWT_SECRET,

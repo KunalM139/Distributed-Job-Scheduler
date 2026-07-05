@@ -1,16 +1,17 @@
-# Community 21: validate
+# Community 21: projectController
 
-**Members:** 3
+**Members:** 4
 
 ## Nodes
 
-- **validate** (`src_middleware_validate_js`, File, degree: 2)
-- **errorResponse()** (`src_middleware_validate_js_errorresponse`, Function, degree: 2)
-- **validate()** (`src_middleware_validate_js_validate`, Function, degree: 2)
+- **projectController** (`backend_src_controllers_projectcontroller_js`, File, degree: 3)
+- **createProject()** (`backend_src_controllers_projectcontroller_js_createproject`, Function, degree: 1)
+- **deleteProject()** (`backend_src_controllers_projectcontroller_js_deleteproject`, Function, degree: 1)
+- **listProjects()** (`backend_src_controllers_projectcontroller_js_listprojects`, Function, degree: 1)
 
 ## Relationships
 
-- src_middleware_validate_js → src_middleware_validate_js_errorresponse (defines)
-- src_middleware_validate_js → src_middleware_validate_js_validate (defines)
-- src_middleware_validate_js_validate → src_middleware_validate_js_errorresponse (calls)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_listprojects (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_createproject (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_deleteproject (defines)
 

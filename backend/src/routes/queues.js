@@ -11,6 +11,7 @@ const {
   resumeQueue,
   getQueueStats,
 } = require('../controllers/queueController');
+const { requireRole } = require('../middleware/rbac');
 
 // All queue routes require authentication
 router.use(authenticate);
@@ -20,6 +21,7 @@ router.get(
   '/projects/:projectId/queues',
   [param('projectId').isUUID().withMessage('Invalid project ID')],
   validate,
+  requireRole('owner', 'admin', 'viewer'),
   listQueues
 );
 
@@ -64,6 +66,7 @@ router.post(
       .withMessage('backoff_multiplier must be >= 1.0'),
   ],
   validate,
+  requireRole('owner', 'admin'),
   createQueue
 );
 
@@ -86,6 +89,7 @@ router.patch(
       .withMessage("Status must be one of: active, paused, draining"),
   ],
   validate,
+  requireRole('owner', 'admin'),
   updateQueue
 );
 
@@ -94,6 +98,7 @@ router.post(
   '/queues/:id/pause',
   [param('id').isUUID().withMessage('Invalid queue ID')],
   validate,
+  requireRole('owner', 'admin'),
   pauseQueue
 );
 
@@ -102,6 +107,7 @@ router.post(
   '/queues/:id/resume',
   [param('id').isUUID().withMessage('Invalid queue ID')],
   validate,
+  requireRole('owner', 'admin'),
   resumeQueue
 );
 
@@ -110,6 +116,7 @@ router.get(
   '/queues/:id/stats',
   [param('id').isUUID().withMessage('Invalid queue ID')],
   validate,
+  requireRole('owner', 'admin', 'viewer'),
   getQueueStats
 );
 

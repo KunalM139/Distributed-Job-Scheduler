@@ -8,6 +8,7 @@ const {
   createProject,
   deleteProject,
 } = require('../controllers/projectController');
+const { requireRole } = require('../middleware/rbac');
 
 // All project routes require authentication
 router.use(authenticate);
@@ -39,6 +40,7 @@ router.delete(
   '/:id',
   [param('id').isUUID().withMessage('Invalid project ID')],
   validate,
+  requireRole('owner'),
   deleteProject
 );
 

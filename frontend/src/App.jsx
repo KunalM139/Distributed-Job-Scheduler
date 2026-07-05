@@ -8,6 +8,7 @@ import QueuesPage from './pages/QueuesPage';
 import QueueDetailPage from './pages/QueueDetailPage';
 import WorkersPage from './pages/WorkersPage';
 import DeadLetterPage from './pages/DeadLetterPage';
+import ProjectsPage from './pages/ProjectsPage';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         }
       >
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/queues" element={<QueuesPage />} />
         <Route path="/queues/:id" element={<QueueDetailPage />} />
         <Route path="/workers" element={<WorkersPage />} />

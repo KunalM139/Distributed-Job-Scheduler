@@ -1,13 +1,15 @@
-# Community 25: StatusBadge
+# Community 25: dlqController
 
-**Members:** 2
+**Members:** 3
 
 ## Nodes
 
-- **StatusBadge** (`client_src_components_statusbadge_jsx`, File, degree: 1)
-- **StatusBadge()** (`client_src_components_statusbadge_jsx_statusbadge`, Function, degree: 1)
+- **dlqController** (`backend_src_controllers_dlqcontroller_js`, File, degree: 2)
+- **listDLQ()** (`backend_src_controllers_dlqcontroller_js_listdlq`, Function, degree: 1)
+- **retryDLQ()** (`backend_src_controllers_dlqcontroller_js_retrydlq`, Function, degree: 1)
 
 ## Relationships
 
-- client_src_components_statusbadge_jsx → client_src_components_statusbadge_jsx_statusbadge (defines)
+- backend_src_controllers_dlqcontroller_js → backend_src_controllers_dlqcontroller_js_listdlq (defines)
+- backend_src_controllers_dlqcontroller_js → backend_src_controllers_dlqcontroller_js_retrydlq (defines)
 

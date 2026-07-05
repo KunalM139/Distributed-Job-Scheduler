@@ -1,17 +1,21 @@
-# Community 16: ProtectedRoute
+# Community 16: Layout
 
-**Members:** 4
+**Members:** 6
 
 ## Nodes
 
-- **ProtectedRoute** (`client_src_components_protectedroute_jsx`, File, degree: 3)
-- **../context/AuthContext/useAuth** (`client_src_components_protectedroute_jsx_import_context_authcontext_useauth`, Module, degree: 1)
-- **react-router-dom/Navigate** (`client_src_components_protectedroute_jsx_import_react_router_dom_navigate`, Module, degree: 1)
-- **ProtectedRoute()** (`client_src_components_protectedroute_jsx_protectedroute`, Function, degree: 1)
+- **Layout** (`frontend_src_components_layout_jsx`, File, degree: 5)
+- **../context/AuthContext/useAuth** (`frontend_src_components_layout_jsx_import_context_authcontext_useauth`, Module, degree: 1)
+- **react-router-dom/NavLink** (`frontend_src_components_layout_jsx_import_react_router_dom_navlink`, Module, degree: 1)
+- **react-router-dom/Outlet** (`frontend_src_components_layout_jsx_import_react_router_dom_outlet`, Module, degree: 1)
+- **react/useState** (`frontend_src_components_layout_jsx_import_react_usestate`, Module, degree: 1)
+- **Layout()** (`frontend_src_components_layout_jsx_layout`, Function, degree: 1)
 
 ## Relationships
 
-- client_src_components_protectedroute_jsx → client_src_components_protectedroute_jsx_import_react_router_dom_navigate (imports)
-- client_src_components_protectedroute_jsx → client_src_components_protectedroute_jsx_import_context_authcontext_useauth (imports)
-- client_src_components_protectedroute_jsx → client_src_components_protectedroute_jsx_protectedroute (defines)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_import_react_usestate (imports)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_import_react_router_dom_navlink (imports)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_import_react_router_dom_outlet (imports)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_import_context_authcontext_useauth (imports)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_layout (defines)
 

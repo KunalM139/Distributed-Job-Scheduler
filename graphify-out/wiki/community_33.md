@@ -1,8 +1,13 @@
-# Community 33: worker.test
+# Community 33: aiSummaryService
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 
-- **worker.test** (`tests_worker_test_js`, File, degree: 0)
+- **aiSummaryService** (`backend_src_services_aisummaryservice_js`, File, degree: 1)
+- **generateFailureSummary()** (`backend_src_services_aisummaryservice_js_generatefailuresummary`, Function, degree: 1)
+
+## Relationships
+
+- backend_src_services_aisummaryservice_js → backend_src_services_aisummaryservice_js_generatefailuresummary (defines)
 

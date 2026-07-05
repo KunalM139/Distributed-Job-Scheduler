@@ -11,6 +11,15 @@ Authorization: Bearer <your_jwt_token>
 
 ---
 
+## Rate Limiting
+The API enforces rate limits to prevent abuse. If you exceed a limit, you will receive an HTTP `429 Too Many Requests` response containing an `error: true` and a `message` explaining the limit.
+
+- **General API**: 100 requests / 15 minutes
+- **Authentication** (`/api/auth/*`): 10 requests / 15 minutes
+- **Job Creation** (`POST /api/queues/:id/jobs`): 30 requests / minute
+
+---
+
 ## Auth
 
 ### Register

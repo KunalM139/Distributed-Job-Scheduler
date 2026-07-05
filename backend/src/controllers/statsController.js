@@ -5,7 +5,7 @@ const { errorResponse } = require('../middleware/validate');
  * GET /api/stats
  * Dashboard stats — returns a single JSON object with aggregate metrics.
  */
-const getDashboardStats = async (_req, res) => {
+const getDashboardStats = async (req, res) => {
   try {
     // Run all aggregation queries in parallel
     const [
@@ -17,13 +17,26 @@ const getDashboardStats = async (_req, res) => {
       queuesSummaryResult,
     ] = await Promise.all([
       // 1. Total jobs
-      db.query('SELECT COUNT(*)::int AS count FROM jobs'),
+      db.query(
+        `SELECT COUNT(DISTINCT j.id)::int AS count 
+         FROM jobs j
+         JOIN queues q ON j.queue_id = q.id
+         LEFT JOIN project_members pm ON q.project_id = pm.project_id AND pm.user_id = $1
+         JOIN projects p ON q.project_id = p.id
+         WHERE p.user_id = $1 OR pm.user_id = $1`,
+        [req.user.id]
+      ),
 
       // 2. Jobs grouped by status
       db.query(
-        `SELECT status, COUNT(*)::int AS count
-         FROM jobs
-         GROUP BY status`
+        `SELECT j.status, COUNT(DISTINCT j.id)::int AS count
+         FROM jobs j
+         JOIN queues q ON j.queue_id = q.id
+         LEFT JOIN project_members pm ON q.project_id = pm.project_id AND pm.user_id = $1
+         JOIN projects p ON q.project_id = p.id
+         WHERE p.user_id = $1 OR pm.user_id = $1
+         GROUP BY j.status`,
+        [req.user.id]
       ),
 
       // 3. Active workers (heartbeat within last 30 seconds)
@@ -39,18 +52,30 @@ const getDashboardStats = async (_req, res) => {
 
       // 4. Jobs completed in the last 60 minutes
       db.query(
-        `SELECT COUNT(*)::int AS count
-         FROM job_executions
-         WHERE status = 'completed'
-           AND finished_at > NOW() - INTERVAL '60 minutes'`
+        `SELECT COUNT(DISTINCT je.id)::int AS count
+         FROM job_executions je
+         JOIN jobs j ON je.job_id = j.id
+         JOIN queues q ON j.queue_id = q.id
+         LEFT JOIN project_members pm ON q.project_id = pm.project_id AND pm.user_id = $1
+         JOIN projects p ON q.project_id = p.id
+         WHERE je.status = 'completed'
+           AND je.finished_at > NOW() - INTERVAL '60 minutes'
+           AND (p.user_id = $1 OR pm.user_id = $1)`,
+        [req.user.id]
       ),
 
       // 5. Jobs failed in the last 60 minutes
       db.query(
-        `SELECT COUNT(*)::int AS count
-         FROM job_executions
-         WHERE status = 'failed'
-           AND finished_at > NOW() - INTERVAL '60 minutes'`
+        `SELECT COUNT(DISTINCT je.id)::int AS count
+         FROM job_executions je
+         JOIN jobs j ON je.job_id = j.id
+         JOIN queues q ON j.queue_id = q.id
+         LEFT JOIN project_members pm ON q.project_id = pm.project_id AND pm.user_id = $1
+         JOIN projects p ON q.project_id = p.id
+         WHERE je.status = 'failed'
+           AND je.finished_at > NOW() - INTERVAL '60 minutes'
+           AND (p.user_id = $1 OR pm.user_id = $1)`,
+        [req.user.id]
       ),
 
       // 6. Per-queue summary
@@ -62,9 +87,13 @@ const getDashboardStats = async (_req, res) => {
            COUNT(j.id) FILTER (WHERE j.status = 'running')::int   AS running,
            COUNT(j.id) FILTER (WHERE j.status = 'failed')::int    AS failed
          FROM queues q
+         LEFT JOIN project_members pm ON q.project_id = pm.project_id AND pm.user_id = $1
+         JOIN projects p ON q.project_id = p.id
          LEFT JOIN jobs j ON j.queue_id = q.id
+         WHERE p.user_id = $1 OR pm.user_id = $1
          GROUP BY q.id, q.name
-         ORDER BY q.name`
+         ORDER BY q.name`,
+        [req.user.id]
       ),
     ]);
 

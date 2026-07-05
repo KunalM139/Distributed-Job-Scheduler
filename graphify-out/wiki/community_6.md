@@ -1,25 +1,33 @@
-# Community 6: QueuesPage
+# Community 6: queueController
 
-**Members:** 8
+**Members:** 9
 
 ## Nodes
 
-- **QueuesPage** (`client_src_pages_queuespage_jsx`, File, degree: 7)
-- **../components/StatusBadge/StatusBadge** (`client_src_pages_queuespage_jsx_import_components_statusbadge_statusbadge`, Module, degree: 1)
-- **react-hot-toast/toast** (`client_src_pages_queuespage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
-- **react-router-dom/Link** (`client_src_pages_queuespage_jsx_import_react_router_dom_link`, Module, degree: 1)
-- **react/useEffect** (`client_src_pages_queuespage_jsx_import_react_useeffect`, Module, degree: 1)
-- **react/useState** (`client_src_pages_queuespage_jsx_import_react_usestate`, Module, degree: 1)
-- **../services/api/api** (`client_src_pages_queuespage_jsx_import_services_api_api`, Module, degree: 1)
-- **QueuesPage()** (`client_src_pages_queuespage_jsx_queuespage`, Function, degree: 1)
+- **queueController** (`backend_src_controllers_queuecontroller_js`, File, degree: 8)
+- **createQueue()** (`backend_src_controllers_queuecontroller_js_createqueue`, Function, degree: 2)
+- **getAccessibleQueue()** (`backend_src_controllers_queuecontroller_js_getaccessiblequeue`, Function, degree: 5)
+- **getQueueStats()** (`backend_src_controllers_queuecontroller_js_getqueuestats`, Function, degree: 2)
+- **listQueues()** (`backend_src_controllers_queuecontroller_js_listqueues`, Function, degree: 2)
+- **pauseQueue()** (`backend_src_controllers_queuecontroller_js_pausequeue`, Function, degree: 2)
+- **resumeQueue()** (`backend_src_controllers_queuecontroller_js_resumequeue`, Function, degree: 2)
+- **updateQueue()** (`backend_src_controllers_queuecontroller_js_updatequeue`, Function, degree: 2)
+- **verifyProjectAccess()** (`backend_src_controllers_queuecontroller_js_verifyprojectaccess`, Function, degree: 3)
 
 ## Relationships
 
-- client_src_pages_queuespage_jsx → client_src_pages_queuespage_jsx_import_react_useeffect (imports)
-- client_src_pages_queuespage_jsx → client_src_pages_queuespage_jsx_import_react_usestate (imports)
-- client_src_pages_queuespage_jsx → client_src_pages_queuespage_jsx_import_react_router_dom_link (imports)
-- client_src_pages_queuespage_jsx → client_src_pages_queuespage_jsx_import_services_api_api (imports)
-- client_src_pages_queuespage_jsx → client_src_pages_queuespage_jsx_import_components_statusbadge_statusbadge (imports)
-- client_src_pages_queuespage_jsx → client_src_pages_queuespage_jsx_import_react_hot_toast_toast (imports)
-- client_src_pages_queuespage_jsx → client_src_pages_queuespage_jsx_queuespage (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_getaccessiblequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_verifyprojectaccess (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_listqueues (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_createqueue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_updatequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_pausequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_resumequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_getqueuestats (defines)
+- backend_src_controllers_queuecontroller_js_listqueues → backend_src_controllers_queuecontroller_js_verifyprojectaccess (calls)
+- backend_src_controllers_queuecontroller_js_createqueue → backend_src_controllers_queuecontroller_js_verifyprojectaccess (calls)
+- backend_src_controllers_queuecontroller_js_updatequeue → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
+- backend_src_controllers_queuecontroller_js_pausequeue → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
+- backend_src_controllers_queuecontroller_js_resumequeue → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
+- backend_src_controllers_queuecontroller_js_getqueuestats → backend_src_controllers_queuecontroller_js_getaccessiblequeue (calls)
 

@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const db = require('../db');
 const { errorResponse } = require('../middleware/validate');
+const { emitEvent } = require('../services/emitHelper');
 
 // ─── Helpers ─────────────────────────────────────────────
 
@@ -8,11 +9,13 @@ const { errorResponse } = require('../middleware/validate');
  * Verify that the queue exists AND that the current user owns its parent project.
  * Returns the queue row or null.
  */
-const getOwnedQueue = async (queueId, userId) => {
+const getAccessibleQueue = async (queueId, userId) => {
   const result = await db.query(
     `SELECT q.* FROM queues q
-     JOIN projects p ON p.id = q.project_id
-     WHERE q.id = $1 AND p.user_id = $2`,
+     WHERE q.id = $1 AND (
+       EXISTS (SELECT 1 FROM project_members pm WHERE pm.project_id = q.project_id AND pm.user_id = $2)
+       OR EXISTS (SELECT 1 FROM projects p WHERE p.id = q.project_id AND p.user_id = $2)
+     )`,
     [queueId, userId]
   );
   return result.rows[0] || null;
@@ -21,7 +24,13 @@ const getOwnedQueue = async (queueId, userId) => {
 /**
  * Verify the project belongs to the current user.
  */
-const verifyProjectOwnership = async (projectId, userId) => {
+const verifyProjectAccess = async (projectId, userId) => {
+  const mRes = await db.query(
+    'SELECT id FROM project_members WHERE project_id = $1 AND user_id = $2',
+    [projectId, userId]
+  );
+  if (mRes.rows.length > 0) return true;
+
   const result = await db.query(
     'SELECT id FROM projects WHERE id = $1 AND user_id = $2',
     [projectId, userId]
@@ -38,8 +47,8 @@ const listQueues = async (req, res) => {
   try {
     const { projectId } = req.params;
 
-    if (!(await verifyProjectOwnership(projectId, req.user.id))) {
-      return errorResponse(res, 404, 'Project not found or not owned by you');
+    if (!(await verifyProjectAccess(projectId, req.user.id))) {
+      return errorResponse(res, 404, 'Project not found or you lack access');
     }
 
     const result = await db.query(
@@ -67,8 +76,8 @@ const createQueue = async (req, res) => {
   try {
     const { projectId } = req.params;
 
-    if (!(await verifyProjectOwnership(projectId, req.user.id))) {
-      return errorResponse(res, 404, 'Project not found or not owned by you');
+    if (!(await verifyProjectAccess(projectId, req.user.id))) {
+      return errorResponse(res, 404, 'Project not found or you lack access');
     }
 
     const { name, priority, concurrency_limit, retry_policy } = req.body;
@@ -99,6 +108,7 @@ const createQueue = async (req, res) => {
       [queueId, projectId, retryPolicyId, name, priority ?? 0, concurrency_limit ?? 5]
     );
 
+    emitEvent('queue:created', { queue: result.rows[0] });
     return res.status(201).json({ data: result.rows[0] });
   } catch (err) {
     console.error('createQueue error:', err);
@@ -114,9 +124,9 @@ const updateQueue = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const queue = await getOwnedQueue(id, req.user.id);
+    const queue = await getAccessibleQueue(id, req.user.id);
     if (!queue) {
-      return errorResponse(res, 404, 'Queue not found or not owned by you');
+      return errorResponse(res, 404, 'Queue not found or you lack access');
     }
 
     const { priority, concurrency_limit, status } = req.body;
@@ -131,6 +141,7 @@ const updateQueue = async (req, res) => {
       [priority ?? null, concurrency_limit ?? null, status ?? null, id]
     );
 
+    emitEvent('queue:updated', { queue: result.rows[0] });
     return res.json({ data: result.rows[0] });
   } catch (err) {
     console.error('updateQueue error:', err);
@@ -145,9 +156,9 @@ const pauseQueue = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const queue = await getOwnedQueue(id, req.user.id);
+    const queue = await getAccessibleQueue(id, req.user.id);
     if (!queue) {
-      return errorResponse(res, 404, 'Queue not found or not owned by you');
+      return errorResponse(res, 404, 'Queue not found or you lack access');
     }
 
     const result = await db.query(
@@ -155,6 +166,7 @@ const pauseQueue = async (req, res) => {
       [id]
     );
 
+    emitEvent('queue:updated', { queue: result.rows[0] });
     return res.json({ data: result.rows[0], message: 'Queue paused' });
   } catch (err) {
     console.error('pauseQueue error:', err);
@@ -169,9 +181,9 @@ const resumeQueue = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const queue = await getOwnedQueue(id, req.user.id);
+    const queue = await getAccessibleQueue(id, req.user.id);
     if (!queue) {
-      return errorResponse(res, 404, 'Queue not found or not owned by you');
+      return errorResponse(res, 404, 'Queue not found or you lack access');
     }
 
     const result = await db.query(
@@ -179,6 +191,7 @@ const resumeQueue = async (req, res) => {
       [id]
     );
 
+    emitEvent('queue:updated', { queue: result.rows[0] });
     return res.json({ data: result.rows[0], message: 'Queue resumed' });
   } catch (err) {
     console.error('resumeQueue error:', err);
@@ -194,9 +207,9 @@ const getQueueStats = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const queue = await getOwnedQueue(id, req.user.id);
+    const queue = await getAccessibleQueue(id, req.user.id);
     if (!queue) {
-      return errorResponse(res, 404, 'Queue not found or not owned by you');
+      return errorResponse(res, 404, 'Queue not found or you lack access');
     }
 
     const result = await db.query(

@@ -1,13 +1,15 @@
-# Community 24: api
+# Community 24: AISummaryModal
 
-**Members:** 2
+**Members:** 3
 
 ## Nodes
 
-- **api** (`client_src_services_api_js`, File, degree: 1)
-- **axios/axios** (`client_src_services_api_js_import_axios_axios`, Module, degree: 1)
+- **AISummaryModal** (`frontend_src_components_aisummarymodal_jsx`, File, degree: 2)
+- **AISummaryModal()** (`frontend_src_components_aisummarymodal_jsx_aisummarymodal`, Function, degree: 1)
+- **react/useEffect** (`frontend_src_components_aisummarymodal_jsx_import_react_useeffect`, Module, degree: 1)
 
 ## Relationships
 
-- client_src_services_api_js → client_src_services_api_js_import_axios_axios (imports)
+- frontend_src_components_aisummarymodal_jsx → frontend_src_components_aisummarymodal_jsx_import_react_useeffect (imports)
+- frontend_src_components_aisummarymodal_jsx → frontend_src_components_aisummarymodal_jsx_aisummarymodal (defines)
 

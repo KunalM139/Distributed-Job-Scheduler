@@ -6,6 +6,7 @@ import {
 } from 'recharts';
 import api from '../services/api';
 import usePolling from '../hooks/usePolling';
+import useSocketEvent from '../hooks/useSocketEvent';
 import StatusBadge from '../components/StatusBadge';
 
 const STATUS_COLORS = {
@@ -18,6 +19,12 @@ const STATUS_COLORS = {
 
 export default function DashboardPage() {
   const [throughputHistory, setThroughputHistory] = useState([]);
+  const [refreshSignal, setRefreshSignal] = useState(0);
+
+  // Listen for real-time nudges from Socket.IO
+  useSocketEvent('stats:refresh', () => {
+    setRefreshSignal((n) => n + 1);
+  });
 
   const fetchStats = async () => {
     const res = await api.get('/api/stats');
@@ -39,7 +46,7 @@ export default function DashboardPage() {
     return data;
   };
 
-  const { data: stats, loading } = usePolling(fetchStats, 10_000);
+  const { data: stats, loading } = usePolling(fetchStats, 10_000, refreshSignal);
 
   if (loading) {
     return (

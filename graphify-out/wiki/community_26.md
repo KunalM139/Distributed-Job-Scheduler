@@ -1,13 +1,15 @@
-# Community 26: statsController
+# Community 26: notifyService
 
-**Members:** 2
+**Members:** 3
 
 ## Nodes
 
-- **statsController** (`src_controllers_statscontroller_js`, File, degree: 1)
-- **getDashboardStats()** (`src_controllers_statscontroller_js_getdashboardstats`, Function, degree: 1)
+- **notifyService** (`backend_src_services_notifyservice_js`, File, degree: 2)
+- **start()** (`backend_src_services_notifyservice_js_start`, Function, degree: 1)
+- **stop()** (`backend_src_services_notifyservice_js_stop`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_statscontroller_js → src_controllers_statscontroller_js_getdashboardstats (defines)
+- backend_src_services_notifyservice_js → backend_src_services_notifyservice_js_start (defines)
+- backend_src_services_notifyservice_js → backend_src_services_notifyservice_js_stop (defines)
 

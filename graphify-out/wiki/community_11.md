@@ -1,23 +1,26 @@
-# Community 11: LoginPage
+# Community 11: JobDetailModal
 
-**Members:** 7
+**Members:** 8
 
 ## Nodes
 
-- **LoginPage** (`client_src_pages_loginpage_jsx`, File, degree: 6)
-- **../context/AuthContext/useAuth** (`client_src_pages_loginpage_jsx_import_context_authcontext_useauth`, Module, degree: 1)
-- **react-hot-toast/toast** (`client_src_pages_loginpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
-- **react-router-dom/Link** (`client_src_pages_loginpage_jsx_import_react_router_dom_link`, Module, degree: 1)
-- **react-router-dom/useNavigate** (`client_src_pages_loginpage_jsx_import_react_router_dom_usenavigate`, Module, degree: 1)
-- **react/useState** (`client_src_pages_loginpage_jsx_import_react_usestate`, Module, degree: 1)
-- **LoginPage()** (`client_src_pages_loginpage_jsx_loginpage`, Function, degree: 1)
+- **JobDetailModal** (`client_src_components_jobdetailmodal_jsx`, File, degree: 7)
+- **fmt()** (`client_src_components_jobdetailmodal_jsx_fmt`, Function, degree: 2)
+- **../components/StatusBadge/StatusBadge** (`client_src_components_jobdetailmodal_jsx_import_components_statusbadge_statusbadge`, Module, degree: 1)
+- **react/useEffect** (`client_src_components_jobdetailmodal_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useState** (`client_src_components_jobdetailmodal_jsx_import_react_usestate`, Module, degree: 1)
+- **../services/api/api** (`client_src_components_jobdetailmodal_jsx_import_services_api_api`, Module, degree: 1)
+- **InfoItem()** (`client_src_components_jobdetailmodal_jsx_infoitem`, Function, degree: 1)
+- **JobDetailModal()** (`client_src_components_jobdetailmodal_jsx_jobdetailmodal`, Function, degree: 2)
 
 ## Relationships
 
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_react_usestate (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_react_router_dom_link (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_react_router_dom_usenavigate (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_context_authcontext_useauth (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_react_hot_toast_toast (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_loginpage (defines)
+- client_src_components_jobdetailmodal_jsx → client_src_components_jobdetailmodal_jsx_import_react_useeffect (imports)
+- client_src_components_jobdetailmodal_jsx → client_src_components_jobdetailmodal_jsx_import_react_usestate (imports)
+- client_src_components_jobdetailmodal_jsx → client_src_components_jobdetailmodal_jsx_import_services_api_api (imports)
+- client_src_components_jobdetailmodal_jsx → client_src_components_jobdetailmodal_jsx_import_components_statusbadge_statusbadge (imports)
+- client_src_components_jobdetailmodal_jsx → client_src_components_jobdetailmodal_jsx_jobdetailmodal (defines)
+- client_src_components_jobdetailmodal_jsx → client_src_components_jobdetailmodal_jsx_fmt (defines)
+- client_src_components_jobdetailmodal_jsx → client_src_components_jobdetailmodal_jsx_infoitem (defines)
+- client_src_components_jobdetailmodal_jsx_jobdetailmodal → client_src_components_jobdetailmodal_jsx_fmt (calls)
 

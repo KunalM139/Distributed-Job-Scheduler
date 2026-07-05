@@ -17,7 +17,10 @@ export default function RegisterPage() {
       toast.success('Account created!');
       navigate('/dashboard');
     } catch (err) {
-      toast.error(err.response?.data?.error || err.response?.data?.message || 'Registration failed');
+      const errorMessage = typeof err.response?.data?.error === 'string' 
+        ? err.response.data.error 
+        : err.response?.data?.message || 'Registration failed';
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }

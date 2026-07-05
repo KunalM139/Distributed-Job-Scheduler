@@ -1,8 +1,13 @@
-# Community 35: jobs.test
+# Community 35: rbac
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 
-- **jobs.test** (`tests_jobs_test_js`, File, degree: 0)
+- **rbac** (`backend_src_middleware_rbac_js`, File, degree: 1)
+- **requireRole()** (`backend_src_middleware_rbac_js_requirerole`, Function, degree: 1)
+
+## Relationships
+
+- backend_src_middleware_rbac_js → backend_src_middleware_rbac_js_requirerole (defines)
 

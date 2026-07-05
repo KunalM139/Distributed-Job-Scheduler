@@ -17,7 +17,10 @@ export default function LoginPage() {
       toast.success('Welcome back!');
       navigate('/dashboard');
     } catch (err) {
-      toast.error(err.response?.data?.error || err.response?.data?.message || 'Login failed');
+      const errorMessage = typeof err.response?.data?.error === 'string' 
+        ? err.response.data.error 
+        : err.response?.data?.message || 'Login failed';
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }

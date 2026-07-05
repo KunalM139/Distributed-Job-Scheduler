@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const db = require('../db');
 const { errorResponse } = require('../middleware/validate');
+const { emitEvent } = require('../services/emitHelper');
 
 // ─── Helpers ─────────────────────────────────────────────
 
@@ -63,6 +64,8 @@ const createJob = async (req, res) => {
         [id, queueId, cron_expression, type, payload ? JSON.stringify(payload) : null]
       );
 
+      emitEvent('job:created', { job: result.rows[0] });
+      emitEvent('stats:refresh', {});
       return res.status(201).json({ data: result.rows[0], scheduled: true });
     }
 
@@ -93,6 +96,10 @@ const createJob = async (req, res) => {
         params
       );
 
+      for (const job of result.rows) {
+        emitEvent('job:created', { job });
+      }
+      emitEvent('stats:refresh', {});
       return res.status(201).json({ data: result.rows, count: result.rows.length });
     }
 
@@ -106,6 +113,8 @@ const createJob = async (req, res) => {
       [id, queueId, type, payload ? JSON.stringify(payload) : null, status, priority ?? 0, scheduled_at ?? null]
     );
 
+    emitEvent('job:created', { job: result.rows[0] });
+    emitEvent('stats:refresh', {});
     return res.status(201).json({ data: result.rows[0] });
   } catch (err) {
     console.error('createJob error:', err);
@@ -226,6 +235,8 @@ const retryJob = async (req, res) => {
       [id]
     );
 
+    emitEvent('job:updated', { job: result.rows[0] });
+    emitEvent('stats:refresh', {});
     return res.json({ data: result.rows[0], message: 'Job re-queued for retry' });
   } catch (err) {
     console.error('retryJob error:', err);
@@ -246,6 +257,8 @@ const deleteJob = async (req, res) => {
 
     await db.query('DELETE FROM jobs WHERE id = $1', [id]);
 
+    emitEvent('job:deleted', { id });
+    emitEvent('stats:refresh', {});
     return res.json({ data: { id }, message: 'Job deleted' });
   } catch (err) {
     console.error('deleteJob error:', err);

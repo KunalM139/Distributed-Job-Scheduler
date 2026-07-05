@@ -1,21 +1,21 @@
-# Community 15: WorkersPage
+# Community 15: usePolling
 
 **Members:** 6
 
 ## Nodes
 
-- **WorkersPage** (`client_src_pages_workerspage_jsx`, File, degree: 5)
-- **../components/StatusBadge/StatusBadge** (`client_src_pages_workerspage_jsx_import_components_statusbadge_statusbadge`, Module, degree: 1)
-- **../hooks/usePolling/usePolling** (`client_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling`, Module, degree: 1)
-- **react/useState** (`client_src_pages_workerspage_jsx_import_react_usestate`, Module, degree: 1)
-- **../services/api/api** (`client_src_pages_workerspage_jsx_import_services_api_api`, Module, degree: 1)
-- **WorkersPage()** (`client_src_pages_workerspage_jsx_workerspage`, Function, degree: 1)
+- **usePolling** (`frontend_src_hooks_usepolling_js`, File, degree: 5)
+- **react/useCallback** (`frontend_src_hooks_usepolling_js_import_react_usecallback`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_hooks_usepolling_js_import_react_useeffect`, Module, degree: 1)
+- **react/useRef** (`frontend_src_hooks_usepolling_js_import_react_useref`, Module, degree: 1)
+- **react/useState** (`frontend_src_hooks_usepolling_js_import_react_usestate`, Module, degree: 1)
+- **usePolling()** (`frontend_src_hooks_usepolling_js_usepolling`, Function, degree: 1)
 
 ## Relationships
 
-- client_src_pages_workerspage_jsx → client_src_pages_workerspage_jsx_import_react_usestate (imports)
-- client_src_pages_workerspage_jsx → client_src_pages_workerspage_jsx_import_services_api_api (imports)
-- client_src_pages_workerspage_jsx → client_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling (imports)
-- client_src_pages_workerspage_jsx → client_src_pages_workerspage_jsx_import_components_statusbadge_statusbadge (imports)
-- client_src_pages_workerspage_jsx → client_src_pages_workerspage_jsx_workerspage (defines)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_import_react_usestate (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_import_react_useeffect (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_import_react_usecallback (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_import_react_useref (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_usepolling (defines)
 

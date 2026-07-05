@@ -9,7 +9,12 @@ const { errorResponse } = require('../middleware/validate');
 const listProjects = async (req, res) => {
   try {
     const result = await db.query(
-      'SELECT id, name, description, created_at FROM projects WHERE user_id = $1 ORDER BY created_at DESC',
+      `SELECT p.id, p.name, p.description, p.created_at, COALESCE(MAX(pm.role), 'owner') AS user_role
+       FROM projects p 
+       LEFT JOIN project_members pm ON p.id = pm.project_id AND pm.user_id = $1
+       WHERE p.user_id = $1 OR pm.user_id = $1
+       GROUP BY p.id
+       ORDER BY p.created_at DESC`,
       [req.user.id]
     );
     return res.json({ data: result.rows });
@@ -24,19 +29,32 @@ const listProjects = async (req, res) => {
  * Create a new project.
  */
 const createProject = async (req, res) => {
+  const client = await db.pool.connect();
   try {
     const { name, description } = req.body;
     const id = uuidv4();
 
-    const result = await db.query(
+    await client.query('BEGIN');
+
+    const result = await client.query(
       'INSERT INTO projects (id, user_id, name, description) VALUES ($1, $2, $3, $4) RETURNING *',
       [id, req.user.id, name, description || null]
     );
 
+    // Insert creator as 'owner'
+    await client.query(
+      `INSERT INTO project_members (id, project_id, user_id, role) VALUES ($1, $2, $3, $4)`,
+      [uuidv4(), id, req.user.id, 'owner']
+    );
+
+    await client.query('COMMIT');
     return res.status(201).json({ data: result.rows[0] });
   } catch (err) {
+    await client.query('ROLLBACK');
     console.error('createProject error:', err);
     return errorResponse(res, 500, 'Failed to create project');
+  } finally {
+    client.release();
   }
 };
 

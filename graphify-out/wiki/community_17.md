@@ -1,17 +1,21 @@
-# Community 17: projectController
+# Community 17: ProjectsPage
 
-**Members:** 4
+**Members:** 6
 
 ## Nodes
 
-- **projectController** (`src_controllers_projectcontroller_js`, File, degree: 3)
-- **createProject()** (`src_controllers_projectcontroller_js_createproject`, Function, degree: 1)
-- **deleteProject()** (`src_controllers_projectcontroller_js_deleteproject`, Function, degree: 1)
-- **listProjects()** (`src_controllers_projectcontroller_js_listprojects`, Function, degree: 1)
+- **ProjectsPage** (`frontend_src_pages_projectspage_jsx`, File, degree: 5)
+- **react-hot-toast/toast** (`frontend_src_pages_projectspage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_pages_projectspage_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useState** (`frontend_src_pages_projectspage_jsx_import_react_usestate`, Module, degree: 1)
+- **../services/api/api** (`frontend_src_pages_projectspage_jsx_import_services_api_api`, Module, degree: 1)
+- **ProjectsPage()** (`frontend_src_pages_projectspage_jsx_projectspage`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_projectcontroller_js → src_controllers_projectcontroller_js_listprojects (defines)
-- src_controllers_projectcontroller_js → src_controllers_projectcontroller_js_createproject (defines)
-- src_controllers_projectcontroller_js → src_controllers_projectcontroller_js_deleteproject (defines)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_react_useeffect (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_react_usestate (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_services_api_api (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_react_hot_toast_toast (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_projectspage (defines)
 

@@ -1,17 +1,19 @@
-# Community 18: vite.config
+# Community 18: memberController
 
-**Members:** 4
+**Members:** 5
 
 ## Nodes
 
-- **vite.config** (`frontend_vite_config_js`, File, degree: 3)
-- **@tailwindcss/vite/tailwindcss** (`frontend_vite_config_js_import_tailwindcss_vite_tailwindcss`, Module, degree: 1)
-- **vite/defineConfig** (`frontend_vite_config_js_import_vite_defineconfig`, Module, degree: 1)
-- **@vitejs/plugin-react/react** (`frontend_vite_config_js_import_vitejs_plugin_react_react`, Module, degree: 1)
+- **memberController** (`backend_src_controllers_membercontroller_js`, File, degree: 4)
+- **addMember()** (`backend_src_controllers_membercontroller_js_addmember`, Function, degree: 1)
+- **listMembers()** (`backend_src_controllers_membercontroller_js_listmembers`, Function, degree: 1)
+- **removeMember()** (`backend_src_controllers_membercontroller_js_removemember`, Function, degree: 1)
+- **updateMember()** (`backend_src_controllers_membercontroller_js_updatemember`, Function, degree: 1)
 
 ## Relationships
 
-- frontend_vite_config_js → frontend_vite_config_js_import_vite_defineconfig (imports)
-- frontend_vite_config_js → frontend_vite_config_js_import_vitejs_plugin_react_react (imports)
-- frontend_vite_config_js → frontend_vite_config_js_import_tailwindcss_vite_tailwindcss (imports)
+- backend_src_controllers_membercontroller_js → backend_src_controllers_membercontroller_js_listmembers (defines)
+- backend_src_controllers_membercontroller_js → backend_src_controllers_membercontroller_js_addmember (defines)
+- backend_src_controllers_membercontroller_js → backend_src_controllers_membercontroller_js_updatemember (defines)
+- backend_src_controllers_membercontroller_js → backend_src_controllers_membercontroller_js_removemember (defines)
 

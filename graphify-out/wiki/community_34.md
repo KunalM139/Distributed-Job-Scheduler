@@ -1,8 +1,13 @@
-# Community 34: projects
+# Community 34: check-all
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 
-- **projects** (`src_routes_projects_js`, File, degree: 0)
+- **check-all** (`backend_check_all_js`, File, degree: 1)
+- **checkAll()** (`backend_check_all_js_checkall`, Function, degree: 1)
+
+## Relationships
+
+- backend_check_all_js → backend_check_all_js_checkall (defines)
 

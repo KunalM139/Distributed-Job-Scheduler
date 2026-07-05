@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
 import StatusBadge from '../components/StatusBadge';
+import useSocketEvent from '../hooks/useSocketEvent';
 import toast from 'react-hot-toast';
 
 const EMPTY_QUEUE = {
@@ -36,7 +37,12 @@ export default function QueuesPage() {
       await Promise.all(
         projs.map(async (p) => {
           const qRes = await api.get(`/api/projects/${p.id}/queues`);
-          qRes.data.data.forEach((q) => allQueues.push({ ...q, project_name: p.name, project_id: p.id }));
+          qRes.data.data.forEach((q) => allQueues.push({ 
+            ...q, 
+            project_name: p.name, 
+            project_id: p.id,
+            user_role: p.user_role 
+          }));
         })
       );
       setQueues(allQueues);
@@ -53,6 +59,10 @@ export default function QueuesPage() {
   };
 
   useEffect(() => { fetchData(); }, []);
+
+  // Re-fetch when queues are created or updated via Socket.IO
+  useSocketEvent('queue:created', () => fetchData());
+  useSocketEvent('queue:updated', () => fetchData());
 
   const openModal = () => {
     setForm({ ...EMPTY_QUEUE });
@@ -122,7 +132,8 @@ export default function QueuesPage() {
         <h1 className="text-2xl font-bold text-surface-900 dark:text-white">Queues</h1>
         <button
           onClick={openModal}
-          className="rounded-lg bg-gradient-to-r from-accent-500 to-accent-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-accent-500/25 transition hover:from-accent-600 hover:to-accent-700"
+          disabled={projects.length > 0 && projects.find(p => p.id === selectedProjectId)?.user_role === 'viewer'}
+          className="rounded-lg bg-gradient-to-r from-accent-500 to-accent-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-accent-500/25 transition hover:from-accent-600 hover:to-accent-700 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           + Create Queue
         </button>
@@ -171,23 +182,29 @@ export default function QueuesPage() {
                     </td>
                     <td className="px-5 py-3"><StatusBadge status={q.status} /></td>
                     <td className="px-5 py-3">
-                      <div className="flex gap-2">
-                        {q.status === 'active' ? (
-                          <button
-                            onClick={() => handlePause(q.id)}
-                            className="rounded-lg bg-warning-400/15 px-3 py-1 text-xs font-semibold text-warning-500 transition hover:bg-warning-400/25"
-                          >
-                            Pause
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => handleResume(q.id)}
-                            className="rounded-lg bg-success-400/15 px-3 py-1 text-xs font-semibold text-success-500 transition hover:bg-success-400/25"
-                          >
-                            Resume
-                          </button>
-                        )}
-                      </div>
+                      {q.user_role === 'viewer' ? (
+                        <span className="rounded-full bg-surface-200 px-2 py-0.5 text-xs font-bold text-surface-600 dark:bg-surface-800 dark:text-surface-400">
+                          Viewer Mode
+                        </span>
+                      ) : (
+                        <div className="flex gap-2">
+                          {q.status === 'active' ? (
+                            <button
+                              onClick={() => handlePause(q.id)}
+                              className="rounded-lg bg-warning-400/15 px-3 py-1 text-xs font-semibold text-warning-500 transition hover:bg-warning-400/25"
+                            >
+                              Pause
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => handleResume(q.id)}
+                              className="rounded-lg bg-success-400/15 px-3 py-1 text-xs font-semibold text-success-500 transition hover:bg-success-400/25"
+                            >
+                              Resume
+                            </button>
+                          )}
+                        </div>
+                      )}
                     </td>
                   </tr>
                 ))

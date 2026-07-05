@@ -1,12 +1,19 @@
 import { useEffect, useState, useCallback } from 'react';
 import api from '../services/api';
+import useSocketEvent from '../hooks/useSocketEvent';
 import toast from 'react-hot-toast';
+import AISummaryModal from '../components/AISummaryModal';
 
 export default function DeadLetterPage() {
   const [entries, setEntries] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  
+  // AI Summary Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedSummary, setSelectedSummary] = useState(null);
+
   const limit = 20;
 
   const fetchDLQ = useCallback(async () => {
@@ -22,6 +29,10 @@ export default function DeadLetterPage() {
   }, [page]);
 
   useEffect(() => { fetchDLQ(); }, [fetchDLQ]);
+
+  // Re-fetch when DLQ entries are created or retried
+  useSocketEvent('dlq:created', () => fetchDLQ());
+  useSocketEvent('dlq:retried', () => fetchDLQ());
 
   const handleRetry = async (id) => {
     try {
@@ -62,7 +73,7 @@ export default function DeadLetterPage() {
           <table className="w-full text-left text-sm">
             <thead className="border-b border-surface-100 bg-surface-50 dark:border-surface-800 dark:bg-surface-800/50">
               <tr>
-                {['Job ID', 'Type', 'Queue', 'Total Attempts', 'Failure Reason', 'Failed At', 'Actions'].map((h) => (
+                {['Job ID', 'Type', 'Queue', 'Total Attempts', 'Failure Reason', 'Failed At', 'AI Summary', 'Actions'].map((h) => (
                   <th key={h} className="px-5 py-3 font-medium text-surface-500 dark:text-surface-400">{h}</th>
                 ))}
               </tr>
@@ -97,6 +108,21 @@ export default function DeadLetterPage() {
                     </td>
                     <td className="px-5 py-3 text-xs text-surface-500 dark:text-surface-400">
                       {new Date(e.failed_at).toLocaleString()}
+                    </td>
+                    <td className="px-5 py-3">
+                      {e.ai_summary ? (
+                        <button
+                          onClick={() => {
+                            setSelectedSummary(e.ai_summary);
+                            setIsModalOpen(true);
+                          }}
+                          className="rounded-lg border border-accent-200 bg-accent-50 px-3 py-1.5 text-xs font-semibold text-accent-700 transition hover:bg-accent-100 dark:border-accent-900/50 dark:bg-accent-900/20 dark:text-accent-400 dark:hover:bg-accent-900/40"
+                        >
+                          View AI Summary
+                        </button>
+                      ) : (
+                        <span className="text-xs text-surface-400">N/A</span>
+                      )}
                     </td>
                     <td className="px-5 py-3">
                       <button
@@ -138,6 +164,15 @@ export default function DeadLetterPage() {
           </div>
         )}
       </div>
+
+      <AISummaryModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedSummary(null);
+        }}
+        summaryData={selectedSummary}
+      />
     </div>
   );
 }
