@@ -68,7 +68,7 @@ export default function DashboardPage() {
   }));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-slide-up">
       <h1 className="text-2xl font-bold text-surface-900 dark:text-white">Dashboard</h1>
 
       {/* ── Stat cards ───────────────────────────────────────────────────── */}
@@ -120,7 +120,7 @@ export default function DashboardPage() {
       {/* ── Charts ────────────────────────────────────────────────────────── */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Jobs by Status — BarChart */}
-        <div className="rounded-2xl border border-surface-200 bg-white p-5 shadow-sm dark:border-surface-800 dark:bg-surface-900">
+        <div className="glass-panel rounded-2xl p-5">
           <h2 className="mb-4 text-sm font-semibold text-surface-700 dark:text-surface-300">Jobs by Status</h2>
           {jobsByStatusData.length > 0 ? (
             <ResponsiveContainer width="100%" height={280}>
@@ -142,7 +142,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Throughput over time — LineChart */}
-        <div className="rounded-2xl border border-surface-200 bg-white p-5 shadow-sm dark:border-surface-800 dark:bg-surface-900">
+        <div className="glass-panel rounded-2xl p-5">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-sm font-semibold text-surface-700 dark:text-surface-300">Throughput (Live)</h2>
             <span className="flex items-center gap-1.5 text-xs text-surface-400">
@@ -172,7 +172,7 @@ export default function DashboardPage() {
 
       {/* ── Queues Summary Table ──────────────────────────────────────────── */}
       {stats.queues_summary?.length > 0 && (
-        <div className="rounded-2xl border border-surface-200 bg-white shadow-sm dark:border-surface-800 dark:bg-surface-900">
+        <div className="glass-panel rounded-2xl overflow-hidden">
           <div className="px-5 py-4">
             <h2 className="text-sm font-semibold text-surface-700 dark:text-surface-300">Queues Summary</h2>
           </div>
@@ -214,7 +214,7 @@ export default function DashboardPage() {
 
 function StatCard({ label, value, icon, iconBg, valueColor }) {
   return (
-    <div className="rounded-2xl border border-surface-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-surface-800 dark:bg-surface-900">
+    <div className="glass-panel rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent-500/10 dark:hover:shadow-accent-500/5">
       <div className="flex items-center justify-between">
         <p className="text-sm font-medium text-surface-500 dark:text-surface-400">{label}</p>
         <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${iconBg}`}>

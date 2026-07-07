@@ -57,8 +57,8 @@ export default function Layout() {
   const linkClasses = ({ isActive }) =>
     `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
       isActive
-        ? 'bg-accent-500/10 text-accent-500 dark:bg-accent-500/15 dark:text-accent-400'
-        : 'text-surface-600 hover:bg-surface-100 hover:text-surface-900 dark:text-surface-400 dark:hover:bg-surface-800 dark:hover:text-surface-100'
+        ? 'bg-gradient-to-r from-accent-500/10 to-transparent text-accent-600 dark:from-accent-500/20 dark:text-accent-400 border-l-2 border-accent-500'
+        : 'text-surface-600 hover:bg-surface-100 hover:text-surface-900 dark:text-surface-400 dark:hover:bg-surface-800/50 dark:hover:text-surface-100 border-l-2 border-transparent'
     }`;
 
   return (
@@ -74,8 +74,8 @@ export default function Layout() {
       {/* ── Sidebar ────────────────────────────────────────────────────── */}
       <aside
         className={`
-          fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-surface-200
-          bg-white transition-transform duration-300 dark:border-surface-800 dark:bg-surface-900
+          fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-surface-200/50
+          glass-panel transition-transform duration-300
           lg:static lg:translate-x-0
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
@@ -137,7 +137,7 @@ export default function Layout() {
       {/* ── Main area ──────────────────────────────────────────────────── */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Top bar (mobile hamburger) */}
-        <header className="flex h-16 items-center gap-4 border-b border-surface-200 bg-white px-4 dark:border-surface-800 dark:bg-surface-900 lg:hidden">
+        <header className="flex h-16 items-center gap-4 border-b border-surface-200/50 glass-panel px-4 lg:hidden">
           <button
             onClick={() => setSidebarOpen(true)}
             className="rounded-lg p-2 text-surface-500 hover:bg-surface-100 dark:hover:bg-surface-800"
@@ -150,7 +150,7 @@ export default function Layout() {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto bg-surface-50 p-6 dark:bg-surface-950">
+        <main className="flex-1 overflow-y-auto bg-surface-50/50 p-6 dark:bg-surface-950/90 animate-fade-in">
           <Outlet />
         </main>
       </div>

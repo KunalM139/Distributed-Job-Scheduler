@@ -3,17 +3,17 @@
  */
 
 const STATUS_STYLES = {
-  active:    'bg-success-400/15 text-success-500 dark:bg-success-400/10 dark:text-success-400',
-  idle:      'bg-success-400/15 text-success-500 dark:bg-success-400/10 dark:text-success-400',
-  completed: 'bg-success-400/15 text-success-500 dark:bg-success-400/10 dark:text-success-400',
-  running:   'bg-info-400/15 text-info-500 dark:bg-info-400/10 dark:text-info-400',
-  busy:      'bg-info-400/15 text-info-500 dark:bg-info-400/10 dark:text-info-400',
-  queued:    'bg-warning-400/15 text-warning-500 dark:bg-warning-400/10 dark:text-warning-400',
-  scheduled: 'bg-warning-400/15 text-warning-500 dark:bg-warning-400/10 dark:text-warning-400',
-  paused:    'bg-warning-400/15 text-warning-500 dark:bg-warning-400/10 dark:text-warning-400',
-  failed:    'bg-danger-400/15 text-danger-500 dark:bg-danger-400/10 dark:text-danger-400',
-  dead:      'bg-danger-400/15 text-danger-500 dark:bg-danger-400/10 dark:text-danger-400',
-  offline:   'bg-surface-200 text-surface-500 dark:bg-surface-800 dark:text-surface-400',
+  active:    'bg-success-500/15 text-success-600 dark:bg-success-400/15 dark:text-success-400 border border-success-500/20',
+  idle:      'bg-success-500/15 text-success-600 dark:bg-success-400/15 dark:text-success-400 border border-success-500/20',
+  completed: 'bg-success-500/15 text-success-600 dark:bg-success-400/15 dark:text-success-400 border border-success-500/20',
+  running:   'bg-info-500/15 text-info-600 dark:bg-info-400/15 dark:text-info-400 border border-info-500/20',
+  busy:      'bg-info-500/15 text-info-600 dark:bg-info-400/15 dark:text-info-400 border border-info-500/20',
+  queued:    'bg-warning-500/15 text-warning-600 dark:bg-warning-400/15 dark:text-warning-400 border border-warning-500/20',
+  scheduled: 'bg-warning-500/15 text-warning-600 dark:bg-warning-400/15 dark:text-warning-400 border border-warning-500/20',
+  paused:    'bg-warning-500/15 text-warning-600 dark:bg-warning-400/15 dark:text-warning-400 border border-warning-500/20',
+  failed:    'bg-danger-500/15 text-danger-600 dark:bg-danger-400/15 dark:text-danger-400 border border-danger-500/20',
+  dead:      'bg-danger-500/15 text-danger-600 dark:bg-danger-400/15 dark:text-danger-400 border border-danger-500/20',
+  offline:   'bg-surface-200 text-surface-600 dark:bg-surface-800 dark:text-surface-400 border border-surface-300 dark:border-surface-700',
 };
 
 export default function StatusBadge({ status }) {
