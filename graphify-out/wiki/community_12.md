@@ -1,23 +1,26 @@
-# Community 12: RegisterPage
+# Community 12: JobDetailModal
 
-**Members:** 7
+**Members:** 8
 
 ## Nodes
 
-- **RegisterPage** (`client_src_pages_registerpage_jsx`, File, degree: 6)
-- **../context/AuthContext/useAuth** (`client_src_pages_registerpage_jsx_import_context_authcontext_useauth`, Module, degree: 1)
-- **react-hot-toast/toast** (`client_src_pages_registerpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
-- **react-router-dom/Link** (`client_src_pages_registerpage_jsx_import_react_router_dom_link`, Module, degree: 1)
-- **react-router-dom/useNavigate** (`client_src_pages_registerpage_jsx_import_react_router_dom_usenavigate`, Module, degree: 1)
-- **react/useState** (`client_src_pages_registerpage_jsx_import_react_usestate`, Module, degree: 1)
-- **RegisterPage()** (`client_src_pages_registerpage_jsx_registerpage`, Function, degree: 1)
+- **JobDetailModal** (`frontend_src_components_jobdetailmodal_jsx`, File, degree: 7)
+- **fmt()** (`frontend_src_components_jobdetailmodal_jsx_fmt`, Function, degree: 2)
+- **../components/StatusBadge/StatusBadge** (`frontend_src_components_jobdetailmodal_jsx_import_components_statusbadge_statusbadge`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_components_jobdetailmodal_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useState** (`frontend_src_components_jobdetailmodal_jsx_import_react_usestate`, Module, degree: 1)
+- **../services/api/api** (`frontend_src_components_jobdetailmodal_jsx_import_services_api_api`, Module, degree: 1)
+- **InfoItem()** (`frontend_src_components_jobdetailmodal_jsx_infoitem`, Function, degree: 1)
+- **JobDetailModal()** (`frontend_src_components_jobdetailmodal_jsx_jobdetailmodal`, Function, degree: 2)
 
 ## Relationships
 
-- client_src_pages_registerpage_jsx → client_src_pages_registerpage_jsx_import_react_usestate (imports)
-- client_src_pages_registerpage_jsx → client_src_pages_registerpage_jsx_import_react_router_dom_link (imports)
-- client_src_pages_registerpage_jsx → client_src_pages_registerpage_jsx_import_react_router_dom_usenavigate (imports)
-- client_src_pages_registerpage_jsx → client_src_pages_registerpage_jsx_import_context_authcontext_useauth (imports)
-- client_src_pages_registerpage_jsx → client_src_pages_registerpage_jsx_import_react_hot_toast_toast (imports)
-- client_src_pages_registerpage_jsx → client_src_pages_registerpage_jsx_registerpage (defines)
+- frontend_src_components_jobdetailmodal_jsx → frontend_src_components_jobdetailmodal_jsx_import_react_useeffect (imports)
+- frontend_src_components_jobdetailmodal_jsx → frontend_src_components_jobdetailmodal_jsx_import_react_usestate (imports)
+- frontend_src_components_jobdetailmodal_jsx → frontend_src_components_jobdetailmodal_jsx_import_services_api_api (imports)
+- frontend_src_components_jobdetailmodal_jsx → frontend_src_components_jobdetailmodal_jsx_import_components_statusbadge_statusbadge (imports)
+- frontend_src_components_jobdetailmodal_jsx → frontend_src_components_jobdetailmodal_jsx_jobdetailmodal (defines)
+- frontend_src_components_jobdetailmodal_jsx → frontend_src_components_jobdetailmodal_jsx_fmt (defines)
+- frontend_src_components_jobdetailmodal_jsx → frontend_src_components_jobdetailmodal_jsx_infoitem (defines)
+- frontend_src_components_jobdetailmodal_jsx_jobdetailmodal → frontend_src_components_jobdetailmodal_jsx_fmt (calls)
 

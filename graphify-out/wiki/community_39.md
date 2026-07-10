@@ -1,8 +1,8 @@
-# Community 39: server
+# Community 39: projects
 
 **Members:** 1
 
 ## Nodes
 
-- **server** (`backend_server_js`, File, degree: 0)
+- **projects** (`backend_src_routes_projects_js`, File, degree: 0)
 

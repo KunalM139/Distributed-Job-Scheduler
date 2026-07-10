@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Worker Monitoring | Distributed Job Scheduler</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;family=Geist:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#0059c5",
+                        "surface-variant": "#343535",
+                        "secondary-container": "#6807ba",
+                        "surface": "#121414",
+                        "on-secondary-fixed": "#2b0052",
+                        "outline-variant": "#414754",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1b1c1c",
+                        "primary-container": "#0070f3",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#001a43",
+                        "on-primary-container": "#ffffff",
+                        "surface-container": "#1f2020",
+                        "outline": "#8b90a0",
+                        "on-primary": "#002e6b",
+                        "surface-container-high": "#292a2a",
+                        "surface-dim": "#121414",
+                        "on-secondary-fixed-variant": "#6600b7",
+                        "tertiary-container": "#ca4e00",
+                        "on-tertiary": "#581e00",
+                        "on-background": "#e3e2e2",
+                        "inverse-surface": "#e3e2e2",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface-container-lowest": "#0d0e0f",
+                        "primary-fixed-dim": "#aec6ff",
+                        "on-surface": "#e3e2e2",
+                        "secondary-fixed-dim": "#dbb8ff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-tertiary-fixed": "#360f00",
+                        "inverse-on-surface": "#303031",
+                        "primary-fixed": "#d8e2ff",
+                        "primary": "#aec6ff",
+                        "surface-bright": "#383939",
+                        "on-primary-fixed-variant": "#004397",
+                        "surface-container-highest": "#343535",
+                        "background": "#121414",
+                        "surface-tint": "#aec6ff",
+                        "secondary-fixed": "#efdbff",
+                        "secondary": "#dbb8ff",
+                        "on-tertiary-container": "#fffeff",
+                        "on-secondary-container": "#d0a6ff",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#c1c6d7",
+                        "tertiary": "#ffb596",
+                        "on-secondary": "#470083"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "240px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "container-margin": "24px",
+                        "stack-sm": "8px",
+                        "sidebar-collapsed": "64px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Geist"],
+                        "body-base": ["Inter"],
+                        "status-badge": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "code-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-base": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "status-badge": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "code-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #121414;
+            color: #e3e2e2;
+            font-family: 'Inter', sans-serif;
+        }
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        .animate-pulse-fast {
+            animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .3; }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1b1c1c;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #414754;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full flex flex-col w-sidebar-width py-container-margin z-40 bg-surface-container-low border-r border-outline-variant">
+<div class="px-gutter mb-stack-lg">
+<h1 class="font-display-lg text-[20px] font-black text-primary-container leading-tight">
+                Distributed<br/>Job Scheduler
+            </h1>
+<p class="font-label-caps text-[10px] text-outline mt-2 tracking-widest uppercase">System Admin v2.4</p>
+</div>
+<nav class="flex-1 px-3 space-y-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">folder_shared</span>
+<span class="font-label-caps text-label-caps">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">queue</span>
+<span class="font-label-caps text-label-caps">Queues</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+<span class="font-label-caps text-label-caps">Jobs</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container font-bold rounded-lg translate-x-1 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">engineering</span>
+<span class="font-label-caps text-label-caps">Workers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">skull</span>
+<span class="font-label-caps text-label-caps">Dead Letter Queue</span>
+</a>
+</nav>
+<div class="px-3 pt-gutter mt-auto border-t border-outline-variant/30">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="font-label-caps text-label-caps">Help</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width h-screen flex flex-col bg-surface">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-50 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Workers</h2>
+<div class="h-4 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1 rounded-full border border-outline-variant/50">
+<span class="status-dot bg-primary-container animate-pulse-fast"></span>
+<span class="font-label-caps text-[10px] text-primary">Live Connection</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full active:scale-95">
+<span class="material-symbols-outlined">contrast</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Professional user avatar for a senior systems administrator. The portrait is high-contrast black and white, featuring a person with a focused expression. The background is a blurred server room with cool blue ambient light. The style is modern corporate with sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Yyywev61TDNYvVnQ0Ffv2XQCMdBU2FjlqEhl1x8_7CjQ2ErZtgwRoPuYyeBN7vsJHQYZa3DjHJCECg4QtTHlptujy5K572SZuqp8mFBOc8QK8xztmXWHgX6iuNvJczh94jO9U8tsX8d_8qQ9rYWnDB2gcndSSxNwxzJ8bJsnUEmRGdCrRjt3LqiquSqoyOH-IVCnfZ7QF3jPy5O0N3QC-ZuQP7AA2L14oQxn-nkzhyyz5dh_zF6NHaDHeugnWeWk8-OkImahyc0i"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto p-container-margin custom-scrollbar">
+<!-- Page Header Meta -->
+<div class="mb-stack-lg">
+<p class="text-on-surface-variant font-body-base">Monitor worker availability and heartbeat status.</p>
+</div>
+<!-- Summary Cards Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-stack-lg">
+<div class="bg-surface-container p-5 rounded-lg border border-outline-variant">
+<p class="font-label-caps text-outline mb-1 uppercase tracking-tight">Total Workers</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-[32px] text-on-surface">128</span>
+<span class="text-outline font-body-base text-[12px]">nodes</span>
+</div>
+</div>
+<div class="bg-surface-container p-5 rounded-lg border border-outline-variant">
+<p class="font-label-caps text-outline mb-1 uppercase tracking-tight">Active Workers</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-[32px] text-primary-container">122</span>
+<span class="text-primary/70 font-body-base text-[12px]">healthy</span>
+</div>
+</div>
+<div class="bg-surface-container p-5 rounded-lg border border-outline-variant">
+<p class="font-label-caps text-outline mb-1 uppercase tracking-tight">Inactive Workers</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-[32px] text-tertiary">4</span>
+<span class="text-tertiary/70 font-body-base text-[12px]">standby</span>
+</div>
+</div>
+<div class="bg-surface-container p-5 rounded-lg border border-outline-variant">
+<p class="font-label-caps text-outline mb-1 uppercase tracking-tight">Dead Workers</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-[32px] text-error">2</span>
+<span class="text-error/70 font-body-base text-[12px]">unresponsive</span>
+</div>
+</div>
+</div>
+<!-- Monitoring Grid -->
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-title-sm text-on-surface">Worker Nodes</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant text-on-surface-variant text-[12px] font-label-caps hover:bg-surface-container-high transition-colors">
+                        Filter: All Nodes
+                    </button>
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant text-on-surface-variant text-[12px] font-label-caps hover:bg-surface-container-high transition-colors">
+                        Sort: Heartbeat
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="worker-grid">
+<!-- Worker Card: Active -->
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant hover:border-primary-container transition-all group cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="font-code-sm text-on-surface font-semibold group-hover:text-primary-container transition-colors">worker-node-01.us-east</span>
+<span class="text-[10px] text-outline font-label-caps">ID: 8F2D-99X1</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20">
+<span class="status-dot bg-primary animate-pulse"></span>
+<span class="text-primary font-status-badge text-[10px] uppercase">Active</span>
+</div>
+</div>
+<div class="space-y-2 pt-2 border-t border-outline-variant/30">
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline font-label-caps uppercase">Last Heartbeat</span>
+<span class="text-[12px] text-on-surface font-code-sm">2s ago</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline font-label-caps uppercase">Registered At</span>
+<span class="text-[12px] text-on-surface-variant font-code-sm">2023-11-20 08:42</span>
+</div>
+</div>
+</div>
+<!-- Worker Card: Inactive -->
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant hover:border-tertiary transition-all group cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="font-code-sm text-on-surface font-semibold group-hover:text-tertiary transition-colors">worker-node-02.eu-west</span>
+<span class="text-[10px] text-outline font-label-caps">ID: 4A1B-22Y9</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary/10 border border-tertiary/20">
+<span class="status-dot bg-tertiary"></span>
+<span class="text-tertiary font-status-badge text-[10px] uppercase">Inactive</span>
+</div>
+</div>
+<div class="space-y-2 pt-2 border-t border-outline-variant/30">
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline font-label-caps uppercase">Last Heartbeat</span>
+<span class="text-[12px] text-on-surface font-code-sm">1.4m ago</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline font-label-caps uppercase">Registered At</span>
+<span class="text-[12px] text-on-surface-variant font-code-sm">2023-10-15 12:11</span>
+</div>
+</div>
+</div>
+<!-- Worker Card: Dead -->
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant hover:border-error transition-all group cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="font-code-sm text-on-surface font-semibold group-hover:text-error transition-colors">worker-node-03.ap-south</span>
+<span class="text-[10px] text-outline font-label-caps">ID: DD92-01L5</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error/10 border border-error/20">
+<span class="status-dot bg-error"></span>
+<span class="text-error font-status-badge text-[10px] uppercase">Dead</span>
+</div>
+</div>
+<div class="space-y-2 pt-2 border-t border-outline-variant/30">
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline font-label-caps uppercase">Last Heartbeat</span>
+<span class="text-[12px] text-error font-code-sm">-- offline --</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline font-label-caps uppercase">Registered At</span>
+<span class="text-[12px] text-on-surface-variant font-code-sm">2023-09-01 19:30</span>
+</div>
+</div>
+</div>
+<!-- Worker Card: Active -->
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant hover:border-primary-container transition-all group cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="font-code-sm text-on-surface font-semibold group-hover:text-primary-container transition-colors">worker-node-04.us-west</span>
+<span class="text-[10px] text-outline font-label-caps">ID: 2E2C-44T2</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20">
+<span class="status-dot bg-primary animate-pulse"></span>
+<span class="text-primary font-status-badge text-[10px] uppercase">Active</span>
+</div>
+</div>
+<div class="space-y-2 pt-2 border-t border-outline-variant/30">
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline font-label-caps uppercase">Last Heartbeat</span>
+<span class="text-[12px] text-on-surface font-code-sm">12s ago</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[11px] text-outline font-label-caps uppercase">Registered At</span>
+<span class="text-[12px] text-on-surface-variant font-code-sm">2023-11-18 22:05</span>
+</div>
+</div>
+</div>
+<!-- More Cards could go here -->
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant border-dashed flex flex-col items-center justify-center min-h-[140px] hover:bg-surface-container-high transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-outline group-hover:text-primary-container transition-colors mb-2">add_circle</span>
+<span class="font-label-caps text-outline group-hover:text-on-surface">Provision Node</span>
+</div>
+</div>
+<!-- Professional Empty State (Hidden by default, shown via script if needed) -->
+<div class="hidden flex-col items-center justify-center py-stack-lg mt-stack-lg border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-low/30" id="empty-state">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[32px] text-outline">engineering</span>
+</div>
+<h4 class="font-title-sm text-on-surface mb-1">No workers registered</h4>
+<p class="text-on-surface-variant font-body-base mb-6 text-center max-w-sm">
+                    No distributed nodes are currently connected to the cluster. Connect your first worker via the CLI or orchestration manager.
+                </p>
+<button class="px-6 py-2.5 bg-primary-container text-on-primary-container font-label-caps rounded-lg hover:opacity-90 active:scale-95 transition-all">
+                    Register Worker Node
+                </button>
+</div>
+<!-- Skeleton Loaders (Demonstration of responsive state) -->
+<div class="mt-stack-lg opacity-30 select-none pointer-events-none">
+<h3 class="font-title-sm text-on-surface mb-4">Upcoming Nodes (Initializing)</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+<div class="bg-surface-container p-4 rounded-lg border border-outline-variant animate-pulse">
+<div class="h-4 w-3/4 bg-outline-variant rounded mb-2"></div>
+<div class="h-3 w-1/4 bg-outline-variant rounded mb-4"></div>
+<div class="h-8 w-full bg-outline-variant/50 rounded"></div>
+</div>
+<div class="bg-surface-container p-4 rounded-lg border border-outline-variant animate-pulse hidden md:block">
+<div class="h-4 w-3/4 bg-outline-variant rounded mb-2"></div>
+<div class="h-3 w-1/4 bg-outline-variant rounded mb-4"></div>
+<div class="h-8 w-full bg-outline-variant/50 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interaction: Update heartbeats randomly to simulate real-time
+        setInterval(() => {
+            const beatElements = document.querySelectorAll('#worker-grid .text-on-surface.font-code-sm');
+            beatElements.forEach(el => {
+                if(el.textContent.includes('s ago')) {
+                    let seconds = parseInt(el.textContent);
+                    if(!isNaN(seconds)) {
+                        let newSec = Math.max(1, seconds + (Math.random() > 0.8 ? -1 : 1));
+                        el.textContent = `${newSec}s ago`;
+                    }
+                }
+            });
+        }, 3000);
+
+        // Simple visibility toggle logic for empty state demonstration
+        // (Just for the designer to see both states if they modify the code)
+        function toggleEmptyState(show) {
+            const grid = document.getElementById('worker-grid');
+            const empty = document.getElementById('empty-state');
+            if(show) {
+                grid.classList.add('hidden');
+                empty.classList.remove('hidden');
+                empty.classList.add('flex');
+            } else {
+                grid.classList.remove('hidden');
+                empty.classList.add('hidden');
+            }
+        }
+    </script>
+</body></html>

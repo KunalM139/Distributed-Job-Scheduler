@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Distributed Job Scheduler - Monitoring Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#fffeff",
+                        "inverse-primary": "#0059c5",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "surface-variant": "#343535",
+                        "secondary-fixed-dim": "#dbb8ff",
+                        "surface-dim": "#121414",
+                        "primary-fixed": "#d8e2ff",
+                        "surface": "#121414",
+                        "primary-container": "#0070f3",
+                        "primary": "#aec6ff",
+                        "inverse-surface": "#e3e2e2",
+                        "error-container": "#93000a",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-lowest": "#0d0e0f",
+                        "primary-fixed-dim": "#aec6ff",
+                        "on-secondary-fixed-variant": "#6600b7",
+                        "inverse-on-surface": "#303031",
+                        "tertiary": "#ffb596",
+                        "surface-tint": "#aec6ff",
+                        "on-background": "#e3e2e2",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "secondary-container": "#6807ba",
+                        "outline-variant": "#414754",
+                        "background": "#121414",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c1c6d7",
+                        "surface-container-low": "#1b1c1c",
+                        "surface-bright": "#383939",
+                        "on-secondary-fixed": "#2b0052",
+                        "on-primary-container": "#ffffff",
+                        "outline": "#8b90a0",
+                        "secondary-fixed": "#efdbff",
+                        "surface-container-highest": "#343535",
+                        "surface-container-high": "#292a2a",
+                        "on-primary-fixed-variant": "#004397",
+                        "surface-container": "#1f2020",
+                        "on-surface": "#e3e2e2",
+                        "on-tertiary": "#581e00",
+                        "on-primary-fixed": "#001a43",
+                        "secondary": "#dbb8ff",
+                        "on-secondary": "#470083",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-primary": "#002e6b",
+                        "tertiary-container": "#ca4e00",
+                        "on-secondary-container": "#d0a6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "240px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "sidebar-collapsed": "64px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "body-base": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "title-sm": ["Inter"],
+                        "status-badge": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-base": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "status-badge": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(174, 198, 255, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(174, 198, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(174, 198, 255, 0); }
+        }
+        .metric-card {
+            background-color: theme('colors.surface-container-lowest');
+            border: 1px solid theme('colors.outline-variant');
+            border-radius: theme('borderRadius.lg');
+            padding: theme('spacing.gutter');
+            transition: all 0.2s ease-in-out;
+        }
+        .metric-card:hover {
+            border-color: theme('colors.primary');
+            box-shadow: 0 0 8px rgba(174, 198, 255, 0.2);
+        }
+        .chart-container {
+            background-color: theme('colors.surface-container-lowest');
+            border: 1px solid theme('colors.outline-variant');
+            border-radius: theme('borderRadius.lg');
+        }
+        .bg-grid-pattern {
+            background-size: 20px 20px;
+            background-image: linear-gradient(to right, rgba(65, 71, 84, 0.1) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(65, 71, 84, 0.1) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-base min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col w-sidebar-width fixed left-0 top-0 h-full py-container-margin z-40 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant dark:border-outline-variant">
+<div class="px-container-margin mb-stack-lg flex items-center gap-3">
+<div class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center bg-surface-container-highest">
+<span class="font-code-sm text-primary font-bold">&gt;_</span>
+</div>
+<div>
+<h1 class="font-title-sm text-title-sm text-on-surface">Distributed Job Scheduler</h1>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-gutter space-y-unit">
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container dark:bg-secondary-container text-on-secondary-container dark:text-on-secondary-container font-bold rounded-lg translate-x-1 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="font-label-caps text-label-caps">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">queue</span>
+<span class="font-label-caps text-label-caps">Queues</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">play_circle</span>
+<span class="font-label-caps text-label-caps">Jobs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">engineering</span>
+<span class="font-label-caps text-label-caps">Workers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">skull</span>
+<span class="font-label-caps text-label-caps">Dead Letter Queue</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-sidebar-width flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-50 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant">
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-highest rounded-full px-3 py-1">
+<span class="w-2 h-2 rounded-full bg-primary pulse-dot mr-2"></span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Live</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center mr-4">
+<span class="font-code-sm text-code-sm text-on-surface-variant mr-2">admin@system.local</span>
+<span class="font-label-caps text-label-caps text-inverse-primary bg-primary-fixed/10 px-2 py-1 rounded border border-primary-fixed/20">ADMIN</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-full transition-colors flex items-center justify-center" title="Logout">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-container-margin max-w-[1600px] mx-auto w-full flex-1 flex flex-col gap-container-margin">
+<!-- Page Title -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">System Overview</h2>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Real-time monitoring of distributed jobs, queues, and workers.</p>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-gutter">
+<div class="metric-card flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline text-sm">account_tree</span>
+<span class="font-label-caps text-label-caps text-outline">Total Jobs</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">1,248.3k</div>
+</div>
+<div class="metric-card flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline text-sm">queue</span>
+<span class="font-label-caps text-label-caps text-outline">Queued</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">312.4k</div>
+</div>
+<div class="metric-card flex flex-col justify-between border-primary/50 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+<div class="flex items-center gap-2 mb-2 relative z-10">
+<span class="w-2 h-2 rounded-full bg-primary pulse-dot"></span>
+<span class="font-label-caps text-label-caps text-primary">Running</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface relative z-10">8,402</div>
+</div>
+<div class="metric-card flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[#85d19b] text-sm">check_circle</span>
+<span class="font-label-caps text-label-caps text-[#85d19b]">Completed</span>
+</div>
+<div class="font-display-lg text-display-lg text-[#85d19b]">845.2k</div>
+</div>
+<div class="metric-card flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline text-sm">memory</span>
+<span class="font-label-caps text-label-caps text-outline">Active Workers</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">244</div>
+</div>
+<div class="metric-card flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline text-sm">speed</span>
+<span class="font-label-caps text-label-caps text-outline">Throughput (1h)</span>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">4.2k<span class="text-title-sm text-outline font-normal">/m</span></div>
+</div>
+<div class="metric-card flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-error text-sm">error</span>
+<span class="font-label-caps text-label-caps text-error">Failed (1h)</span>
+</div>
+<div class="font-display-lg text-display-lg text-error">62.3k</div>
+</div>
+</div>
+<!-- Bento Grid: Charts & Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-container-margin flex-1">
+<!-- Main Chart Area -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<div class="chart-container p-gutter flex-1 flex flex-col relative overflow-hidden bg-grid-pattern">
+<div class="flex justify-between items-center mb-4 relative z-10">
+<h3 class="font-title-sm text-title-sm text-on-surface">Queue Performance Comparison</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2"><div class="w-3 h-3 bg-primary rounded-sm"></div><span class="font-label-caps text-label-caps text-outline">Queued</span></div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 bg-surface-container-highest rounded-sm border border-outline"></div><span class="font-label-caps text-label-caps text-outline">Processed (Avg/m)</span></div>
+</div>
+</div>
+<!-- Bar Chart Mockup -->
+<div class="flex-1 relative mt-4 flex items-end justify-around pb-8 pt-8">
+<!-- Y-Axis labels -->
+<div class="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-code-sm text-outline-variant z-10 w-8">
+<span>15k</span><span>10k</span><span>5k</span><span>0</span>
+</div>
+<div class="absolute bottom-8 left-8 right-0 h-px bg-outline-variant"></div>
+<div class="absolute bottom-1/3 left-8 right-0 h-px bg-outline-variant/30 border-dashed border-t"></div>
+<div class="absolute bottom-2/3 left-8 right-0 h-px bg-outline-variant/30 border-dashed border-t"></div>
+<!-- Bars -->
+<div class="flex flex-col items-center gap-2 z-10 w-16">
+<div class="flex items-end gap-1 h-48 w-full justify-center">
+<div class="w-4 bg-primary rounded-t-sm" style="height: 10%"></div>
+<div class="w-4 bg-surface-container-highest border border-outline rounded-t-sm" style="height: 80%"></div>
+</div>
+<span class="text-code-sm text-outline-variant truncate w-full text-center">Data Sync</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-16">
+<div class="flex items-end gap-1 h-48 w-full justify-center">
+<div class="w-4 bg-primary rounded-t-sm" style="height: 80%"></div>
+<div class="w-4 bg-surface-container-highest border border-outline rounded-t-sm" style="height: 40%"></div>
+</div>
+<span class="text-code-sm text-outline-variant truncate w-full text-center">Email Dispatch</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-16">
+<div class="flex items-end gap-1 h-48 w-full justify-center">
+<div class="w-4 bg-primary rounded-t-sm" style="height: 30%"></div>
+<div class="w-4 bg-surface-container-highest border border-outline rounded-t-sm" style="height: 60%"></div>
+</div>
+<span class="text-code-sm text-outline-variant truncate w-full text-center">Image Process</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-16">
+<div class="flex items-end gap-1 h-48 w-full justify-center">
+<div class="w-4 bg-primary rounded-t-sm" style="height: 5%"></div>
+<div class="w-4 bg-surface-container-highest border border-outline rounded-t-sm" style="height: 90%"></div>
+</div>
+<span class="text-code-sm text-outline-variant truncate w-full text-center">Notifications</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-16">
+<div class="flex items-end gap-1 h-48 w-full justify-center">
+<div class="w-4 bg-primary rounded-t-sm" style="height: 60%"></div>
+<div class="w-4 bg-surface-container-highest border border-outline rounded-t-sm" style="height: 20%"></div>
+</div>
+<span class="text-code-sm text-outline-variant truncate w-full text-center">Reports</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Panel: Status & Queues -->
+<div class="lg:col-span-4 flex flex-col gap-container-margin">
+<!-- Job Status Radial -->
+<div class="chart-container p-gutter bg-surface-container-lowest flex flex-col">
+<h3 class="font-title-sm text-title-sm text-on-surface mb-4">Job Status Distribution</h3>
+<div class="flex items-center justify-center py-4 relative">
+<!-- CSS Radial Chart Mock -->
+<div class="w-32 h-32 rounded-full border-[16px] border-surface-container relative" style="border-top-color: #85d19b; border-right-color: #85d19b; border-bottom-color: theme('colors.primary'); border-left-color: theme('colors.error'); transform: rotate(-45deg);">
+<div class="absolute inset-0 flex items-center justify-center" style="transform: rotate(45deg); margin: -16px;">
+<span class="font-display-lg text-on-surface" style="font-size: 20px;">1.2m</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-4">
+<div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-[#85d19b]"></div><span class="font-code-sm text-code-sm text-on-surface">Completed (68%)</span></div>
+<div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-primary"></div><span class="font-code-sm text-code-sm text-on-surface">Queued (25%)</span></div>
+<div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-error"></div><span class="font-code-sm text-code-sm text-on-surface">Failed (5%)</span></div>
+<div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-surface-container-high"></div><span class="font-code-sm text-code-sm text-on-surface">Dead (2%)</span></div>
+</div>
+</div>
+<!-- Queue Summary -->
+<div class="chart-container overflow-hidden flex flex-col flex-1">
+<div class="px-gutter py-3 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="font-title-sm text-title-sm text-on-surface">Queue Summary</h3>
+<button class="text-primary hover:text-primary-fixed-dim text-code-sm">View All</button>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-outline-variant">
+<th class="font-label-caps text-label-caps text-outline px-gutter py-2">Queue</th>
+<th class="font-label-caps text-label-caps text-outline px-gutter py-2 text-right">Depth</th>
+<th class="font-label-caps text-label-caps text-outline px-gutter py-2 text-right">Wait</th>
+<th class="font-label-caps text-label-caps text-outline px-gutter py-2 text-center">Status</th>
+</tr>
+</thead>
+<tbody class="font-code-sm text-code-sm">
+<tr class="border-b border-outline-variant hover:bg-[#161616] transition-colors">
+<td class="px-gutter py-3 text-on-surface font-medium">Image Processing</td>
+<td class="px-gutter py-3 text-outline text-right">420</td>
+<td class="px-gutter py-3 text-outline text-right">1.2s</td>
+<td class="px-gutter py-3 text-center">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#85d19b]/10 text-[#85d19b] border border-[#85d19b]/20">
+<span class="w-1.5 h-1.5 rounded-full bg-[#85d19b]"></span> Healthy
+                                    </div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-[#161616] transition-colors">
+<td class="px-gutter py-3 text-on-surface font-medium">Email Dispatch</td>
+<td class="px-gutter py-3 text-outline text-right">12k</td>
+<td class="px-gutter py-3 text-outline text-right">45s</td>
+<td class="px-gutter py-3 text-center">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-tertiary/10 text-tertiary border border-tertiary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Backlogged
+                                    </div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-[#161616] transition-colors">
+<td class="px-gutter py-3 text-on-surface font-medium">Data Sync (EU)</td>
+<td class="px-gutter py-3 text-outline text-right">0</td>
+<td class="px-gutter py-3 text-outline text-right">0s</td>
+<td class="px-gutter py-3 text-center">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#85d19b]/10 text-[#85d19b] border border-[#85d19b]/20">
+<span class="w-1.5 h-1.5 rounded-full bg-[#85d19b]"></span> Idle
+                                    </div>
+</td>
+</tr>
+<tr class="hover:bg-[#161616] transition-colors">
+<td class="px-gutter py-3 text-on-surface font-medium">Report Gen</td>
+<td class="px-gutter py-3 text-outline text-right">8,400</td>
+<td class="px-gutter py-3 text-outline text-right">12m</td>
+<td class="px-gutter py-3 text-center">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-error/10 text-error border border-error/20">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Critical
+                                    </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State / Skeleton Example (Hidden by default) -->
+<div class="hidden flex flex-col items-center justify-center p-12 bg-surface-container-lowest border border-outline-variant rounded-lg border-dashed">
+<div class="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-outline text-3xl">query_stats</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-2">No data available</h3>
+<p class="font-body-base text-body-base text-on-surface-variant text-center max-w-md">Connect your first worker node to start collecting cluster metrics.</p>
+</div>
+</div>
+</main>
+</body></html>

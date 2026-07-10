@@ -20,6 +20,15 @@ require('dotenv').config();
 
 const db = require('../db');
 
+const emitWorkerEvent = async (eventName, data = {}) => {
+  try {
+    const payload = JSON.stringify({ event: eventName, data });
+    await db.query(`SELECT pg_notify('socket_events', $1)`, [payload]);
+  } catch (err) {
+    // suppress to avoid flooding logs
+  }
+};
+
 // ─── State ──────────────────────────────────────────────────────────────────────
 
 let workerId = null;
@@ -30,6 +39,7 @@ let runningJobCount = 0;
 
 // Track running job counts per queue so we can respect concurrency_limit
 const queueRunningCounts = {}; // queueId → number
+const queueLimits = {}; // queueId → limit (cached)
 
 // Interval handles (so we can clear them on shutdown)
 let pollInterval = null;
@@ -57,6 +67,7 @@ async function registerWorker() {
 
   workerId = id;
   log(`Registered — hostname=${hostname}`);
+  await emitWorkerEvent('WORKER_REGISTERED', { workerId: id });
 }
 
 // ─── 2. Heartbeat (every 15 s) ─────────────────────────────────────────────────
@@ -74,6 +85,8 @@ async function sendHeartbeat() {
       `UPDATE workers SET status = $1, current_job_count = $2 WHERE id = $3`,
       [status, runningJobCount, workerId]
     );
+
+    await emitWorkerEvent('WORKER_HEARTBEAT', { workerId });
   } catch (err) {
     log('Heartbeat error:', err.message);
   }
@@ -91,6 +104,21 @@ async function claimJob() {
   try {
     await client.query('BEGIN');
 
+    // Pre-calculate queues that have reached their concurrency limit
+    const fullQueueIds = [];
+    for (const [qId, count] of Object.entries(queueRunningCounts)) {
+      if (count >= (queueLimits[qId] ?? 5)) {
+        fullQueueIds.push(qId);
+      }
+    }
+
+    let excludeClause = '';
+    const queryParams = [];
+    if (fullQueueIds.length > 0) {
+      excludeClause = `AND j.queue_id != ALL($1::uuid[])`;
+      queryParams.push(fullQueueIds);
+    }
+
     // Find one eligible job, locking the row and skipping rows already locked
     // by other workers
     const jobResult = await client.query(
@@ -98,9 +126,11 @@ async function claimJob() {
        WHERE j.status = 'queued'
          AND (j.scheduled_at IS NULL OR j.scheduled_at <= NOW())
          AND j.queue_id IN (SELECT id FROM queues WHERE status = 'active')
+         ${excludeClause}
        ORDER BY j.priority DESC, j.created_at ASC
        LIMIT 1
-       FOR UPDATE SKIP LOCKED`
+       FOR UPDATE SKIP LOCKED`,
+      queryParams
     );
 
     if (jobResult.rows.length === 0) {
@@ -118,6 +148,7 @@ async function claimJob() {
     );
 
     const concurrencyLimit = queueResult.rows[0]?.concurrency_limit ?? 5;
+    queueLimits[job.queue_id] = concurrencyLimit; // cache it for future exclusions
     const currentCount = queueRunningCounts[job.queue_id] || 0;
 
     if (currentCount >= concurrencyLimit) {
@@ -144,6 +175,7 @@ async function claimJob() {
     await client.query('COMMIT');
 
     job.attempt_count = newAttempt;
+    await emitWorkerEvent('JOB_CLAIMED', { jobId: job.id, workerId });
     return { job, executionId };
   } catch (err) {
     await client.query('ROLLBACK');
@@ -163,7 +195,7 @@ function simulateWork() {
   return new Promise((resolve) => {
     const delay = 1000 + Math.random() * 2000; // 1-3 s
     setTimeout(() => {
-      const success = Math.random() < 0.8; // 80 % success
+      const success = Math.random() < 0.8;// 80 % success
       resolve(success);
     }, delay);
   });
@@ -177,6 +209,7 @@ async function executeJob(job, executionId) {
   runningJobCount++;
 
   log(`Executing job ${job.id} (type=${job.type}, attempt=${job.attempt_count})`);
+  await emitWorkerEvent('JOB_STARTED', { jobId: job.id });
 
   try {
     const success = await simulateWork();
@@ -188,7 +221,11 @@ async function executeJob(job, executionId) {
     }
   } catch (err) {
     log(`Unhandled execution error for job ${job.id}:`, err.message);
-    await onJobFailure(job, executionId, err.message);
+    try {
+      await onJobFailure(job, executionId, err.message);
+    } catch (innerErr) {
+      log(`CRITICAL: Error in onJobFailure for job ${job.id}:`, innerErr.message);
+    }
   } finally {
     // Decrement counters
     queueRunningCounts[queueId] = Math.max((queueRunningCounts[queueId] || 1) - 1, 0);
@@ -216,6 +253,9 @@ async function onJobSuccess(job, executionId) {
      VALUES ($1, $2, 'info', $3)`,
     [uuidv4(), job.id, `Job completed successfully on attempt ${job.attempt_count}`]
   );
+
+  await emitWorkerEvent('JOB_COMPLETED', { jobId: job.id, queueId: job.queue_id });
+  await emitWorkerEvent('DASHBOARD_STATS_UPDATED');
 }
 
 // ─── 4b. Failure handler (with retry logic) ─────────────────────────────────────
@@ -258,6 +298,10 @@ async function onJobFailure(job, executionId, errorMsg) {
        VALUES ($1, $2, 'warn', $3)`,
       [uuidv4(), job.id, `Attempt ${job.attempt_count} failed. Retrying in ${delaySeconds}s. Error: ${failureMessage}`]
     );
+
+    await emitWorkerEvent('JOB_FAILED', { jobId: job.id, queueId: job.queue_id });
+    await emitWorkerEvent('JOB_RETRIED', { jobId: job.id, queueId: job.queue_id });
+    await emitWorkerEvent('DASHBOARD_STATS_UPDATED');
   } else {
     // ── Max retries exhausted → dead letter ──────────────────────────
     log(`Job ${job.id} exhausted all ${maxAttempts} attempts → dead-letter queue`);
@@ -278,6 +322,10 @@ async function onJobFailure(job, executionId, errorMsg) {
        VALUES ($1, $2, 'error', $3)`,
       [uuidv4(), job.id, `Job failed permanently after ${job.attempt_count} attempts. Moved to dead-letter queue. Error: ${failureMessage}`]
     );
+
+    await emitWorkerEvent('JOB_FAILED', { jobId: job.id, queueId: job.queue_id });
+    await emitWorkerEvent('JOB_MOVED_TO_DLQ', { jobId: job.id, queueId: job.queue_id });
+    await emitWorkerEvent('DASHBOARD_STATS_UPDATED');
   }
 }
 
@@ -311,10 +359,15 @@ async function poll() {
   if (isShuttingDown) return;
 
   try {
-    const claimed = await claimJob();
-    if (claimed) {
-      // Fire-and-forget — executeJob runs concurrently while we keep polling
-      executeJob(claimed.job, claimed.executionId);
+    let claimed = true;
+    while (claimed && !isShuttingDown) {
+      const result = await claimJob();
+      if (result) {
+        // Fire-and-forget — executeJob runs concurrently while we keep polling
+        executeJob(result.job, result.executionId);
+      } else {
+        claimed = false;
+      }
     }
   } catch (err) {
     log('Poll error:', err.message);
@@ -349,6 +402,8 @@ async function processScheduledJobs() {
       );
 
       log(`Scheduled job ${sj.id} fired → created job ${jobId} (next run: ${nextRun?.toISOString() ?? 'N/A'})`);
+      await emitWorkerEvent('JOB_CREATED', { queueId: sj.queue_id });
+      await emitWorkerEvent('DASHBOARD_STATS_UPDATED');
     }
   } catch (err) {
     log('processScheduledJobs error:', err.message);
@@ -417,6 +472,8 @@ async function recoverDeadWorkerJobs() {
          WHERE job_id = ANY($1) AND status = 'running'`,
         [ids]
       );
+      await emitWorkerEvent('JOB_REQUEUED', { jobIds: ids });
+      await emitWorkerEvent('DASHBOARD_STATS_UPDATED');
     }
   } catch (err) {
     log('recoverDeadWorkerJobs error:', err.message);
@@ -457,6 +514,7 @@ async function shutdown(signal) {
       [workerId]
     );
     log('Worker marked offline');
+    await emitWorkerEvent('WORKER_OFFLINE', { workerId });
   } catch (err) {
     log('Error updating worker status on shutdown:', err.message);
   }

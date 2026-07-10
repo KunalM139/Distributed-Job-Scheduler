@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jobs - Distributed Job Scheduler</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#aec6ff",
+                        "surface-dim": "#121414",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#c1c6d7",
+                        "on-primary-fixed-variant": "#004397",
+                        "inverse-on-surface": "#303031",
+                        "surface": "#121414",
+                        "on-background": "#e3e2e2",
+                        "primary-fixed-dim": "#aec6ff",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#e3e2e2",
+                        "background": "#121414",
+                        "tertiary": "#ffb596",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-secondary": "#470083",
+                        "on-secondary-fixed": "#2b0052",
+                        "secondary": "#dbb8ff",
+                        "on-secondary-fixed-variant": "#6600b7",
+                        "tertiary-container": "#ca4e00",
+                        "secondary-container": "#6807ba",
+                        "surface-container-lowest": "#0d0e0f",
+                        "primary-container": "#0070f3",
+                        "surface-container-high": "#292a2a",
+                        "on-primary-container": "#ffffff",
+                        "on-primary": "#002e6b",
+                        "inverse-primary": "#0059c5",
+                        "secondary-fixed": "#efdbff",
+                        "on-tertiary-fixed": "#360f00",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-highest": "#343535",
+                        "outline": "#8b90a0",
+                        "surface-bright": "#383939",
+                        "on-primary-fixed": "#001a43",
+                        "surface-container-low": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-tertiary": "#581e00",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#dbb8ff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-surface": "#e3e2e2",
+                        "on-error-container": "#ffdad6",
+                        "surface-variant": "#343535",
+                        "on-tertiary-container": "#fffeff",
+                        "surface-container": "#1f2020",
+                        "outline-variant": "#414754",
+                        "on-secondary-container": "#d0a6ff",
+                        "primary": "#aec6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "sidebar-width": "240px",
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "sidebar-collapsed": "64px",
+                        "container-margin": "24px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "title-sm": ["Inter"],
+                        "status-badge": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "display-lg": ["Inter"],
+                        "body-base": ["Inter"],
+                        "code-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "status-badge": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-base": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #414754; border-radius: 9999px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #8b90a0; }
+        
+        .status-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+        .status-badge-container { display: inline-flex; items-center; padding: 4px 8px; border-radius: 9999px; }
+        
+        /* Simulating missing standard status colors using theme variants for strict compliance */
+        .status-queued { background-color: rgba(139, 144, 160, 0.1); color: #8b90a0; }
+        .status-queued .status-dot { background-color: #8b90a0; }
+        
+        .status-running { background-color: rgba(0, 112, 243, 0.1); color: #aec6ff; }
+        .status-running .status-dot { background-color: #aec6ff; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        
+        .status-completed { background-color: rgba(227, 226, 226, 0.1); color: #e3e2e2; }
+        .status-completed .status-dot { background-color: #e3e2e2; }
+        
+        .status-failed { background-color: rgba(255, 180, 171, 0.1); color: #ffb4ab; }
+        .status-failed .status-dot { background-color: #ffb4ab; }
+
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-base text-body-base m-0 p-0 overflow-x-hidden">
+<!-- Sidebar Shell -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low border-r border-outline-variant flex flex-col py-container-margin z-40 hidden md:flex">
+<div class="px-gutter mb-stack-lg">
+<h1 class="font-title-sm text-title-sm font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="device_hub" style="font-variation-settings: 'FILL' 1;">device_hub</span>
+                Distributed Job Scheduler
+            </h1>
+</div>
+<nav class="flex-1 px-stack-sm space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-title-sm text-title-sm font-normal">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="folder_shared">folder_shared</span>
+<span class="font-title-sm text-title-sm font-normal">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="queue">queue</span>
+<span class="font-title-sm text-title-sm font-normal">Queues</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-secondary-container text-on-secondary-container font-bold translate-x-1 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="play_circle" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="font-title-sm text-title-sm">Jobs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="engineering">engineering</span>
+<span class="font-title-sm text-title-sm font-normal">Workers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="skull">skull</span>
+<span class="font-title-sm text-title-sm font-normal">Dead Letter Queue</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-sidebar-width min-h-screen flex flex-col bg-surface">
+<!-- Top App Bar -->
+<header class="h-16 px-gutter w-full sticky top-0 z-30 bg-surface border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-4">
+<!-- Mobile menu trigger -->
+<button class="md:hidden text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container border border-outline-variant text-status-badge font-status-badge">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-on-surface-variant">Live</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center text-on-surface-variant overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small, professional user avatar portrait of a software engineer against a dark background, high contrast, clean studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATCO4zx2cm-msNx872WYCnUzBC4gBsUkfBKEpIaGmeFVojrXTvIA3ZMiy70c0AU31uHv6xvbxOxBMah5heFRylvkVHqVn40gzqglfem1fawW8EPT1Y9T5Ow3nQSCtkjZ5L-AxcwLAS5xZSlwjd83lrxPgPs3AB9dxXWvouwvHxznsyPtfUDPBCPQTnS5Mvvbvu6ljs8i3JX3xVWs9WT7sw5pJYMVJIjzY7gUDy4a589jBlcfJV94imqbrHT3L5BWm9YKCkuURk9Hx9"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="flex-1 p-container-margin w-full max-w-[1600px] mx-auto">
+<!-- Page Header (Skeleton & Content) -->
+<div class="flex justify-between items-start mb-stack-lg animate-pulse" id="header-skeleton">
+<div class="space-y-3">
+<div class="h-8 w-48 bg-surface-variant rounded"></div>
+<div class="h-4 w-72 bg-surface-variant rounded"></div>
+</div>
+<div class="h-10 w-32 bg-surface-variant rounded"></div>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-stack-lg gap-4 hidden" id="header-content">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Jobs</h2>
+<p class="font-body-base text-body-base text-on-surface-variant">Monitor and manage distributed job execution.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container font-title-sm text-title-sm px-4 py-2 rounded-lg flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                    Create Job
+                </button>
+</div>
+<!-- Filter Toolbar -->
+<div class="flex flex-col lg:flex-row gap-stack-sm mb-stack-md">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all font-body-base text-body-base" placeholder="Search by Job ID..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-stack-sm">
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:outline-none focus:border-primary-container appearance-none pr-8 relative font-body-base text-body-base">
+<option>Status: All</option>
+<option>Running</option>
+<option>Queued</option>
+<option>Completed</option>
+<option>Failed</option>
+</select>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:outline-none focus:border-primary-container appearance-none pr-8 font-body-base text-body-base">
+<option>Queue: All</option>
+<option>High Priority</option>
+<option>Default</option>
+<option>Background</option>
+</select>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:outline-none focus:border-primary-container appearance-none pr-8 font-body-base text-body-base">
+<option>Priority: All</option>
+<option>P0 - Critical</option>
+<option>P1 - High</option>
+<option>P2 - Normal</option>
+</select>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-lowest">
+<th class="px-4 py-3 font-label-caps text-label-caps text-outline font-semibold">Job ID</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-outline font-semibold">Queue</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-outline font-semibold">Type</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-outline font-semibold">Status</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-outline font-semibold">Priority</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-outline font-semibold text-right">Attempts</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-outline font-semibold">Worker</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-outline font-semibold">Created At</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-outline font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<!-- Skeleton Body -->
+<tbody class="animate-pulse" id="table-skeleton">
+<!-- 5 Skeleton Rows -->
+<tr class="border-b border-outline-variant"><td class="p-4" colspan="9"><div class="h-5 bg-surface-variant rounded w-full"></div></td></tr>
+<tr class="border-b border-outline-variant"><td class="p-4" colspan="9"><div class="h-5 bg-surface-variant rounded w-full"></div></td></tr>
+<tr class="border-b border-outline-variant"><td class="p-4" colspan="9"><div class="h-5 bg-surface-variant rounded w-full"></div></td></tr>
+<tr class="border-b border-outline-variant"><td class="p-4" colspan="9"><div class="h-5 bg-surface-variant rounded w-full"></div></td></tr>
+<tr class="border-b border-outline-variant"><td class="p-4" colspan="9"><div class="h-5 bg-surface-variant rounded w-full"></div></td></tr>
+</tbody>
+<!-- Data Body -->
+<tbody class="hidden" id="table-content">
+<tr class="border-b border-outline-variant hover:bg-surface-container-high transition-colors group">
+<td class="px-4 py-3 font-code-sm text-code-sm text-on-surface">5a9b2c-88f1</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant">high-priority</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface">ImageProcess</td>
+<td class="px-4 py-3 font-status-badge text-status-badge">
+<div class="status-badge-container status-running"><span class="status-dot"></span>Running</div>
+</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface">P0</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant text-right">1/3</td>
+<td class="px-4 py-3 font-code-sm text-code-sm text-on-surface-variant">wrk-us-east-1a</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant">2 mins ago</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-variant transition-colors" title="View Details"><span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span></button>
+<button class="p-1 rounded text-outline hover:text-error hover:bg-error-container transition-colors" title="Cancel"><span class="material-symbols-outlined text-[18px]" data-icon="cancel">cancel</span></button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-high transition-colors group">
+<td class="px-4 py-3 font-code-sm text-code-sm text-on-surface">9f8d1a-44e2</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant">default</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface">EmailBatch</td>
+<td class="px-4 py-3 font-status-badge text-status-badge">
+<div class="status-badge-container status-completed"><span class="status-dot"></span>Completed</div>
+</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface">P1</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant text-right">1/3</td>
+<td class="px-4 py-3 font-code-sm text-code-sm text-on-surface-variant">wrk-eu-west-2b</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant">15 mins ago</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-variant transition-colors" title="View Details"><span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span></button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-high transition-colors group bg-error-container/5">
+<td class="px-4 py-3 font-code-sm text-code-sm text-on-surface">2b3c4d-99a3</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant">background</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface">DataSync</td>
+<td class="px-4 py-3 font-status-badge text-status-badge">
+<div class="status-badge-container status-failed"><span class="status-dot"></span>Failed</div>
+</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface">P2</td>
+<td class="px-4 py-3 font-body-base text-body-base text-error text-right">3/3</td>
+<td class="px-4 py-3 font-code-sm text-code-sm text-on-surface-variant">wrk-us-west-1c</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant">1 hour ago</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-variant transition-colors" title="View Details"><span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span></button>
+<button class="p-1 rounded text-outline hover:text-primary hover:bg-primary-container/20 transition-colors" title="Retry"><span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span></button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-high transition-colors group">
+<td class="px-4 py-3 font-code-sm text-code-sm text-on-surface">7e6f5g-11b4</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant">default</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface">ReportGen</td>
+<td class="px-4 py-3 font-status-badge text-status-badge">
+<div class="status-badge-container status-queued"><span class="status-dot"></span>Queued</div>
+</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface">P1</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant text-right">0/3</td>
+<td class="px-4 py-3 font-code-sm text-code-sm text-outline">-</td>
+<td class="px-4 py-3 font-body-base text-body-base text-on-surface-variant">Just now</td>
+<td class="px-4 py-3 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-variant transition-colors" title="View Details"><span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span></button>
+<button class="p-1 rounded text-outline hover:text-error hover:bg-error-container transition-colors" title="Delete"><span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="px-4 py-3 border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center text-on-surface-variant font-body-base text-body-base">
+<span>Showing 1 to 4 of 248 entries</span>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded hover:bg-surface-variant disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-variant"><span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simulate data loading transition
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('header-skeleton').classList.add('hidden');
+                document.getElementById('header-content').classList.remove('hidden');
+                
+                document.getElementById('table-skeleton').classList.add('hidden');
+                document.getElementById('table-content').classList.remove('hidden');
+            }, 800); // 800ms simulated load time
+        });
+    </script>
+</body></html>

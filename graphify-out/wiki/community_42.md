@@ -1,8 +1,8 @@
-# Community 42: jest.config
+# Community 42: worker.test
 
 **Members:** 1
 
 ## Nodes
 
-- **jest.config** (`backend_jest_config_js`, File, degree: 0)
+- **worker.test** (`tests_worker_test_js`, File, degree: 0)
 

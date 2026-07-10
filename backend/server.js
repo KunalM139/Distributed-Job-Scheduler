@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
+const http = require('http');
+const { initSocket } = require('./src/services/socket');
+
 const authRoutes = require('./src/routes/auth');
 const projectRoutes = require('./src/routes/projects');
 const queueRoutes = require('./src/routes/queues');
@@ -11,6 +14,7 @@ const dlqRoutes = require('./src/routes/dlq');
 const statsRoutes = require('./src/routes/stats');
 
 const app = express();
+const server = http.createServer(app);
 
 // --------------- Middleware ---------------
 app.use(cors());
@@ -45,9 +49,13 @@ app.use((err, _req, res, _next) => {
 const PORT = process.env.PORT || 3000;
 
 if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  initSocket(server).then(() => {
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  }).catch((err) => {
+    console.error('Failed to initialize socket:', err);
   });
 }
 
-module.exports = app;
+module.exports = server;

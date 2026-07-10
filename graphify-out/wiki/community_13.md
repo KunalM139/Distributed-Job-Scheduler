@@ -1,21 +1,25 @@
-# Community 13: usePolling
+# Community 13: projectController
 
-**Members:** 6
+**Members:** 8
 
 ## Nodes
 
-- **usePolling** (`client_src_hooks_usepolling_js`, File, degree: 5)
-- **react/useCallback** (`client_src_hooks_usepolling_js_import_react_usecallback`, Module, degree: 1)
-- **react/useEffect** (`client_src_hooks_usepolling_js_import_react_useeffect`, Module, degree: 1)
-- **react/useRef** (`client_src_hooks_usepolling_js_import_react_useref`, Module, degree: 1)
-- **react/useState** (`client_src_hooks_usepolling_js_import_react_usestate`, Module, degree: 1)
-- **usePolling()** (`client_src_hooks_usepolling_js_usepolling`, Function, degree: 1)
+- **projectController** (`backend_src_controllers_projectcontroller_js`, File, degree: 7)
+- **addMember()** (`backend_src_controllers_projectcontroller_js_addmember`, Function, degree: 1)
+- **createProject()** (`backend_src_controllers_projectcontroller_js_createproject`, Function, degree: 1)
+- **deleteProject()** (`backend_src_controllers_projectcontroller_js_deleteproject`, Function, degree: 1)
+- **listMembers()** (`backend_src_controllers_projectcontroller_js_listmembers`, Function, degree: 1)
+- **listProjects()** (`backend_src_controllers_projectcontroller_js_listprojects`, Function, degree: 1)
+- **removeMember()** (`backend_src_controllers_projectcontroller_js_removemember`, Function, degree: 1)
+- **updateMemberRole()** (`backend_src_controllers_projectcontroller_js_updatememberrole`, Function, degree: 1)
 
 ## Relationships
 
-- client_src_hooks_usepolling_js → client_src_hooks_usepolling_js_import_react_usestate (imports)
-- client_src_hooks_usepolling_js → client_src_hooks_usepolling_js_import_react_useeffect (imports)
-- client_src_hooks_usepolling_js → client_src_hooks_usepolling_js_import_react_usecallback (imports)
-- client_src_hooks_usepolling_js → client_src_hooks_usepolling_js_import_react_useref (imports)
-- client_src_hooks_usepolling_js → client_src_hooks_usepolling_js_usepolling (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_listprojects (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_createproject (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_deleteproject (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_listmembers (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_addmember (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_updatememberrole (defines)
+- backend_src_controllers_projectcontroller_js → backend_src_controllers_projectcontroller_js_removemember (defines)
 

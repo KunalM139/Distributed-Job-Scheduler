@@ -1,15 +1,21 @@
-# Community 19: dlqController
+# Community 19: Layout
 
-**Members:** 3
+**Members:** 6
 
 ## Nodes
 
-- **dlqController** (`src_controllers_dlqcontroller_js`, File, degree: 2)
-- **listDLQ()** (`src_controllers_dlqcontroller_js_listdlq`, Function, degree: 1)
-- **retryDLQ()** (`src_controllers_dlqcontroller_js_retrydlq`, Function, degree: 1)
+- **Layout** (`frontend_src_components_layout_jsx`, File, degree: 5)
+- **../context/AuthContext/useAuth** (`frontend_src_components_layout_jsx_import_context_authcontext_useauth`, Module, degree: 1)
+- **react-router-dom/NavLink** (`frontend_src_components_layout_jsx_import_react_router_dom_navlink`, Module, degree: 1)
+- **react-router-dom/Outlet** (`frontend_src_components_layout_jsx_import_react_router_dom_outlet`, Module, degree: 1)
+- **react/useState** (`frontend_src_components_layout_jsx_import_react_usestate`, Module, degree: 1)
+- **Layout()** (`frontend_src_components_layout_jsx_layout`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_dlqcontroller_js → src_controllers_dlqcontroller_js_listdlq (defines)
-- src_controllers_dlqcontroller_js → src_controllers_dlqcontroller_js_retrydlq (defines)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_import_react_usestate (imports)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_import_react_router_dom_navlink (imports)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_import_react_router_dom_outlet (imports)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_import_context_authcontext_useauth (imports)
+- frontend_src_components_layout_jsx → frontend_src_components_layout_jsx_layout (defines)
 

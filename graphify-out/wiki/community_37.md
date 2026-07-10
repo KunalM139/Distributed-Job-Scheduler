@@ -1,8 +1,8 @@
-# Community 37: queue.test
+# Community 37: jest.config
 
 **Members:** 1
 
 ## Nodes
 
-- **queue.test** (`tests_queue_test_js`, File, degree: 0)
+- **jest.config** (`backend_jest_config_js`, File, degree: 0)
 

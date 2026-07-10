@@ -1,25 +1,27 @@
-# Community 7: main
+# Community 7: DeadLetterPage
 
-**Members:** 8
+**Members:** 9
 
 ## Nodes
 
-- **main** (`client_src_main_jsx`, File, degree: 7)
-- **./App/App** (`client_src_main_jsx_import_app_app`, Module, degree: 1)
-- **./context/AuthContext/AuthProvider** (`client_src_main_jsx_import_context_authcontext_authprovider`, Module, degree: 1)
-- **./index.css** (`client_src_main_jsx_import_index_css`, Module, degree: 1)
-- **react-dom/client/createRoot** (`client_src_main_jsx_import_react_dom_client_createroot`, Module, degree: 1)
-- **react-hot-toast/Toaster** (`client_src_main_jsx_import_react_hot_toast_toaster`, Module, degree: 1)
-- **react-router-dom/BrowserRouter** (`client_src_main_jsx_import_react_router_dom_browserrouter`, Module, degree: 1)
-- **react/StrictMode** (`client_src_main_jsx_import_react_strictmode`, Module, degree: 1)
+- **DeadLetterPage** (`frontend_src_pages_deadletterpage_jsx`, File, degree: 8)
+- **DeadLetterPage()** (`frontend_src_pages_deadletterpage_jsx_deadletterpage`, Function, degree: 1)
+- **../context/SocketContext/useSocket** (`frontend_src_pages_deadletterpage_jsx_import_context_socketcontext_usesocket`, Module, degree: 1)
+- **react-hot-toast/toast** (`frontend_src_pages_deadletterpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
+- **react/useCallback** (`frontend_src_pages_deadletterpage_jsx_import_react_usecallback`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_pages_deadletterpage_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useMemo** (`frontend_src_pages_deadletterpage_jsx_import_react_usememo`, Module, degree: 1)
+- **react/useState** (`frontend_src_pages_deadletterpage_jsx_import_react_usestate`, Module, degree: 1)
+- **../services/api/api** (`frontend_src_pages_deadletterpage_jsx_import_services_api_api`, Module, degree: 1)
 
 ## Relationships
 
-- client_src_main_jsx → client_src_main_jsx_import_react_strictmode (imports)
-- client_src_main_jsx → client_src_main_jsx_import_react_dom_client_createroot (imports)
-- client_src_main_jsx → client_src_main_jsx_import_react_router_dom_browserrouter (imports)
-- client_src_main_jsx → client_src_main_jsx_import_react_hot_toast_toaster (imports)
-- client_src_main_jsx → client_src_main_jsx_import_context_authcontext_authprovider (imports)
-- client_src_main_jsx → client_src_main_jsx_import_app_app (imports)
-- client_src_main_jsx → client_src_main_jsx_import_index_css (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_useeffect (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_usestate (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_usecallback (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_usememo (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_context_socketcontext_usesocket (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_services_api_api (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_import_react_hot_toast_toast (imports)
+- frontend_src_pages_deadletterpage_jsx → frontend_src_pages_deadletterpage_jsx_deadletterpage (defines)
 

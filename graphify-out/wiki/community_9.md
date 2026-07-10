@@ -1,30 +1,33 @@
-# Community 9: jobController
+# Community 9: queueController
 
-**Members:** 8
+**Members:** 9
 
 ## Nodes
 
-- **jobController** (`src_controllers_jobcontroller_js`, File, degree: 7)
-- **createJob()** (`src_controllers_jobcontroller_js_createjob`, Function, degree: 2)
-- **deleteJob()** (`src_controllers_jobcontroller_js_deletejob`, Function, degree: 2)
-- **getJob()** (`src_controllers_jobcontroller_js_getjob`, Function, degree: 2)
-- **listJobs()** (`src_controllers_jobcontroller_js_listjobs`, Function, degree: 2)
-- **retryJob()** (`src_controllers_jobcontroller_js_retryjob`, Function, degree: 2)
-- **verifyJobAccess()** (`src_controllers_jobcontroller_js_verifyjobaccess`, Function, degree: 4)
-- **verifyQueueAccess()** (`src_controllers_jobcontroller_js_verifyqueueaccess`, Function, degree: 3)
+- **queueController** (`backend_src_controllers_queuecontroller_js`, File, degree: 8)
+- **createQueue()** (`backend_src_controllers_queuecontroller_js_createqueue`, Function, degree: 2)
+- **getOwnedQueue()** (`backend_src_controllers_queuecontroller_js_getownedqueue`, Function, degree: 5)
+- **getQueueStats()** (`backend_src_controllers_queuecontroller_js_getqueuestats`, Function, degree: 2)
+- **listQueues()** (`backend_src_controllers_queuecontroller_js_listqueues`, Function, degree: 2)
+- **pauseQueue()** (`backend_src_controllers_queuecontroller_js_pausequeue`, Function, degree: 2)
+- **resumeQueue()** (`backend_src_controllers_queuecontroller_js_resumequeue`, Function, degree: 2)
+- **updateQueue()** (`backend_src_controllers_queuecontroller_js_updatequeue`, Function, degree: 2)
+- **verifyProjectOwnership()** (`backend_src_controllers_queuecontroller_js_verifyprojectownership`, Function, degree: 3)
 
 ## Relationships
 
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_verifyqueueaccess (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_verifyjobaccess (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_createjob (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_listjobs (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_getjob (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_retryjob (defines)
-- src_controllers_jobcontroller_js → src_controllers_jobcontroller_js_deletejob (defines)
-- src_controllers_jobcontroller_js_createjob → src_controllers_jobcontroller_js_verifyqueueaccess (calls)
-- src_controllers_jobcontroller_js_listjobs → src_controllers_jobcontroller_js_verifyqueueaccess (calls)
-- src_controllers_jobcontroller_js_getjob → src_controllers_jobcontroller_js_verifyjobaccess (calls)
-- src_controllers_jobcontroller_js_retryjob → src_controllers_jobcontroller_js_verifyjobaccess (calls)
-- src_controllers_jobcontroller_js_deletejob → src_controllers_jobcontroller_js_verifyjobaccess (calls)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_getownedqueue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_verifyprojectownership (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_listqueues (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_createqueue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_updatequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_pausequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_resumequeue (defines)
+- backend_src_controllers_queuecontroller_js → backend_src_controllers_queuecontroller_js_getqueuestats (defines)
+- backend_src_controllers_queuecontroller_js_listqueues → backend_src_controllers_queuecontroller_js_verifyprojectownership (calls)
+- backend_src_controllers_queuecontroller_js_createqueue → backend_src_controllers_queuecontroller_js_verifyprojectownership (calls)
+- backend_src_controllers_queuecontroller_js_updatequeue → backend_src_controllers_queuecontroller_js_getownedqueue (calls)
+- backend_src_controllers_queuecontroller_js_pausequeue → backend_src_controllers_queuecontroller_js_getownedqueue (calls)
+- backend_src_controllers_queuecontroller_js_resumequeue → backend_src_controllers_queuecontroller_js_getownedqueue (calls)
+- backend_src_controllers_queuecontroller_js_getqueuestats → backend_src_controllers_queuecontroller_js_getownedqueue (calls)
 

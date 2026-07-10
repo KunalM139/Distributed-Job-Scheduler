@@ -1,23 +1,32 @@
-# Community 10: DeadLetterPage
+# Community 10: jobController
 
-**Members:** 7
+**Members:** 9
 
 ## Nodes
 
-- **DeadLetterPage** (`client_src_pages_deadletterpage_jsx`, File, degree: 6)
-- **DeadLetterPage()** (`client_src_pages_deadletterpage_jsx_deadletterpage`, Function, degree: 1)
-- **react-hot-toast/toast** (`client_src_pages_deadletterpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
-- **react/useCallback** (`client_src_pages_deadletterpage_jsx_import_react_usecallback`, Module, degree: 1)
-- **react/useEffect** (`client_src_pages_deadletterpage_jsx_import_react_useeffect`, Module, degree: 1)
-- **react/useState** (`client_src_pages_deadletterpage_jsx_import_react_usestate`, Module, degree: 1)
-- **../services/api/api** (`client_src_pages_deadletterpage_jsx_import_services_api_api`, Module, degree: 1)
+- **jobController** (`backend_src_controllers_jobcontroller_js`, File, degree: 8)
+- **createJob()** (`backend_src_controllers_jobcontroller_js_createjob`, Function, degree: 2)
+- **deleteJob()** (`backend_src_controllers_jobcontroller_js_deletejob`, Function, degree: 2)
+- **getJob()** (`backend_src_controllers_jobcontroller_js_getjob`, Function, degree: 2)
+- **listAllJobs()** (`backend_src_controllers_jobcontroller_js_listalljobs`, Function, degree: 1)
+- **listJobs()** (`backend_src_controllers_jobcontroller_js_listjobs`, Function, degree: 2)
+- **retryJob()** (`backend_src_controllers_jobcontroller_js_retryjob`, Function, degree: 2)
+- **verifyJobAccess()** (`backend_src_controllers_jobcontroller_js_verifyjobaccess`, Function, degree: 4)
+- **verifyQueueAccess()** (`backend_src_controllers_jobcontroller_js_verifyqueueaccess`, Function, degree: 3)
 
 ## Relationships
 
-- client_src_pages_deadletterpage_jsx → client_src_pages_deadletterpage_jsx_import_react_useeffect (imports)
-- client_src_pages_deadletterpage_jsx → client_src_pages_deadletterpage_jsx_import_react_usestate (imports)
-- client_src_pages_deadletterpage_jsx → client_src_pages_deadletterpage_jsx_import_react_usecallback (imports)
-- client_src_pages_deadletterpage_jsx → client_src_pages_deadletterpage_jsx_import_services_api_api (imports)
-- client_src_pages_deadletterpage_jsx → client_src_pages_deadletterpage_jsx_import_react_hot_toast_toast (imports)
-- client_src_pages_deadletterpage_jsx → client_src_pages_deadletterpage_jsx_deadletterpage (defines)
+- backend_src_controllers_jobcontroller_js → backend_src_controllers_jobcontroller_js_verifyqueueaccess (defines)
+- backend_src_controllers_jobcontroller_js → backend_src_controllers_jobcontroller_js_verifyjobaccess (defines)
+- backend_src_controllers_jobcontroller_js → backend_src_controllers_jobcontroller_js_createjob (defines)
+- backend_src_controllers_jobcontroller_js → backend_src_controllers_jobcontroller_js_listjobs (defines)
+- backend_src_controllers_jobcontroller_js → backend_src_controllers_jobcontroller_js_listalljobs (defines)
+- backend_src_controllers_jobcontroller_js → backend_src_controllers_jobcontroller_js_getjob (defines)
+- backend_src_controllers_jobcontroller_js → backend_src_controllers_jobcontroller_js_retryjob (defines)
+- backend_src_controllers_jobcontroller_js → backend_src_controllers_jobcontroller_js_deletejob (defines)
+- backend_src_controllers_jobcontroller_js_createjob → backend_src_controllers_jobcontroller_js_verifyqueueaccess (calls)
+- backend_src_controllers_jobcontroller_js_listjobs → backend_src_controllers_jobcontroller_js_verifyqueueaccess (calls)
+- backend_src_controllers_jobcontroller_js_getjob → backend_src_controllers_jobcontroller_js_verifyjobaccess (calls)
+- backend_src_controllers_jobcontroller_js_retryjob → backend_src_controllers_jobcontroller_js_verifyjobaccess (calls)
+- backend_src_controllers_jobcontroller_js_deletejob → backend_src_controllers_jobcontroller_js_verifyjobaccess (calls)
 

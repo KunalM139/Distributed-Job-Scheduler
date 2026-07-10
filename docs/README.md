@@ -7,6 +7,7 @@ A production-inspired distributed job scheduling platform that reliably executes
 * **Backend**: Node.js, Express.js
 * **Database**: PostgreSQL
 * **Frontend**: React, Vite, Tailwind CSS, Recharts
+* **Real-time Updates**: Socket.IO
 * **Auth**: JWT
 * **Job scheduling**: node-cron
 
@@ -89,3 +90,4 @@ node src/workers/worker.js
 * **PostgreSQL as DB & Queue:** Eliminates the need for an external broker (like Redis or RabbitMQ) by using PostgreSQL as both the primary database and the job queue, maintaining transactional integrity.
 * **Exponential Backoff:** Implements robust retry strategies (fixed, linear, exponential) for failing jobs before moving them to the Dead Letter Queue.
 * **Dead Worker Recovery:** Workers emit periodic heartbeats; a background cron task automatically detects heartbeat timeouts to recover jobs from crashed or dead workers.
+* **Cross-Process WebSockets:** Uses PostgreSQL's native `LISTEN/NOTIFY` to bridge isolated background worker terminal processes to the main Express Socket.IO server, providing a 60fps real-time monitoring experience without external brokers like Redis.

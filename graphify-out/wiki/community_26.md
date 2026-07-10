@@ -1,13 +1,15 @@
-# Community 26: statsController
+# Community 26: dlqController
 
-**Members:** 2
+**Members:** 3
 
 ## Nodes
 
-- **statsController** (`src_controllers_statscontroller_js`, File, degree: 1)
-- **getDashboardStats()** (`src_controllers_statscontroller_js_getdashboardstats`, Function, degree: 1)
+- **dlqController** (`backend_src_controllers_dlqcontroller_js`, File, degree: 2)
+- **listDLQ()** (`backend_src_controllers_dlqcontroller_js_listdlq`, Function, degree: 1)
+- **retryDLQ()** (`backend_src_controllers_dlqcontroller_js_retrydlq`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_statscontroller_js → src_controllers_statscontroller_js_getdashboardstats (defines)
+- backend_src_controllers_dlqcontroller_js → backend_src_controllers_dlqcontroller_js_listdlq (defines)
+- backend_src_controllers_dlqcontroller_js → backend_src_controllers_dlqcontroller_js_retrydlq (defines)
 

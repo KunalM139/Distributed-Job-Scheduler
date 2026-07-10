@@ -1,8 +1,8 @@
-# Community 36: queues
+# Community 36: server
 
 **Members:** 1
 
 ## Nodes
 
-- **queues** (`src_routes_queues_js`, File, degree: 0)
+- **server** (`backend_server_js`, File, degree: 0)
 

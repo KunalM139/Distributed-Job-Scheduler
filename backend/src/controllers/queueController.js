@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const db = require('../db');
 const { errorResponse } = require('../middleware/validate');
+const { emitEvent } = require('../services/socket');
 
 // ─── Helpers ─────────────────────────────────────────────
 
@@ -99,6 +100,8 @@ const createQueue = async (req, res) => {
       [queueId, projectId, retryPolicyId, name, priority ?? 0, concurrency_limit ?? 5]
     );
 
+    emitEvent('QUEUE_CREATED', { queueId });
+    emitEvent('DASHBOARD_STATS_UPDATED');
     return res.status(201).json({ data: result.rows[0] });
   } catch (err) {
     console.error('createQueue error:', err);
@@ -131,6 +134,7 @@ const updateQueue = async (req, res) => {
       [priority ?? null, concurrency_limit ?? null, status ?? null, id]
     );
 
+    emitEvent('QUEUE_UPDATED', { queueId: id });
     return res.json({ data: result.rows[0] });
   } catch (err) {
     console.error('updateQueue error:', err);
@@ -155,6 +159,7 @@ const pauseQueue = async (req, res) => {
       [id]
     );
 
+    emitEvent('QUEUE_UPDATED', { queueId: id });
     return res.json({ data: result.rows[0], message: 'Queue paused' });
   } catch (err) {
     console.error('pauseQueue error:', err);
@@ -179,6 +184,7 @@ const resumeQueue = async (req, res) => {
       [id]
     );
 
+    emitEvent('QUEUE_UPDATED', { queueId: id });
     return res.json({ data: result.rows[0], message: 'Queue resumed' });
   } catch (err) {
     console.error('resumeQueue error:', err);

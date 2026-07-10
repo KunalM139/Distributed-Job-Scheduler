@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const db = require('../db');
 const { errorResponse } = require('../middleware/validate');
+const { emitEvent } = require('../services/socket');
 
 /**
  * GET /api/dlq
@@ -85,6 +86,9 @@ const retryDLQ = async (req, res) => {
        VALUES ($1, $2, 'info', 'Job retried from dead-letter queue')`,
       [uuidv4(), dlqEntry.job_id]
     );
+
+    emitEvent('JOB_REQUEUED', { jobId: dlqEntry.job_id });
+    emitEvent('DASHBOARD_STATS_UPDATED');
 
     return res.json({
       data: { job_id: dlqEntry.job_id },

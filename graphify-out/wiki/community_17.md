@@ -1,17 +1,23 @@
-# Community 17: projectController
+# Community 17: LoginPage
 
-**Members:** 4
+**Members:** 7
 
 ## Nodes
 
-- **projectController** (`src_controllers_projectcontroller_js`, File, degree: 3)
-- **createProject()** (`src_controllers_projectcontroller_js_createproject`, Function, degree: 1)
-- **deleteProject()** (`src_controllers_projectcontroller_js_deleteproject`, Function, degree: 1)
-- **listProjects()** (`src_controllers_projectcontroller_js_listprojects`, Function, degree: 1)
+- **LoginPage** (`frontend_src_pages_loginpage_jsx`, File, degree: 6)
+- **../context/AuthContext/useAuth** (`frontend_src_pages_loginpage_jsx_import_context_authcontext_useauth`, Module, degree: 1)
+- **react-hot-toast/toast** (`frontend_src_pages_loginpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
+- **react-router-dom/Link** (`frontend_src_pages_loginpage_jsx_import_react_router_dom_link`, Module, degree: 1)
+- **react-router-dom/useNavigate** (`frontend_src_pages_loginpage_jsx_import_react_router_dom_usenavigate`, Module, degree: 1)
+- **react/useState** (`frontend_src_pages_loginpage_jsx_import_react_usestate`, Module, degree: 1)
+- **LoginPage()** (`frontend_src_pages_loginpage_jsx_loginpage`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_projectcontroller_js → src_controllers_projectcontroller_js_listprojects (defines)
-- src_controllers_projectcontroller_js → src_controllers_projectcontroller_js_createproject (defines)
-- src_controllers_projectcontroller_js → src_controllers_projectcontroller_js_deleteproject (defines)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_react_usestate (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_react_router_dom_link (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_react_router_dom_usenavigate (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_context_authcontext_useauth (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_import_react_hot_toast_toast (imports)
+- frontend_src_pages_loginpage_jsx → frontend_src_pages_loginpage_jsx_loginpage (defines)
 

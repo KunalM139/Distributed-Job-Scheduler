@@ -44,9 +44,9 @@ This document outlines the key architectural and design choices made while build
 **Choice:** Every attempt is logged as a distinct row in a `job_executions` table.  
 **Trade-offs:** This provides a comprehensive audit trail. Administrators can see exactly which worker ran which attempt, the exact timestamps for start/finish, and the precise error message. While this uses more database storage, it is critical for debugging production issues and providing clear observability.
 
-## Decision 7: Polling vs. WebSockets for Frontend Dashboard
+## Decision 7: WebSockets with Polling Fallback for Frontend Dashboard
 
 **Context:** The React dashboard needs to display near real-time statistics and live worker statuses.  
-**Alternatives Considered:** WebSockets (real-time push), Server-Sent Events (SSE).  
-**Choice:** The dashboard HTTP polls the API every 10 seconds.  
-**Trade-offs:** Polling is incredibly simple to implement, reliable, and requires no persistent connection management on the backend (like a WebSocket server). A 10-second interval is more than acceptable for a monitoring dashboard. Real-time WebSocket push is noted as a potential future bonus feature if instant updates become strictly necessary.
+**Alternatives Considered:** HTTP Long-Polling, Server-Sent Events (SSE).  
+**Choice:** The dashboard maintains a persistent Socket.IO connection. The backend uses PostgreSQL `LISTEN/NOTIFY` to instantly bridge isolated background worker events to the Express Socket server. Crucially, the frontend retains an HTTP polling `setInterval` as an automatic fallback.  
+**Trade-offs:** Implementing WebSockets requires stateful connection management and a pub/sub bridge (achieved cleanly via Postgres) to connect external worker processes. However, it provides a superior 60fps real-time UX without spamming the database with HTTP polling requests. Retaining the 10-second polling mechanism as a graceful fallback ensures that if the WebSocket drops, the UI remains highly resilient and perfectly synchronized.

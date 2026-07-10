@@ -1,29 +1,27 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
-  BarChart, Bar,
   LineChart, Line,
-  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, PieChart, Pie, Cell
 } from 'recharts';
 import api from '../services/api';
 import usePolling from '../hooks/usePolling';
-import StatusBadge from '../components/StatusBadge';
 
 const STATUS_COLORS = {
-  queued: '#3b82f6',
+  queued: '#aec6ff',
   running: '#f59e0b',
-  completed: '#22c55e',
-  failed: '#ef4444',
-  scheduled: '#8b5cf6',
+  completed: '#85d19b',
+  failed: '#ffb4ab',
+  scheduled: '#dbb8ff',
 };
 
 export default function DashboardPage() {
   const [throughputHistory, setThroughputHistory] = useState([]);
+  const lastStatsRef = useRef({ completed: null, failed: null });
 
   const fetchStats = async () => {
     const res = await api.get('/api/stats');
     const data = res.data.data;
 
-    // Append to throughput time-series
     setThroughputHistory((prev) => {
       const next = [
         ...prev,
@@ -33,190 +31,257 @@ export default function DashboardPage() {
           failed: data.failed_last_hour ?? 0,
         },
       ];
-      return next.slice(-30); // keep last 30 data points (~5 min at 10 s)
+      return next.slice(-30); 
     });
 
     return data;
   };
 
-  const { data: stats, loading } = usePolling(fetchStats, 10_000);
+  const { data: stats, loading } = usePolling(fetchStats, 10_000, ['DASHBOARD_STATS_UPDATED']);
 
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-accent-500 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
       </div>
     );
   }
 
   if (!stats) {
-    return <p className="text-surface-500 dark:text-surface-400">Failed to load dashboard stats.</p>;
+    return <p className="text-on-surface-variant p-6">Failed to load dashboard stats.</p>;
   }
 
-  // ── Bar chart data: jobs by status ──────────────────────────────────────
   const jobsByStatusData = Object.entries(stats.jobs_by_status || {}).map(([status, count]) => ({
-    status,
-    count,
-    fill: STATUS_COLORS[status] || '#64748b',
+    name: status.charAt(0).toUpperCase() + status.slice(1),
+    value: count,
+    fill: STATUS_COLORS[status] || '#8b90a0',
   }));
 
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-surface-900 dark:text-white">Dashboard</h1>
+  // Reusable formatting
+  const numFmt = (num) => num > 999 ? (num/1000).toFixed(1) + 'k' : num;
 
-      {/* ── Stat cards ───────────────────────────────────────────────────── */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard
-          label="Total Jobs"
-          value={stats.total_jobs}
-          icon={
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-            </svg>
-          }
-          iconBg="bg-accent-500/10 text-accent-500 dark:bg-accent-400/10 dark:text-accent-400"
+  return (
+    <div className="p-6 max-w-[1600px] mx-auto w-full flex-1 flex flex-col gap-6">
+      {/* Page Title */}
+      <div className="flex justify-between items-end">
+        <div>
+          <h2 className="text-[24px] leading-[32px] font-semibold text-on-surface">System Overview</h2>
+          <p className="text-[14px] text-on-surface-variant mt-1">Real-time monitoring of distributed jobs, queues, and workers.</p>
+        </div>
+      </div>
+
+      {/* Metrics Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+        <StatCard 
+          label="Total Jobs" 
+          value={numFmt(stats.total_jobs)} 
+          icon={<svg className="w-4 h-4 text-outline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>} 
         />
-        <StatCard
-          label="Active Workers"
-          value={stats.active_workers}
-          icon={
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
-            </svg>
-          }
-          iconBg="bg-info-400/10 text-info-500 dark:bg-info-400/10 dark:text-info-400"
+        <StatCard 
+          label="Queued" 
+          value={numFmt(stats.jobs_by_status?.queued || 0)} 
+          icon={<svg className="w-4 h-4 text-outline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>} 
         />
-        <StatCard
-          label="Completed / hr"
-          value={stats.throughput_last_hour}
-          icon={
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          }
-          iconBg="bg-success-400/10 text-success-500 dark:bg-success-400/10 dark:text-success-400"
-          valueColor="text-success-500"
+        <StatCard 
+          label="Running" 
+          value={numFmt(stats.jobs_by_status?.running || 0)} 
+          active={true}
+          color="text-primary"
+          icon={<span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(174,198,255,0.7)]"></span>} 
         />
-        <StatCard
-          label="Failed / hr"
-          value={stats.failed_last_hour}
-          icon={
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-            </svg>
-          }
-          iconBg="bg-danger-400/10 text-danger-500 dark:bg-danger-400/10 dark:text-danger-400"
-          valueColor="text-danger-500"
+        <StatCard 
+          label="Completed" 
+          value={numFmt(stats.jobs_by_status?.completed || 0)} 
+          color="text-[#85d19b]"
+          valueColor="text-[#85d19b]"
+          icon={<svg className="w-4 h-4 text-[#85d19b]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>} 
+        />
+        <StatCard 
+          label="Active Workers" 
+          value={stats.active_workers} 
+          icon={<svg className="w-4 h-4 text-outline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m14-6h2m-2 6h2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" /></svg>} 
+        />
+        <StatCard 
+          label="Throughput (1h)" 
+          value={<>{numFmt(stats.throughput_last_hour)}<span className="text-[16px] text-outline font-normal">/h</span></>} 
+          icon={<svg className="w-4 h-4 text-outline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>} 
+        />
+        <StatCard 
+          label="Failed (1h)" 
+          value={numFmt(stats.failed_last_hour)} 
+          color="text-error"
+          valueColor="text-error"
+          icon={<svg className="w-4 h-4 text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>} 
         />
       </div>
 
-      {/* ── Charts ────────────────────────────────────────────────────────── */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Jobs by Status — BarChart */}
-        <div className="rounded-2xl border border-surface-200 bg-white p-5 shadow-sm dark:border-surface-800 dark:bg-surface-900">
-          <h2 className="mb-4 text-sm font-semibold text-surface-700 dark:text-surface-300">Jobs by Status</h2>
-          {jobsByStatusData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={jobsByStatusData} barCategoryGap="20%">
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" strokeOpacity={0.15} />
-                <XAxis dataKey="status" tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={{ stroke: '#334155', strokeOpacity: 0.2 }} tickLine={false} />
-                <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '0.75rem', color: '#f1f5f9', fontSize: '0.8rem' }} />
-                <Bar dataKey="count" radius={[6, 6, 0, 0]} name="Jobs">
-                  {jobsByStatusData.map((entry, i) => (
-                    <rect key={i} fill={entry.fill} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          ) : (
-            <p className="py-20 text-center text-sm text-surface-400">No job data yet</p>
-          )}
+      {/* Bento Grid: Charts & Activity */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+        
+        {/* Main Chart Area */}
+        <div className="lg:col-span-8 flex flex-col gap-4">
+          <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex-1 flex flex-col relative overflow-hidden min-h-[350px]">
+            <div 
+              className="absolute inset-0 opacity-[0.25] pointer-events-none"
+              style={{
+                backgroundSize: '20px 20px',
+                backgroundImage: 'linear-gradient(to right, rgba(139, 144, 160, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(139, 144, 160, 0.15) 1px, transparent 1px)'
+              }}
+            ></div>
+            <div className="flex justify-between items-center mb-4 relative z-10">
+              <h3 className="text-[16px] font-semibold text-on-surface">Throughput (Live)</h3>
+              <div className="flex gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#85d19b] animate-pulse"></span>
+                  <span className="text-[12px] uppercase tracking-widest font-semibold text-outline">Polling every 10s</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex-1 relative z-10 w-full h-full">
+              {throughputHistory.length > 1 ? (
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={throughputHistory}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#414754" strokeOpacity={0.4} vertical={false} />
+                    <XAxis dataKey="time" tick={{ fontSize: 11, fill: '#8b90a0' }} axisLine={false} tickLine={false} />
+                    <YAxis tick={{ fontSize: 11, fill: '#8b90a0' }} axisLine={false} tickLine={false} />
+                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #414754', borderRadius: '0.5rem', color: '#e3e2e2' }} />
+                    <Legend iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
+                    <Line type="monotone" dataKey="completed" stroke="#85d19b" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name="Completed (1h)" />
+                    <Line type="monotone" dataKey="failed" stroke="#ffb4ab" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name="Failed (1h)" />
+                  </LineChart>
+                </ResponsiveContainer>
+              ) : (
+                <div className="flex h-full items-center justify-center">
+                  <p className="text-sm text-outline-variant">Collecting data… next point in 10 s</p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Throughput over time — LineChart */}
-        <div className="rounded-2xl border border-surface-200 bg-white p-5 shadow-sm dark:border-surface-800 dark:bg-surface-900">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-surface-700 dark:text-surface-300">Throughput (Live)</h2>
-            <span className="flex items-center gap-1.5 text-xs text-surface-400">
-              <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-success-400" />
-              Polling every 10s
-            </span>
+        {/* Side Panel: Status & Queues */}
+        <div className="lg:col-span-4 flex flex-col gap-6">
+          
+          {/* Job Status Radial */}
+          <div className="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col min-h-[300px]">
+            <h3 className="text-[16px] font-semibold text-on-surface mb-4">Job Status Distribution</h3>
+            <div className="flex-1 w-full h-full min-h-[200px]">
+              {jobsByStatusData.length > 0 ? (
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={jobsByStatusData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={80}
+                      paddingAngle={5}
+                      dataKey="value"
+                      stroke="none"
+                    >
+                      {jobsByStatusData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                      ))}
+                    </Pie>
+                    <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #414754', borderRadius: '0.5rem', color: '#e3e2e2' }} />
+                  </PieChart>
+                </ResponsiveContainer>
+              ) : (
+                <div className="flex h-full items-center justify-center">
+                  <p className="text-sm text-outline-variant">No job data yet</p>
+                </div>
+              )}
+            </div>
+            
+            <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-outline-variant">
+              {jobsByStatusData.map(status => (
+                <div key={status.name} className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: status.fill }}></div>
+                  <span className="text-[13px] text-on-surface">{status.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          {throughputHistory.length > 1 ? (
-            <ResponsiveContainer width="100%" height={280}>
-              <LineChart data={throughputHistory}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" strokeOpacity={0.15} />
-                <XAxis dataKey="time" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={{ stroke: '#334155', strokeOpacity: 0.2 }} tickLine={false} />
-                <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '0.75rem', color: '#f1f5f9', fontSize: '0.8rem' }} />
-                <Legend iconType="circle" wrapperStyle={{ fontSize: '0.75rem' }} />
-                <Line type="monotone" dataKey="completed" stroke="#22c55e" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name="Completed / hr" />
-                <Line type="monotone" dataKey="failed" stroke="#ef4444" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name="Failed / hr" />
-              </LineChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="flex h-[280px] items-center justify-center">
-              <p className="text-sm text-surface-400">Collecting data… next point in 10 s</p>
+
+          {/* Queue Summary */}
+          {stats.queues_summary?.length > 0 && (
+            <div className="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col flex-1">
+              <div className="px-4 py-3 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+                <h3 className="text-[16px] font-semibold text-on-surface">Queue Summary</h3>
+              </div>
+              <div className="overflow-x-auto flex-1">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-surface-container-lowest border-b border-outline-variant">
+                      <th className="text-[12px] uppercase tracking-widest font-semibold text-outline px-4 py-2">Queue</th>
+                      <th className="text-[12px] uppercase tracking-widest font-semibold text-outline px-4 py-2 text-right">Total</th>
+                      <th className="text-[12px] uppercase tracking-widest font-semibold text-outline px-4 py-2 text-right">Pending</th>
+                      <th className="text-[12px] uppercase tracking-widest font-semibold text-outline px-4 py-2 text-center">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-[13px] font-mono">
+                    {stats.queues_summary.map((q, i) => (
+                      <tr key={i} className="border-b border-outline-variant hover:bg-[#161616] transition-colors">
+                        <td className="px-4 py-3 text-on-surface font-sans font-medium">{q.queue_name}</td>
+                        <td className="px-4 py-3 text-outline-variant text-right">{numFmt(q.total_jobs)}</td>
+                        <td className="px-4 py-3 text-outline-variant text-right">{numFmt(q.pending)}</td>
+                        <td className="px-4 py-3 text-center flex justify-center">
+                          <QueueStatusBadge pending={q.pending} running={q.running} failed={q.failed} />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </div>
       </div>
-
-      {/* ── Queues Summary Table ──────────────────────────────────────────── */}
-      {stats.queues_summary?.length > 0 && (
-        <div className="rounded-2xl border border-surface-200 bg-white shadow-sm dark:border-surface-800 dark:bg-surface-900">
-          <div className="px-5 py-4">
-            <h2 className="text-sm font-semibold text-surface-700 dark:text-surface-300">Queues Summary</h2>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="border-t border-surface-100 bg-surface-50 dark:border-surface-800 dark:bg-surface-800/50">
-                <tr>
-                  {['Queue Name', 'Total', 'Pending', 'Running', 'Failed'].map((h) => (
-                    <th key={h} className="px-5 py-3 font-medium text-surface-500 dark:text-surface-400">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-surface-100 dark:divide-surface-800">
-                {stats.queues_summary.map((q, i) => (
-                  <tr key={i} className="transition hover:bg-surface-50 dark:hover:bg-surface-800/40">
-                    <td className="px-5 py-3 font-medium text-surface-900 dark:text-white">{q.queue_name}</td>
-                    <td className="px-5 py-3 text-surface-600 dark:text-surface-300">{q.total_jobs}</td>
-                    <td className="px-5 py-3">
-                      <span className="inline-flex items-center gap-1.5"><StatusBadge status="queued" />{q.pending}</span>
-                    </td>
-                    <td className="px-5 py-3">
-                      <span className="inline-flex items-center gap-1.5"><StatusBadge status="running" />{q.running}</span>
-                    </td>
-                    <td className="px-5 py-3">
-                      <span className="inline-flex items-center gap-1.5"><StatusBadge status="failed" />{q.failed}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
 
-/* ── Stat Card component ──────────────────────────────────────────────────── */
-
-function StatCard({ label, value, icon, iconBg, valueColor }) {
+function StatCard({ label, value, icon, color = 'text-outline', valueColor = 'text-on-surface', active = false }) {
   return (
-    <div className="rounded-2xl border border-surface-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-surface-800 dark:bg-surface-900">
-      <div className="flex items-center justify-between">
-        <p className="text-sm font-medium text-surface-500 dark:text-surface-400">{label}</p>
-        <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${iconBg}`}>
-          {icon}
-        </div>
+    <div className={`flex flex-col justify-between bg-surface-container-lowest border rounded-lg p-4 transition-all duration-200 hover:border-primary hover:shadow-[0_0_8px_rgba(174,198,255,0.2)] ${active ? 'border-primary/50 relative overflow-hidden' : 'border-outline-variant'}`}>
+      {active && <div className="absolute inset-0 bg-primary/5 pointer-events-none"></div>}
+      <div className="flex items-center gap-2 mb-2 relative z-10">
+        {icon}
+        <span className={`text-[12px] font-semibold uppercase tracking-widest ${color}`}>{label}</span>
       </div>
-      <p className={`mt-3 text-3xl font-extrabold tracking-tight ${valueColor ?? 'text-surface-900 dark:text-white'}`}>
-        {value ?? 0}
-      </p>
+      <div className={`text-[32px] font-bold leading-[40px] tracking-tight relative z-10 ${valueColor}`}>
+        {value}
+      </div>
+    </div>
+  );
+}
+
+function QueueStatusBadge({ pending, failed }) {
+  if (failed > 0) {
+    return (
+      <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-error-container/20 text-error border border-error-container/50">
+        <span className="w-1.5 h-1.5 rounded-full bg-error"></span> Critical
+      </div>
+    );
+  }
+  if (pending > 1000) {
+    return (
+      <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-tertiary-container/20 text-tertiary border border-tertiary-container/50">
+        <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Backlogged
+      </div>
+    );
+  }
+  if (pending === 0) {
+    return (
+      <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#85d19b]/10 text-[#85d19b] border border-[#85d19b]/20">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#85d19b]"></span> Idle
+      </div>
+    );
+  }
+  return (
+    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#85d19b]/10 text-[#85d19b] border border-[#85d19b]/20">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#85d19b]"></span> Healthy
     </div>
   );
 }

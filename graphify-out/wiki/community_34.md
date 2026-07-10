@@ -1,8 +1,8 @@
-# Community 34: projects
+# Community 34: auth.test
 
 **Members:** 1
 
 ## Nodes
 
-- **projects** (`src_routes_projects_js`, File, degree: 0)
+- **auth.test** (`tests_auth_test_js`, File, degree: 0)
 

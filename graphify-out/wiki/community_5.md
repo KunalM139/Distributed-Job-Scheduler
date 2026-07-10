@@ -1,33 +1,29 @@
-# Community 5: queueController
+# Community 5: AuthContext
 
-**Members:** 9
+**Members:** 10
 
 ## Nodes
 
-- **queueController** (`src_controllers_queuecontroller_js`, File, degree: 8)
-- **createQueue()** (`src_controllers_queuecontroller_js_createqueue`, Function, degree: 2)
-- **getOwnedQueue()** (`src_controllers_queuecontroller_js_getownedqueue`, Function, degree: 5)
-- **getQueueStats()** (`src_controllers_queuecontroller_js_getqueuestats`, Function, degree: 2)
-- **listQueues()** (`src_controllers_queuecontroller_js_listqueues`, Function, degree: 2)
-- **pauseQueue()** (`src_controllers_queuecontroller_js_pausequeue`, Function, degree: 2)
-- **resumeQueue()** (`src_controllers_queuecontroller_js_resumequeue`, Function, degree: 2)
-- **updateQueue()** (`src_controllers_queuecontroller_js_updatequeue`, Function, degree: 2)
-- **verifyProjectOwnership()** (`src_controllers_queuecontroller_js_verifyprojectownership`, Function, degree: 3)
+- **AuthContext** (`client_src_context_authcontext_jsx`, File, degree: 9)
+- **AuthProvider()** (`client_src_context_authcontext_jsx_authprovider`, Function, degree: 1)
+- **react/createContext** (`client_src_context_authcontext_jsx_import_react_createcontext`, Module, degree: 1)
+- **react-router-dom/useNavigate** (`client_src_context_authcontext_jsx_import_react_router_dom_usenavigate`, Module, degree: 1)
+- **react/useCallback** (`client_src_context_authcontext_jsx_import_react_usecallback`, Module, degree: 1)
+- **react/useContext** (`client_src_context_authcontext_jsx_import_react_usecontext`, Module, degree: 1)
+- **react/useEffect** (`client_src_context_authcontext_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useState** (`client_src_context_authcontext_jsx_import_react_usestate`, Module, degree: 1)
+- **../services/api/api** (`client_src_context_authcontext_jsx_import_services_api_api`, Module, degree: 1)
+- **useAuth()** (`client_src_context_authcontext_jsx_useauth`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_getownedqueue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_verifyprojectownership (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_listqueues (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_createqueue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_updatequeue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_pausequeue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_resumequeue (defines)
-- src_controllers_queuecontroller_js → src_controllers_queuecontroller_js_getqueuestats (defines)
-- src_controllers_queuecontroller_js_listqueues → src_controllers_queuecontroller_js_verifyprojectownership (calls)
-- src_controllers_queuecontroller_js_createqueue → src_controllers_queuecontroller_js_verifyprojectownership (calls)
-- src_controllers_queuecontroller_js_updatequeue → src_controllers_queuecontroller_js_getownedqueue (calls)
-- src_controllers_queuecontroller_js_pausequeue → src_controllers_queuecontroller_js_getownedqueue (calls)
-- src_controllers_queuecontroller_js_resumequeue → src_controllers_queuecontroller_js_getownedqueue (calls)
-- src_controllers_queuecontroller_js_getqueuestats → src_controllers_queuecontroller_js_getownedqueue (calls)
+- client_src_context_authcontext_jsx → client_src_context_authcontext_jsx_import_react_createcontext (imports)
+- client_src_context_authcontext_jsx → client_src_context_authcontext_jsx_import_react_usecontext (imports)
+- client_src_context_authcontext_jsx → client_src_context_authcontext_jsx_import_react_usestate (imports)
+- client_src_context_authcontext_jsx → client_src_context_authcontext_jsx_import_react_useeffect (imports)
+- client_src_context_authcontext_jsx → client_src_context_authcontext_jsx_import_react_usecallback (imports)
+- client_src_context_authcontext_jsx → client_src_context_authcontext_jsx_import_react_router_dom_usenavigate (imports)
+- client_src_context_authcontext_jsx → client_src_context_authcontext_jsx_import_services_api_api (imports)
+- client_src_context_authcontext_jsx → client_src_context_authcontext_jsx_authprovider (defines)
+- client_src_context_authcontext_jsx → client_src_context_authcontext_jsx_useauth (defines)
 

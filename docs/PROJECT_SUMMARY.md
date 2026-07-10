@@ -12,6 +12,7 @@ Users log in, create Projects, and manage Queues within those projects. Jobs are
 * **Backend:** Node.js, Express.js
 * **Database:** PostgreSQL (serves as both datastore and job queue)
 * **Frontend:** React, Vite, Tailwind CSS, Recharts
+* **Real-time Engine:** Socket.IO with PostgreSQL LISTEN/NOTIFY
 * **Authentication:** JWT (JSON Web Tokens)
 * **Job Scheduling:** `node-cron`
 * **Testing:** Jest, Supertest
@@ -114,4 +115,4 @@ Located in `/backend/src/workers/worker.js`.
 3. **Retry Strategies:** Exponential backoff mitigates thundering herd scenarios.
 4. **Heartbeat Recovery:** Robustly handles silent worker crashes.
 5. **Separate DLQ / Executions Tables:** Keeps the hot `jobs` table fast while preserving deep audit logs.
-6. **Polling over WebSockets:** Prioritizes reliability and simplicity for the monitoring dashboard.
+6. **WebSockets with Polling Fallback:** Uses PostgreSQL `LISTEN/NOTIFY` to bridge separate worker processes to the Express Socket.IO server for real-time dashboard updates, falling back to 10s HTTP polling for maximum resilience.

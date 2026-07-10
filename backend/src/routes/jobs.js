@@ -6,6 +6,7 @@ const { validate } = require('../middleware/validate');
 const {
   createJob,
   listJobs,
+  listAllJobs,
   getJob,
   retryJob,
   deleteJob,
@@ -69,6 +70,34 @@ router.get(
   ],
   validate,
   listJobs
+);
+
+// GET /api/jobs
+router.get(
+  '/jobs',
+  [
+    query('page')
+      .optional()
+      .isInt({ min: 1 })
+      .withMessage('Page must be a positive integer'),
+    query('limit')
+      .optional()
+      .isInt({ min: 1, max: 100 })
+      .withMessage('Limit must be between 1 and 100'),
+    query('status')
+      .optional()
+      .isString()
+      .withMessage('Status must be a string'),
+    query('queue_id')
+      .optional()
+      .isUUID()
+      .withMessage('queue_id must be a valid UUID'),
+    query('search')
+      .optional()
+      .isString(),
+  ],
+  validate,
+  listAllJobs
 );
 
 // GET /api/jobs/:id

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { useSocket } from '../context/SocketContext';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
 import StatusBadge from '../components/StatusBadge';
@@ -17,6 +18,7 @@ const EMPTY_QUEUE = {
 };
 
 export default function QueuesPage() {
+  const { socket } = useSocket();
   const [projects, setProjects] = useState([]);
   const [queues, setQueues] = useState([]); // flat list
   const [loading, setLoading] = useState(true);
@@ -25,7 +27,7 @@ export default function QueuesPage() {
   const [form, setForm] = useState({ ...EMPTY_QUEUE });
   const [creating, setCreating] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const projRes = await api.get('/api/projects');
       const projs = projRes.data.data;
@@ -50,9 +52,20 @@ export default function QueuesPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedProjectId]);
 
-  useEffect(() => { fetchData(); }, []);
+  useEffect(() => { fetchData(); }, [fetchData]);
+
+  useEffect(() => {
+    if (!socket) return;
+    const handleEvent = () => fetchData();
+    socket.on('QUEUE_CREATED', handleEvent);
+    socket.on('QUEUE_UPDATED', handleEvent);
+    return () => {
+      socket.off('QUEUE_CREATED', handleEvent);
+      socket.off('QUEUE_UPDATED', handleEvent);
+    };
+  }, [socket, fetchData]);
 
   const openModal = () => {
     setForm({ ...EMPTY_QUEUE });
@@ -110,79 +123,97 @@ export default function QueuesPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-accent-500 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="p-6 max-w-[1600px] mx-auto w-full flex-1 flex flex-col gap-6 bg-background min-h-screen text-on-surface">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold text-surface-900 dark:text-white">Queues</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <div>
+          <h1 className="text-[24px] leading-[32px] font-semibold text-on-surface">Queues</h1>
+          <p className="text-[14px] text-on-surface-variant mt-1">Manage and monitor job queues across your projects.</p>
+        </div>
         <button
           onClick={openModal}
-          className="rounded-lg bg-gradient-to-r from-accent-500 to-accent-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-accent-500/25 transition hover:from-accent-600 hover:to-accent-700"
+          className="bg-primary hover:bg-primary-container text-on-surface px-4 py-2 rounded-lg text-[16px] font-semibold flex items-center gap-2 transition-all shadow-lg shadow-primary/20"
         >
-          + Create Queue
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          Create Queue
         </button>
       </div>
 
       {/* Queues table */}
-      <div className="rounded-2xl border border-surface-200 bg-white shadow-sm dark:border-surface-800 dark:bg-surface-900">
+      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="border-b border-surface-100 bg-surface-50 dark:border-surface-800 dark:bg-surface-800/50">
+          <table className="w-full text-left text-[14px]">
+            <thead className="bg-background border-b border-outline-variant">
               <tr>
-                {['Name', 'Project', 'Priority', 'Concurrency Limit', 'Retry', 'Status', 'Actions'].map((h) => (
-                  <th key={h} className="px-5 py-3 font-medium text-surface-500 dark:text-surface-400">{h}</th>
+                {['Name', 'Project', 'Priority', 'Concurrency', 'Retry', 'Status', 'Actions'].map((h) => (
+                  <th key={h} className="px-5 py-3 text-[12px] uppercase tracking-widest font-semibold text-outline">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-surface-100 dark:divide-surface-800">
+            <tbody className="divide-y divide-surface-700">
               {queues.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-10 text-center text-surface-400">
+                  <td colSpan={7} className="px-5 py-10 text-center text-on-surface-variant">
                     No queues yet. Create one to get started.
                   </td>
                 </tr>
               ) : (
                 queues.map((q) => (
-                  <tr key={q.id} className="transition hover:bg-surface-50 dark:hover:bg-surface-800/40">
+                  <tr key={q.id} className="transition-colors hover:bg-surface-container-high">
                     <td className="px-5 py-3">
                       <Link
                         to={`/queues/${q.id}`}
-                        className="font-semibold text-accent-600 hover:underline dark:text-accent-400"
+                        className="font-semibold text-primary hover:text-primary-fixed-dim transition-colors flex items-center gap-2"
                       >
                         {q.name}
+                        <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
                       </Link>
                     </td>
-                    <td className="px-5 py-3 text-surface-500 dark:text-surface-400">{q.project_name}</td>
-                    <td className="px-5 py-3 text-surface-600 dark:text-surface-300">{q.priority}</td>
-                    <td className="px-5 py-3 text-surface-600 dark:text-surface-300">{q.concurrency_limit}</td>
-                    <td className="px-5 py-3 text-xs text-surface-500 dark:text-surface-400">
+                    <td className="px-5 py-3 text-on-surface">{q.project_name}</td>
+                    <td className="px-5 py-3 font-mono text-[13px] text-on-surface-variant">{q.priority}</td>
+                    <td className="px-5 py-3 font-mono text-[13px] text-on-surface-variant">{q.concurrency_limit}</td>
+                    <td className="px-5 py-3 font-mono text-[13px] text-on-surface-variant">
                       {q.strategy ? (
-                        <span className="rounded bg-surface-100 px-2 py-0.5 dark:bg-surface-800">
+                        <span className="rounded bg-surface-container-high border border-outline-variant px-2 py-0.5">
                           {q.strategy} · {q.max_attempts}× · {q.delay_seconds}s
                         </span>
                       ) : (
                         '—'
                       )}
                     </td>
-                    <td className="px-5 py-3"><StatusBadge status={q.status} /></td>
+                    <td className="px-5 py-3">
+                      <div className={`inline-flex items-center gap-1.5 border rounded-full px-2 py-0.5 ${
+                        q.status === 'active' 
+                          ? 'bg-surface-container-high border-outline-variant text-primary' 
+                          : 'bg-tertiary/10 border-tertiary/20 text-tertiary'
+                      }`}>
+                        <div className={`w-1.5 h-1.5 rounded-full ${q.status === 'active' ? 'bg-primary animate-pulse' : 'bg-tertiary'}`}></div>
+                        <span className="text-[11px] font-medium tracking-wide uppercase">
+                          {q.status}
+                        </span>
+                      </div>
+                    </td>
                     <td className="px-5 py-3">
                       <div className="flex gap-2">
                         {q.status === 'active' ? (
                           <button
                             onClick={() => handlePause(q.id)}
-                            className="rounded-lg bg-warning-400/15 px-3 py-1 text-xs font-semibold text-warning-500 transition hover:bg-warning-400/25"
+                            className="rounded-lg border border-outline-variant bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-3 py-1 text-[13px] font-semibold transition-colors"
                           >
                             Pause
                           </button>
                         ) : (
                           <button
                             onClick={() => handleResume(q.id)}
-                            className="rounded-lg bg-success-400/15 px-3 py-1 text-xs font-semibold text-success-500 transition hover:bg-success-400/25"
+                            className="rounded-lg border border-outline-variant bg-transparent text-on-surface hover:border-primary px-3 py-1 text-[13px] font-semibold transition-colors"
                           >
                             Resume
                           </button>
@@ -199,22 +230,29 @@ export default function QueuesPage() {
 
       {/* ── Create Queue Modal ────────────────────────────────────────────── */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center">
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setModalOpen(false)} />
 
           {/* Panel */}
-          <div className="relative z-10 w-full max-w-lg rounded-2xl border border-surface-200 bg-white p-6 shadow-2xl dark:border-surface-700 dark:bg-surface-900">
-            <h2 className="mb-5 text-lg font-bold text-surface-900 dark:text-white">Create Queue</h2>
+          <div className="relative bg-surface-container-lowest w-full max-w-lg rounded-xl border border-outline-variant shadow-2xl overflow-hidden flex flex-col transform transition-all">
+            <div className="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-background">
+              <h2 className="text-[16px] font-semibold text-on-surface">Create New Queue</h2>
+              <button onClick={() => setModalOpen(false)} className="text-on-surface-variant hover:text-on-surface p-1 rounded-full hover:bg-surface-container-high transition-colors">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
-            <div className="space-y-4">
+            <div className="p-6 space-y-4 bg-background">
               {/* Project selector */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-surface-700 dark:text-surface-300">Project</label>
+                <label className="block text-[12px] uppercase tracking-widest font-semibold text-on-surface-variant mb-2">Project</label>
                 <select
                   value={selectedProjectId}
                   onChange={(e) => setSelectedProjectId(e.target.value)}
-                  className="w-full rounded-lg border border-surface-300 bg-surface-50 px-3 py-2 text-sm dark:border-surface-700 dark:bg-surface-800 dark:text-white"
+                  className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-[14px] text-on-surface focus:border-primary focus:ring-1 focus:ring-accent-500 focus:outline-none transition-all outline-none"
                 >
                   {projects.map((p) => (
                     <option key={p.id} value={p.id}>{p.name}</option>
@@ -224,11 +262,11 @@ export default function QueuesPage() {
 
               {/* Name */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-surface-700 dark:text-surface-300">Queue Name</label>
+                <label className="block text-[12px] uppercase tracking-widest font-semibold text-on-surface-variant mb-2">Queue Name</label>
                 <input
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full rounded-lg border border-surface-300 bg-surface-50 px-3 py-2 text-sm dark:border-surface-700 dark:bg-surface-800 dark:text-white"
+                  className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-[14px] text-on-surface focus:border-primary focus:ring-1 focus:ring-accent-500 focus:outline-none transition-all placeholder-surface-600"
                   placeholder="email-notifications"
                 />
               </div>
@@ -236,34 +274,34 @@ export default function QueuesPage() {
               {/* Priority + Concurrency */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-surface-700 dark:text-surface-300">Priority</label>
+                  <label className="block text-[12px] uppercase tracking-widest font-semibold text-on-surface-variant mb-2">Priority</label>
                   <input
                     type="number"
                     value={form.priority}
                     onChange={(e) => setForm({ ...form, priority: Number(e.target.value) })}
-                    className="w-full rounded-lg border border-surface-300 bg-surface-50 px-3 py-2 text-sm dark:border-surface-700 dark:bg-surface-800 dark:text-white"
+                    className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-[14px] text-on-surface focus:border-primary focus:ring-1 focus:ring-accent-500 focus:outline-none transition-all placeholder-surface-600"
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-surface-700 dark:text-surface-300">Concurrency Limit</label>
+                  <label className="block text-[12px] uppercase tracking-widest font-semibold text-on-surface-variant mb-2">Concurrency Limit</label>
                   <input
                     type="number"
                     min={1}
                     value={form.concurrency_limit}
                     onChange={(e) => setForm({ ...form, concurrency_limit: Number(e.target.value) })}
-                    className="w-full rounded-lg border border-surface-300 bg-surface-50 px-3 py-2 text-sm dark:border-surface-700 dark:bg-surface-800 dark:text-white"
+                    className="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-[14px] text-on-surface focus:border-primary focus:ring-1 focus:ring-accent-500 focus:outline-none transition-all placeholder-surface-600"
                   />
                 </div>
               </div>
 
               {/* Retry policy section */}
-              <div className="rounded-xl border border-surface-200 bg-surface-50 p-4 dark:border-surface-700 dark:bg-surface-800/50">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-surface-500 dark:text-surface-400">
+              <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-4">
+                <p className="mb-3 text-[12px] font-semibold uppercase tracking-widest text-on-surface-variant">
                   Retry Policy
                 </p>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="col-span-2">
-                    <label className="mb-1 block text-xs font-medium text-surface-600 dark:text-surface-400">Strategy</label>
+                    <label className="mb-1 block text-xs font-medium text-on-surface-variant">Strategy</label>
                     <select
                       value={form.retry_policy.strategy}
                       onChange={(e) =>
@@ -272,7 +310,7 @@ export default function QueuesPage() {
                           retry_policy: { ...form.retry_policy, strategy: e.target.value },
                         })
                       }
-                      className="w-full rounded-lg border border-surface-300 bg-white px-3 py-2 text-sm dark:border-surface-600 dark:bg-surface-800 dark:text-white"
+                      className="w-full bg-surface-container-high border border-outline-variant rounded-lg px-3 py-2 text-[14px] text-on-surface focus:border-primary outline-none"
                     >
                       <option value="fixed">Fixed</option>
                       <option value="linear">Linear</option>
@@ -280,7 +318,7 @@ export default function QueuesPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-surface-600 dark:text-surface-400">Max Attempts</label>
+                    <label className="mb-1 block text-xs font-medium text-on-surface-variant">Max Attempts</label>
                     <input
                       type="number"
                       min={1}
@@ -291,11 +329,11 @@ export default function QueuesPage() {
                           retry_policy: { ...form.retry_policy, max_attempts: Number(e.target.value) },
                         })
                       }
-                      className="w-full rounded-lg border border-surface-300 bg-white px-3 py-2 text-sm dark:border-surface-600 dark:bg-surface-800 dark:text-white"
+                      className="w-full bg-surface-container-high border border-outline-variant rounded-lg px-3 py-2 text-[14px] text-on-surface focus:border-primary outline-none"
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-surface-600 dark:text-surface-400">Delay (seconds)</label>
+                    <label className="mb-1 block text-xs font-medium text-on-surface-variant">Delay (seconds)</label>
                     <input
                       type="number"
                       min={0}
@@ -306,7 +344,7 @@ export default function QueuesPage() {
                           retry_policy: { ...form.retry_policy, delay_seconds: Number(e.target.value) },
                         })
                       }
-                      className="w-full rounded-lg border border-surface-300 bg-white px-3 py-2 text-sm dark:border-surface-600 dark:bg-surface-800 dark:text-white"
+                      className="w-full bg-surface-container-high border border-outline-variant rounded-lg px-3 py-2 text-[14px] text-on-surface focus:border-primary outline-none"
                     />
                   </div>
                 </div>
@@ -314,17 +352,17 @@ export default function QueuesPage() {
             </div>
 
             {/* Actions */}
-            <div className="mt-6 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-outline-variant bg-surface-container-lowest flex justify-end gap-3">
               <button
                 onClick={() => setModalOpen(false)}
-                className="rounded-lg border border-surface-300 px-4 py-2 text-sm font-medium text-surface-600 transition hover:bg-surface-100 dark:border-surface-600 dark:text-surface-300 dark:hover:bg-surface-800"
+                className="px-4 py-2 rounded-lg text-[16px] font-semibold text-on-surface-variant hover:text-on-surface border border-outline-variant hover:bg-surface-container-high transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleCreate}
                 disabled={creating}
-                className="rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-600 disabled:opacity-50"
+                className="bg-primary hover:bg-primary-container text-on-surface px-4 py-2 rounded-lg text-[16px] font-semibold transition-colors disabled:opacity-50"
               >
                 {creating ? 'Creating…' : 'Create Queue'}
               </button>

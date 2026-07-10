@@ -1,21 +1,25 @@
-# Community 14: Layout
+# Community 14: ProjectsPage
 
-**Members:** 6
+**Members:** 8
 
 ## Nodes
 
-- **Layout** (`client_src_components_layout_jsx`, File, degree: 5)
-- **../context/AuthContext/useAuth** (`client_src_components_layout_jsx_import_context_authcontext_useauth`, Module, degree: 1)
-- **react-router-dom/NavLink** (`client_src_components_layout_jsx_import_react_router_dom_navlink`, Module, degree: 1)
-- **react-router-dom/Outlet** (`client_src_components_layout_jsx_import_react_router_dom_outlet`, Module, degree: 1)
-- **react/useState** (`client_src_components_layout_jsx_import_react_usestate`, Module, degree: 1)
-- **Layout()** (`client_src_components_layout_jsx_layout`, Function, degree: 1)
+- **ProjectsPage** (`frontend_src_pages_projectspage_jsx`, File, degree: 7)
+- **../context/SocketContext/useSocket** (`frontend_src_pages_projectspage_jsx_import_context_socketcontext_usesocket`, Module, degree: 1)
+- **react-hot-toast/toast** (`frontend_src_pages_projectspage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
+- **react/useCallback** (`frontend_src_pages_projectspage_jsx_import_react_usecallback`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_pages_projectspage_jsx_import_react_useeffect`, Module, degree: 1)
+- **react/useState** (`frontend_src_pages_projectspage_jsx_import_react_usestate`, Module, degree: 1)
+- **../services/api/api** (`frontend_src_pages_projectspage_jsx_import_services_api_api`, Module, degree: 1)
+- **ProjectsPage()** (`frontend_src_pages_projectspage_jsx_projectspage`, Function, degree: 1)
 
 ## Relationships
 
-- client_src_components_layout_jsx → client_src_components_layout_jsx_import_react_usestate (imports)
-- client_src_components_layout_jsx → client_src_components_layout_jsx_import_react_router_dom_navlink (imports)
-- client_src_components_layout_jsx → client_src_components_layout_jsx_import_react_router_dom_outlet (imports)
-- client_src_components_layout_jsx → client_src_components_layout_jsx_import_context_authcontext_useauth (imports)
-- client_src_components_layout_jsx → client_src_components_layout_jsx_layout (defines)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_react_usestate (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_react_useeffect (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_react_usecallback (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_context_socketcontext_usesocket (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_services_api_api (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_import_react_hot_toast_toast (imports)
+- frontend_src_pages_projectspage_jsx → frontend_src_pages_projectspage_jsx_projectspage (defines)
 

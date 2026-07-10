@@ -7,6 +7,10 @@ const {
   listProjects,
   createProject,
   deleteProject,
+  listMembers,
+  addMember,
+  updateMemberRole,
+  removeMember
 } = require('../controllers/projectController');
 
 // All project routes require authentication
@@ -40,6 +44,49 @@ router.delete(
   [param('id').isUUID().withMessage('Invalid project ID')],
   validate,
   deleteProject
+);
+
+// GET /api/projects/:id/members
+router.get(
+  '/:id/members',
+  [param('id').isUUID().withMessage('Invalid project ID')],
+  validate,
+  listMembers
+);
+
+// POST /api/projects/:id/members
+router.post(
+  '/:id/members',
+  [
+    param('id').isUUID().withMessage('Invalid project ID'),
+    body('email').isEmail().withMessage('Valid email is required'),
+    body('role').isIn(['OWNER', 'ADMIN', 'VIEWER']).withMessage('Invalid role')
+  ],
+  validate,
+  addMember
+);
+
+// PUT /api/projects/:id/members/:memberId
+router.put(
+  '/:id/members/:memberId',
+  [
+    param('id').isUUID().withMessage('Invalid project ID'),
+    param('memberId').isUUID().withMessage('Invalid member ID'),
+    body('role').isIn(['OWNER', 'ADMIN', 'VIEWER']).withMessage('Invalid role')
+  ],
+  validate,
+  updateMemberRole
+);
+
+// DELETE /api/projects/:id/members/:memberId
+router.delete(
+  '/:id/members/:memberId',
+  [
+    param('id').isUUID().withMessage('Invalid project ID'),
+    param('memberId').isUUID().withMessage('Invalid member ID')
+  ],
+  validate,
+  removeMember
 );
 
 module.exports = router;

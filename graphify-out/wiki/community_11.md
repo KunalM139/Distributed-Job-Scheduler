@@ -1,23 +1,27 @@
-# Community 11: LoginPage
+# Community 11: main
 
-**Members:** 7
+**Members:** 9
 
 ## Nodes
 
-- **LoginPage** (`client_src_pages_loginpage_jsx`, File, degree: 6)
-- **../context/AuthContext/useAuth** (`client_src_pages_loginpage_jsx_import_context_authcontext_useauth`, Module, degree: 1)
-- **react-hot-toast/toast** (`client_src_pages_loginpage_jsx_import_react_hot_toast_toast`, Module, degree: 1)
-- **react-router-dom/Link** (`client_src_pages_loginpage_jsx_import_react_router_dom_link`, Module, degree: 1)
-- **react-router-dom/useNavigate** (`client_src_pages_loginpage_jsx_import_react_router_dom_usenavigate`, Module, degree: 1)
-- **react/useState** (`client_src_pages_loginpage_jsx_import_react_usestate`, Module, degree: 1)
-- **LoginPage()** (`client_src_pages_loginpage_jsx_loginpage`, Function, degree: 1)
+- **main** (`frontend_src_main_jsx`, File, degree: 8)
+- **./App/App** (`frontend_src_main_jsx_import_app_app`, Module, degree: 1)
+- **./context/AuthContext/AuthProvider** (`frontend_src_main_jsx_import_context_authcontext_authprovider`, Module, degree: 1)
+- **./context/SocketContext/SocketProvider** (`frontend_src_main_jsx_import_context_socketcontext_socketprovider`, Module, degree: 1)
+- **./index.css** (`frontend_src_main_jsx_import_index_css`, Module, degree: 1)
+- **react-dom/client/createRoot** (`frontend_src_main_jsx_import_react_dom_client_createroot`, Module, degree: 1)
+- **react-hot-toast/Toaster** (`frontend_src_main_jsx_import_react_hot_toast_toaster`, Module, degree: 1)
+- **react-router-dom/BrowserRouter** (`frontend_src_main_jsx_import_react_router_dom_browserrouter`, Module, degree: 1)
+- **react/StrictMode** (`frontend_src_main_jsx_import_react_strictmode`, Module, degree: 1)
 
 ## Relationships
 
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_react_usestate (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_react_router_dom_link (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_react_router_dom_usenavigate (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_context_authcontext_useauth (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_import_react_hot_toast_toast (imports)
-- client_src_pages_loginpage_jsx → client_src_pages_loginpage_jsx_loginpage (defines)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_react_strictmode (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_react_dom_client_createroot (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_react_router_dom_browserrouter (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_react_hot_toast_toaster (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_context_authcontext_authprovider (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_context_socketcontext_socketprovider (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_app_app (imports)
+- frontend_src_main_jsx → frontend_src_main_jsx_import_index_css (imports)
 

@@ -1,17 +1,23 @@
-# Community 18: vite.config
+# Community 18: usePolling
 
-**Members:** 4
+**Members:** 7
 
 ## Nodes
 
-- **vite.config** (`frontend_vite_config_js`, File, degree: 3)
-- **@tailwindcss/vite/tailwindcss** (`frontend_vite_config_js_import_tailwindcss_vite_tailwindcss`, Module, degree: 1)
-- **vite/defineConfig** (`frontend_vite_config_js_import_vite_defineconfig`, Module, degree: 1)
-- **@vitejs/plugin-react/react** (`frontend_vite_config_js_import_vitejs_plugin_react_react`, Module, degree: 1)
+- **usePolling** (`frontend_src_hooks_usepolling_js`, File, degree: 6)
+- **../context/SocketContext/useSocket** (`frontend_src_hooks_usepolling_js_import_context_socketcontext_usesocket`, Module, degree: 1)
+- **react/useCallback** (`frontend_src_hooks_usepolling_js_import_react_usecallback`, Module, degree: 1)
+- **react/useEffect** (`frontend_src_hooks_usepolling_js_import_react_useeffect`, Module, degree: 1)
+- **react/useRef** (`frontend_src_hooks_usepolling_js_import_react_useref`, Module, degree: 1)
+- **react/useState** (`frontend_src_hooks_usepolling_js_import_react_usestate`, Module, degree: 1)
+- **usePolling()** (`frontend_src_hooks_usepolling_js_usepolling`, Function, degree: 1)
 
 ## Relationships
 
-- frontend_vite_config_js → frontend_vite_config_js_import_vite_defineconfig (imports)
-- frontend_vite_config_js → frontend_vite_config_js_import_vitejs_plugin_react_react (imports)
-- frontend_vite_config_js → frontend_vite_config_js_import_tailwindcss_vite_tailwindcss (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_import_react_usestate (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_import_react_useeffect (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_import_react_usecallback (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_import_react_useref (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_import_context_socketcontext_usesocket (imports)
+- frontend_src_hooks_usepolling_js → frontend_src_hooks_usepolling_js_usepolling (defines)
 

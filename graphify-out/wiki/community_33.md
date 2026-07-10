@@ -1,8 +1,13 @@
-# Community 33: worker.test
+# Community 33: StatusBadge
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 
-- **worker.test** (`tests_worker_test_js`, File, degree: 0)
+- **StatusBadge** (`client_src_components_statusbadge_jsx`, File, degree: 1)
+- **StatusBadge()** (`client_src_components_statusbadge_jsx_statusbadge`, Function, degree: 1)
+
+## Relationships
+
+- client_src_components_statusbadge_jsx → client_src_components_statusbadge_jsx_statusbadge (defines)
 

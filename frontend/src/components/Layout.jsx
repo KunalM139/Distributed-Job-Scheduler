@@ -13,11 +13,29 @@ const NAV_ITEMS = [
     ),
   },
   {
+    to: '/projects',
+    label: 'Projects',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+      </svg>
+    ),
+  },
+  {
     to: '/queues',
     label: 'Queues',
     icon: (
       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+      </svg>
+    ),
+  },
+  {
+    to: '/jobs',
+    label: 'Jobs',
+    icon: (
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0l6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
       </svg>
     ),
   },
@@ -46,15 +64,15 @@ export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const linkClasses = ({ isActive }) =>
-    `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
+    `flex items-center gap-3 px-3 py-2 rounded-lg font-bold transition-transform duration-150 ${
       isActive
-        ? 'bg-accent-500/10 text-accent-500 dark:bg-accent-500/15 dark:text-accent-400'
-        : 'text-surface-600 hover:bg-surface-100 hover:text-surface-900 dark:text-surface-400 dark:hover:bg-surface-800 dark:hover:text-surface-100'
+        ? 'bg-secondary-container text-on-secondary-container translate-x-1'
+        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest'
     }`;
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* ── Mobile overlay ─────────────────────────────────────────────── */}
+    <div className="bg-background text-on-surface min-h-screen flex overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+      {/* Mobile overlay */}
       {sidebarOpen && (
         <div
           className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm lg:hidden"
@@ -62,29 +80,22 @@ export default function Layout() {
         />
       )}
 
-      {/* ── Sidebar ────────────────────────────────────────────────────── */}
-      <aside
+      {/* SideNavBar */}
+      <nav 
         className={`
-          fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-surface-200
-          bg-white transition-transform duration-300 dark:border-surface-800 dark:bg-surface-900
-          lg:static lg:translate-x-0
+          fixed inset-y-0 left-0 z-40 flex w-[240px] flex-col py-6 bg-surface-container-low border-r border-outline-variant
+          transition-transform duration-300 lg:static lg:translate-x-0
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
-        {/* Brand */}
-        <div className="flex h-16 items-center gap-3 border-b border-surface-200 px-5 dark:border-surface-800">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent-500 to-accent-700 text-white shadow-md shadow-accent-500/25">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+        <div className="px-6 mb-8 flex items-center gap-3">
+          <div className="w-8 h-8 rounded border border-outline-variant flex items-center justify-center bg-surface-container-highest">
+            <span className="text-[13px] text-primary font-bold font-mono">&gt;_</span>
           </div>
-          <span className="text-lg font-bold tracking-tight text-surface-900 dark:text-white">
-            JobScheduler
-          </span>
+          <h1 className="text-[16px] font-semibold text-on-surface">Distributed Job Scheduler</h1>
         </div>
-
-        {/* Nav links */}
-        <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+        
+        <div className="flex-1 overflow-y-auto px-4 space-y-1">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
@@ -93,55 +104,52 @@ export default function Layout() {
               onClick={() => setSidebarOpen(false)}
             >
               {item.icon}
-              {item.label}
+              <span className="text-[12px] uppercase tracking-wider font-semibold">{item.label}</span>
             </NavLink>
           ))}
-        </nav>
+        </div>
+      </nav>
 
-        {/* User info + logout */}
-        <div className="border-t border-surface-200 p-4 dark:border-surface-800">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-400 to-accent-600 text-sm font-bold text-white">
-              {user?.name?.charAt(0)?.toUpperCase() ?? '?'}
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-surface-900 dark:text-white">
-                {user?.name ?? 'User'}
-              </p>
-              <p className="truncate text-xs text-surface-500 dark:text-surface-400">
-                {user?.email ?? ''}
-              </p>
-            </div>
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col overflow-hidden min-h-screen">
+        {/* TopAppBar */}
+        <header className="flex justify-between items-center h-16 px-4 w-full shrink-0 z-50 bg-surface border-b border-outline-variant">
+          <div className="flex items-center gap-4">
             <button
-              onClick={logout}
-              title="Logout"
-              className="rounded-lg p-1.5 text-surface-400 transition hover:bg-surface-100 hover:text-danger-500 dark:hover:bg-surface-800 dark:hover:text-danger-400"
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden p-2 text-on-surface-variant hover:text-on-surface transition-colors"
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+            <div className="flex items-center bg-surface-container-highest rounded-full px-3 py-1">
+              <span className="w-2 h-2 rounded-full bg-primary pulse-dot mr-2"></span>
+              <span className="text-[13px] font-mono text-on-surface-variant">Live</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center mr-4">
+              <span className="text-[13px] font-mono text-on-surface-variant mr-2">{user?.email || 'admin@system.local'}</span>
+              <span className="text-[12px] uppercase tracking-widest font-semibold text-inverse-primary bg-primary-fixed/10 px-2 py-1 rounded border border-primary-fixed/20">
+                ADMIN
+              </span>
+            </div>
+            <button 
+              onClick={logout}
+              className="p-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-full transition-colors flex items-center justify-center" 
+              title="Logout"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
               </svg>
             </button>
           </div>
-        </div>
-      </aside>
-
-      {/* ── Main area ──────────────────────────────────────────────────── */}
-      <div className="flex flex-1 flex-col overflow-hidden">
-        {/* Top bar (mobile hamburger) */}
-        <header className="flex h-16 items-center gap-4 border-b border-surface-200 bg-white px-4 dark:border-surface-800 dark:bg-surface-900 lg:hidden">
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="rounded-lg p-2 text-surface-500 hover:bg-surface-100 dark:hover:bg-surface-800"
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </button>
-          <span className="text-lg font-bold text-surface-900 dark:text-white">JobScheduler</span>
         </header>
 
-        {/* Page content */}
-        <main className="flex-1 overflow-y-auto bg-surface-50 p-6 dark:bg-surface-950">
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto bg-background">
           <Outlet />
         </main>
       </div>

@@ -1,13 +1,15 @@
-# Community 25: StatusBadge
+# Community 25: authController
 
-**Members:** 2
+**Members:** 3
 
 ## Nodes
 
-- **StatusBadge** (`client_src_components_statusbadge_jsx`, File, degree: 1)
-- **StatusBadge()** (`client_src_components_statusbadge_jsx_statusbadge`, Function, degree: 1)
+- **authController** (`src_controllers_authcontroller_js`, File, degree: 2)
+- **login()** (`src_controllers_authcontroller_js_login`, Function, degree: 1)
+- **register()** (`src_controllers_authcontroller_js_register`, Function, degree: 1)
 
 ## Relationships
 
-- client_src_components_statusbadge_jsx → client_src_components_statusbadge_jsx_statusbadge (defines)
+- src_controllers_authcontroller_js → src_controllers_authcontroller_js_register (defines)
+- src_controllers_authcontroller_js → src_controllers_authcontroller_js_login (defines)
 

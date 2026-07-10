@@ -1,8 +1,8 @@
-# Community 38: stats
+# Community 38: dlq
 
 **Members:** 1
 
 ## Nodes
 
-- **stats** (`src_routes_stats_js`, File, degree: 0)
+- **dlq** (`src_routes_dlq_js`, File, degree: 0)
 

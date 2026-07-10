@@ -1,13 +1,15 @@
-# Community 24: api
+# Community 24: workerController
 
-**Members:** 2
+**Members:** 3
 
 ## Nodes
 
-- **api** (`client_src_services_api_js`, File, degree: 1)
-- **axios/axios** (`client_src_services_api_js_import_axios_axios`, Module, degree: 1)
+- **workerController** (`src_controllers_workercontroller_js`, File, degree: 2)
+- **getWorker()** (`src_controllers_workercontroller_js_getworker`, Function, degree: 1)
+- **listWorkers()** (`src_controllers_workercontroller_js_listworkers`, Function, degree: 1)
 
 ## Relationships
 
-- client_src_services_api_js → client_src_services_api_js_import_axios_axios (imports)
+- src_controllers_workercontroller_js → src_controllers_workercontroller_js_listworkers (defines)
+- src_controllers_workercontroller_js → src_controllers_workercontroller_js_getworker (defines)
 

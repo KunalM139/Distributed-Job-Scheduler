@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Distributed Job Scheduler - Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#fffeff",
+                        "inverse-primary": "#0059c5",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "surface-variant": "#343535",
+                        "secondary-fixed-dim": "#dbb8ff",
+                        "surface-dim": "#121414",
+                        "primary-fixed": "#d8e2ff",
+                        "surface": "#121414",
+                        "primary-container": "#0070f3",
+                        "primary": "#aec6ff",
+                        "inverse-surface": "#e3e2e2",
+                        "error-container": "#93000a",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-lowest": "#0d0e0f",
+                        "primary-fixed-dim": "#aec6ff",
+                        "on-secondary-fixed-variant": "#6600b7",
+                        "inverse-on-surface": "#303031",
+                        "tertiary": "#ffb596",
+                        "surface-tint": "#aec6ff",
+                        "on-background": "#e3e2e2",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "secondary-container": "#6807ba",
+                        "outline-variant": "#414754",
+                        "background": "#121414",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c1c6d7",
+                        "surface-container-low": "#1b1c1c",
+                        "surface-bright": "#383939",
+                        "on-secondary-fixed": "#2b0052",
+                        "on-primary-container": "#ffffff",
+                        "outline": "#8b90a0",
+                        "secondary-fixed": "#efdbff",
+                        "surface-container-highest": "#343535",
+                        "surface-container-high": "#292a2a",
+                        "on-primary-fixed-variant": "#004397",
+                        "surface-container": "#1f2020",
+                        "on-surface": "#e3e2e2",
+                        "on-tertiary": "#581e00",
+                        "on-primary-fixed": "#001a43",
+                        "secondary": "#dbb8ff",
+                        "on-secondary": "#470083",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-primary": "#002e6b",
+                        "tertiary-container": "#ca4e00",
+                        "on-secondary-container": "#d0a6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "240px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "sidebar-collapsed": "64px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "body-base": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "title-sm": ["Inter"],
+                        "status-badge": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-base": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "status-badge": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(174, 198, 255, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(174, 198, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(174, 198, 255, 0); }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.surface-container-highest');
+            border-radius: theme('borderRadius.full');
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.outline-variant');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-base min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col w-sidebar-width fixed left-0 top-0 h-full py-container-margin z-40 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant dark:border-outline-variant">
+<div class="px-container-margin mb-stack-lg flex items-center gap-3">
+<div class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center bg-surface-container-highest">
+<span class="font-code-sm text-primary font-bold">&gt;_</span>
+</div>
+<div>
+<h1 class="font-title-sm text-title-sm text-on-surface leading-tight">Distributed Job Scheduler</h1>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-gutter space-y-unit">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container dark:bg-secondary-container text-on-secondary-container dark:text-on-secondary-container font-bold rounded-lg translate-x-1 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">folder_shared</span>
+<span class="font-label-caps text-label-caps">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">queue</span>
+<span class="font-label-caps text-label-caps">Queues</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">play_circle</span>
+<span class="font-label-caps text-label-caps">Jobs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">engineering</span>
+<span class="font-label-caps text-label-caps">Workers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest dark:hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">skull</span>
+<span class="font-label-caps text-label-caps">Dead Letter Queue</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-sidebar-width flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-50 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant">
+<div class="flex items-center gap-4">
+<h2 class="font-title-sm text-title-sm text-on-surface mr-4 hidden md:block">Projects</h2>
+<div class="flex items-center bg-surface-container-highest rounded-full px-3 py-1">
+<span class="w-2 h-2 rounded-full bg-primary pulse-dot mr-2"></span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Live</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center mr-4">
+<span class="font-code-sm text-code-sm text-on-surface-variant mr-2">admin@system.local</span>
+<span class="font-label-caps text-label-caps text-inverse-primary bg-primary-fixed/10 px-2 py-1 rounded border border-primary-fixed/20">ADMIN</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-full transition-colors flex items-center justify-center" title="Logout">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-container-margin max-w-[1600px] mx-auto w-full flex-1 flex flex-col gap-container-margin">
+<!-- Projects Header -->
+<div class="flex justify-between items-end mb-4">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Projects</h2>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Manage your projects and access distributed job scheduling resources.</p>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container px-4 py-2 rounded-DEFAULT font-title-sm text-title-sm flex items-center gap-2 transition-all" id="btn-create-project">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add</span>
+                    Create Project
+                </button>
+</div>
+<!-- Bento Grid Layout for Projects -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+<!-- Project Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary transition-colors group relative flex flex-col h-[240px]">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">schema</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Data Ingestion Pipeline</h3>
+</div>
+</div>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant mb-6 line-clamp-2">
+                        High-throughput pipeline for processing daily telemetry logs from edge devices.
+                    </p>
+<div class="mt-auto space-y-4">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-primary/10 text-primary font-label-caps text-label-caps border border-primary/20">
+                                Owner
+                            </span>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/50">
+<div class="font-code-sm text-code-sm text-on-surface-variant text-[11px]">Created 12 Oct 2023</div>
+<button class="text-primary hover:text-primary-container font-title-sm text-title-sm text-[13px] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Manage <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary transition-colors group relative flex flex-col h-[240px]">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">model_training</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">ML Model Retraining</h3>
+</div>
+</div>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant mb-6 line-clamp-2">
+                        Nightly retraining jobs for the recommendation engine using distributed GPU clusters.
+                    </p>
+<div class="mt-auto space-y-4">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary/10 text-secondary font-label-caps text-label-caps border border-secondary/20">
+                                Admin
+                            </span>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/50">
+<div class="font-code-sm text-code-sm text-on-surface-variant text-[11px]">Created 05 Nov 2023</div>
+<button class="text-primary hover:text-primary-container font-title-sm text-title-sm text-[13px] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Manage <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary transition-colors group relative flex flex-col h-[240px] opacity-75 hover:opacity-100">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Financial Reporting</h3>
+</div>
+</div>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant mb-6 line-clamp-2">
+                        End-of-month aggregation tasks. Highly restricted access environment.
+                    </p>
+<div class="mt-auto space-y-4">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps border border-outline-variant">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 0;">visibility</span>
+                                Viewer
+                            </span>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/50">
+<div class="font-code-sm text-code-sm text-on-surface-variant text-[11px]">Created 22 Jan 2024</div>
+<button class="text-primary hover:text-primary-container font-title-sm text-title-sm text-[13px] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                View <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Member Management Section -->
+<div class="mt-8 pt-8 border-t border-outline-variant flex-1 flex flex-col">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Member Management</h2>
+<p class="font-body-base text-body-base text-on-surface-variant">Selected Project: Data Ingestion Pipeline</p>
+</div>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface border border-outline-variant px-4 py-2 rounded-DEFAULT font-title-sm text-title-sm transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0;">person_add</span>
+                        Add Member
+                    </button>
+</div>
+<!-- Data Table for Members -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-3 px-gutter font-label-caps text-label-caps text-outline font-medium tracking-wider w-1/2">Member</th>
+<th class="py-3 px-gutter font-label-caps text-label-caps text-outline font-medium tracking-wider w-1/4">Role</th>
+<th class="py-3 px-gutter font-label-caps text-label-caps text-outline font-medium tracking-wider text-right w-1/4">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-base text-body-base">
+<!-- Row 1: Owner -->
+<tr class="border-b border-outline-variant hover:bg-[#161616] transition-colors group">
+<td class="py-3 px-gutter">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center text-on-surface font-code-sm text-sm">
+                                            AD
+                                        </div>
+<div>
+<div class="text-on-surface font-medium">System Admin (You)</div>
+<div class="text-on-surface-variant font-code-sm text-[12px]">admin@system.local</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-primary/10 text-primary font-label-caps text-label-caps border border-primary/20">
+                                        Owner
+                                    </span>
+</td>
+<td class="py-3 px-gutter text-right">
+<button class="text-outline hover:text-on-surface p-1 opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-30" disabled="" title="Cannot remove yourself">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0;">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Admin -->
+<tr class="border-b border-outline-variant hover:bg-[#161616] transition-colors group">
+<td class="py-3 px-gutter">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center text-on-surface font-code-sm text-sm">
+                                            EC
+                                        </div>
+<div>
+<div class="text-on-surface font-medium">Elena Carter</div>
+<div class="text-on-surface-variant font-code-sm text-[12px]">elena.c@system.local</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary/10 text-secondary font-label-caps text-label-caps border border-secondary/20">
+                                        Admin
+                                    </span>
+</td>
+<td class="py-3 px-gutter text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-on-surface px-2 py-1 rounded text-sm font-medium border border-transparent hover:border-outline-variant">Change Role</button>
+<button class="text-error hover:text-error-container px-2 py-1 rounded text-sm font-medium border border-transparent hover:border-error/30 hover:bg-error/10">Remove</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Viewer -->
+<tr class="hover:bg-[#161616] transition-colors group">
+<td class="py-3 px-gutter">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center text-on-surface font-code-sm text-sm">
+                                            MK
+                                        </div>
+<div>
+<div class="text-on-surface font-medium">Marcus Kim</div>
+<div class="text-on-surface-variant font-code-sm text-[12px]">marcus.k@system.local</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps border border-outline-variant">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 0;">visibility</span>
+                                        Viewer
+                                    </span>
+</td>
+<td class="py-3 px-gutter text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-on-surface px-2 py-1 rounded text-sm font-medium border border-transparent hover:border-outline-variant">Change Role</button>
+<button class="text-error hover:text-error-container px-2 py-1 rounded text-sm font-medium border border-transparent hover:border-error/30 hover:bg-error/10">Remove</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Hidden States (Skeleton, Empty, Error) -->
+<div class="hidden">
+<!-- Skeleton Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col h-[240px] animate-pulse">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3 w-full">
+<div class="w-10 h-10 rounded bg-surface-container-high"></div>
+<div class="h-6 bg-surface-container-high rounded w-1/2"></div>
+</div>
+</div>
+<div class="space-y-2 mb-6">
+<div class="h-4 bg-surface-container-high rounded w-full"></div>
+<div class="h-4 bg-surface-container-high rounded w-3/4"></div>
+</div>
+<div class="mt-auto space-y-4">
+<div class="h-6 bg-surface-container-high rounded w-16"></div>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/50">
+<div class="h-4 bg-surface-container-high rounded w-24"></div>
+<div class="h-4 bg-surface-container-high rounded w-16"></div>
+</div>
+</div>
+</div>
+<!-- Empty State -->
+<div class="flex flex-col items-center justify-center p-12 bg-surface-container-lowest border border-outline-variant rounded-lg border-dashed">
+<div class="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-outline text-3xl">folder_off</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-2">No projects yet</h3>
+<p class="font-body-base text-body-base text-on-surface-variant text-center max-w-md">Create your first project to start managing distributed workloads.</p>
+</div>
+<!-- Error State -->
+<div class="flex flex-col items-center justify-center p-12 bg-error-container/10 border border-error/20 rounded-lg">
+<span class="material-symbols-outlined text-error text-3xl mb-4">error</span>
+<h3 class="font-title-sm text-title-sm text-error mb-2">Failed to load projects</h3>
+<p class="font-body-base text-body-base text-on-surface-variant text-center max-w-md">There was an error communicating with the scheduler API.</p>
+<button class="mt-4 px-4 py-2 border border-outline-variant rounded hover:bg-surface-container-high transition-colors text-on-surface text-sm font-medium">Retry</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Create Project Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center hidden" id="modal-create-project">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="modal-backdrop"></div>
+<!-- Modal Content -->
+<div class="relative bg-surface-container-lowest w-full max-w-lg rounded-xl border border-outline-variant shadow-2xl overflow-hidden flex flex-col transform transition-all scale-95 opacity-0" id="modal-panel">
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h2 class="font-title-sm text-title-sm text-on-surface">Create New Project</h2>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded-full hover:bg-surface-container-high transition-colors" id="btn-close-modal">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+</div>
+<div class="p-6 space-y-6 bg-surface">
+<!-- Project Name -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Project Name</label>
+<input class="w-full bg-surface-dim border border-outline-variant rounded-DEFAULT px-3 py-2 text-body-base text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder-outline-variant/50" placeholder="e.g. Production Data Pipeline" type="text"/>
+</div>
+<!-- Description -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Description</label>
+<textarea class="w-full bg-surface-dim border border-outline-variant rounded-DEFAULT px-3 py-2 text-body-base text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder-outline-variant/50 resize-none" placeholder="Briefly describe the purpose of this project..." rows="3"></textarea>
+</div>
+</div>
+<div class="px-6 py-4 border-t border-outline-variant bg-surface-container-low flex justify-end gap-3">
+<button class="px-4 py-2 rounded-DEFAULT font-title-sm text-title-sm text-on-surface-variant hover:text-on-surface border border-outline-variant hover:bg-surface-container-high transition-colors" id="btn-cancel-modal">
+                    Cancel
+                </button>
+<button class="bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container px-4 py-2 rounded-DEFAULT font-title-sm text-title-sm transition-colors">
+                    Create Project
+                </button>
+</div>
+</div>
+</div>
+<!-- Simple JS for Modal Interaction -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('modal-create-project');
+            const panel = document.getElementById('modal-panel');
+            const btnCreate = document.getElementById('btn-create-project');
+            const btnClose = document.getElementById('btn-close-modal');
+            const btnCancel = document.getElementById('btn-cancel-modal');
+            const backdrop = document.getElementById('modal-backdrop');
+
+            function openModal() {
+                modal.classList.remove('hidden');
+                // Trigger reflow
+                void modal.offsetWidth;
+                panel.classList.remove('scale-95', 'opacity-0');
+                panel.classList.add('scale-100', 'opacity-100');
+            }
+
+            function closeModal() {
+                panel.classList.remove('scale-100', 'opacity-100');
+                panel.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 150); // match transition duration roughly
+            }
+
+            if(btnCreate) btnCreate.addEventListener('click', openModal);
+            if(btnClose) btnClose.addEventListener('click', closeModal);
+            if(btnCancel) btnCancel.addEventListener('click', closeModal);
+            if(backdrop) backdrop.addEventListener('click', closeModal);
+        });
+    </script>
+</body></html>

@@ -1,8 +1,13 @@
-# Community 29: workers
+# Community 29: api
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 
-- **workers** (`src_routes_workers_js`, File, degree: 0)
+- **api** (`frontend_src_services_api_js`, File, degree: 1)
+- **axios/axios** (`frontend_src_services_api_js_import_axios_axios`, Module, degree: 1)
+
+## Relationships
+
+- frontend_src_services_api_js → frontend_src_services_api_js_import_axios_axios (imports)
 

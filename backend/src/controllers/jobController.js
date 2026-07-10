@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const db = require('../db');
 const { errorResponse } = require('../middleware/validate');
+const { emitEvent } = require('../services/socket');
 
 // ─── Helpers ─────────────────────────────────────────────
 
@@ -63,6 +64,8 @@ const createJob = async (req, res) => {
         [id, queueId, cron_expression, type, payload ? JSON.stringify(payload) : null]
       );
 
+      emitEvent('JOB_CREATED', { queueId });
+      emitEvent('DASHBOARD_STATS_UPDATED');
       return res.status(201).json({ data: result.rows[0], scheduled: true });
     }
 
@@ -93,6 +96,8 @@ const createJob = async (req, res) => {
         params
       );
 
+      emitEvent('JOB_CREATED', { queueId });
+      emitEvent('DASHBOARD_STATS_UPDATED');
       return res.status(201).json({ data: result.rows, count: result.rows.length });
     }
 
@@ -106,6 +111,8 @@ const createJob = async (req, res) => {
       [id, queueId, type, payload ? JSON.stringify(payload) : null, status, priority ?? 0, scheduled_at ?? null]
     );
 
+    emitEvent('JOB_CREATED', { queueId });
+    emitEvent('DASHBOARD_STATS_UPDATED');
     return res.status(201).json({ data: result.rows[0] });
   } catch (err) {
     console.error('createJob error:', err);
@@ -159,6 +166,83 @@ const listJobs = async (req, res) => {
   } catch (err) {
     console.error('listJobs error:', err);
     return errorResponse(res, 500, 'Failed to list jobs');
+  }
+};
+
+/**
+ * GET /api/jobs
+ * List all jobs across all queues owned by the current user.
+ * Query params: ?page=1&limit=20&status=failed&queue_id=123
+ */
+const listAllJobs = async (req, res) => {
+  try {
+    const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
+    const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 20, 1), 100);
+    const offset = (page - 1) * limit;
+    const statusFilter = req.query.status || null;
+    const queueFilter = req.query.queue_id || null;
+    const searchFilter = req.query.search || null;
+
+    let countQuery = `
+      SELECT COUNT(*)::int AS total 
+      FROM jobs j
+      JOIN queues q ON j.queue_id = q.id
+      JOIN projects p ON q.project_id = p.id
+      WHERE p.user_id = $1
+    `;
+    let dataQuery = `
+      SELECT j.*, q.name AS queue_name 
+      FROM jobs j
+      JOIN queues q ON j.queue_id = q.id
+      JOIN projects p ON q.project_id = p.id
+      WHERE p.user_id = $1
+    `;
+    
+    const countParams = [req.user.id];
+    const dataParams = [req.user.id];
+    let paramIdx = 2;
+
+    if (statusFilter) {
+      countQuery += ` AND j.status = $${paramIdx}`;
+      dataQuery += ` AND j.status = $${paramIdx}`;
+      countParams.push(statusFilter);
+      dataParams.push(statusFilter);
+      paramIdx++;
+    }
+
+    if (queueFilter) {
+      countQuery += ` AND j.queue_id = $${paramIdx}`;
+      dataQuery += ` AND j.queue_id = $${paramIdx}`;
+      countParams.push(queueFilter);
+      dataParams.push(queueFilter);
+      paramIdx++;
+    }
+
+    if (searchFilter) {
+      countQuery += ` AND (j.id::text ILIKE $${paramIdx} OR j.type ILIKE $${paramIdx})`;
+      dataQuery += ` AND (j.id::text ILIKE $${paramIdx} OR j.type ILIKE $${paramIdx})`;
+      countParams.push(`%${searchFilter}%`);
+      dataParams.push(`%${searchFilter}%`);
+      paramIdx++;
+    }
+
+    dataQuery += ` ORDER BY j.created_at DESC LIMIT $${paramIdx} OFFSET $${paramIdx + 1}`;
+    dataParams.push(limit, offset);
+
+    const [countResult, dataResult] = await Promise.all([
+      db.query(countQuery, countParams),
+      db.query(dataQuery, dataParams),
+    ]);
+
+    return res.json({
+      data: dataResult.rows,
+      total: countResult.rows[0].total,
+      page,
+      limit,
+    });
+  } catch (err) {
+    console.error('listAllJobs error:', err);
+    return errorResponse(res, 500, 'Failed to list all jobs');
   }
 };
 
@@ -222,11 +306,15 @@ const retryJob = async (req, res) => {
     }
 
     const result = await db.query(
-      "UPDATE jobs SET status = 'queued', attempt_count = 0 WHERE id = $1 RETURNING *",
+      `UPDATE jobs
+       SET status = 'queued', attempt_count = 0, scheduled_at = NULL
+       WHERE id = $1 RETURNING *`,
       [id]
     );
 
-    return res.json({ data: result.rows[0], message: 'Job re-queued for retry' });
+    emitEvent('JOB_RETRIED', { jobId: id });
+    emitEvent('DASHBOARD_STATS_UPDATED');
+    return res.json({ data: result.rows[0], message: 'Job retried' });
   } catch (err) {
     console.error('retryJob error:', err);
     return errorResponse(res, 500, 'Failed to retry job');
@@ -244,8 +332,13 @@ const deleteJob = async (req, res) => {
       return errorResponse(res, 404, 'Job not found or not owned by you');
     }
 
-    await db.query('DELETE FROM jobs WHERE id = $1', [id]);
+    const result = await db.query(
+      'DELETE FROM jobs WHERE id = $1 RETURNING id',
+      [id]
+    );
 
+    emitEvent('JOB_UPDATED', { jobId: id });
+    emitEvent('DASHBOARD_STATS_UPDATED');
     return res.json({ data: { id }, message: 'Job deleted' });
   } catch (err) {
     console.error('deleteJob error:', err);
@@ -253,4 +346,4 @@ const deleteJob = async (req, res) => {
   }
 };
 
-module.exports = { createJob, listJobs, getJob, retryJob, deleteJob };
+module.exports = { createJob, listJobs, listAllJobs, getJob, retryJob, deleteJob };

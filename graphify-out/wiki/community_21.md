@@ -1,16 +1,17 @@
-# Community 21: validate
+# Community 21: socket
 
-**Members:** 3
+**Members:** 4
 
 ## Nodes
 
-- **validate** (`src_middleware_validate_js`, File, degree: 2)
-- **errorResponse()** (`src_middleware_validate_js_errorresponse`, Function, degree: 2)
-- **validate()** (`src_middleware_validate_js_validate`, Function, degree: 2)
+- **socket** (`backend_src_services_socket_js`, File, degree: 3)
+- **emitEvent()** (`backend_src_services_socket_js_emitevent`, Function, degree: 1)
+- **getIo()** (`backend_src_services_socket_js_getio`, Function, degree: 1)
+- **initSocket()** (`backend_src_services_socket_js_initsocket`, Function, degree: 1)
 
 ## Relationships
 
-- src_middleware_validate_js → src_middleware_validate_js_errorresponse (defines)
-- src_middleware_validate_js → src_middleware_validate_js_validate (defines)
-- src_middleware_validate_js_validate → src_middleware_validate_js_errorresponse (calls)
+- backend_src_services_socket_js → backend_src_services_socket_js_initsocket (defines)
+- backend_src_services_socket_js → backend_src_services_socket_js_getio (defines)
+- backend_src_services_socket_js → backend_src_services_socket_js_emitevent (defines)
 

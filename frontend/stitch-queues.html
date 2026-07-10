@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Queue Details - Distributed Job Scheduler</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#fffeff",
+                      "inverse-primary": "#0059c5",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "surface-variant": "#343535",
+                      "secondary-fixed-dim": "#dbb8ff",
+                      "surface-dim": "#121414",
+                      "primary-fixed": "#d8e2ff",
+                      "surface": "#121414",
+                      "primary-container": "#0070f3",
+                      "primary": "#aec6ff",
+                      "inverse-surface": "#e3e2e2",
+                      "error-container": "#93000a",
+                      "on-error": "#690005",
+                      "tertiary-fixed": "#ffdbcd",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-lowest": "#0d0e0f",
+                      "primary-fixed-dim": "#aec6ff",
+                      "on-secondary-fixed-variant": "#6600b7",
+                      "inverse-on-surface": "#303031",
+                      "tertiary": "#ffb596",
+                      "surface-tint": "#aec6ff",
+                      "on-background": "#e3e2e2",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "secondary-container": "#6807ba",
+                      "outline-variant": "#414754",
+                      "background": "#121414",
+                      "error": "#ffb4ab",
+                      "on-surface-variant": "#c1c6d7",
+                      "surface-container-low": "#1b1c1c",
+                      "surface-bright": "#383939",
+                      "on-secondary-fixed": "#2b0052",
+                      "on-primary-container": "#ffffff",
+                      "outline": "#8b90a0",
+                      "secondary-fixed": "#efdbff",
+                      "surface-container-highest": "#343535",
+                      "surface-container-high": "#292a2a",
+                      "on-primary-fixed-variant": "#004397",
+                      "surface-container": "#1f2020",
+                      "on-surface": "#e3e2e2",
+                      "on-tertiary": "#581e00",
+                      "on-primary-fixed": "#001a43",
+                      "secondary": "#dbb8ff",
+                      "on-secondary": "#470083",
+                      "on-tertiary-fixed": "#360f00",
+                      "on-primary": "#002e6b",
+                      "tertiary-container": "#ca4e00",
+                      "on-secondary-container": "#d0a6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sidebar-width": "240px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "unit": "4px",
+                      "sidebar-collapsed": "64px",
+                      "gutter": "16px",
+                      "container-margin": "24px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Inter", "sans-serif"],
+                      "body-base": ["Inter", "sans-serif"],
+                      "code-sm": ["JetBrains Mono", "monospace"],
+                      "title-sm": ["Inter", "sans-serif"],
+                      "status-badge": ["Inter", "sans-serif"],
+                      "label-caps": ["Geist", "sans-serif"],
+                      "headline-md": ["Inter", "sans-serif"]
+              },
+              "fontSize": {
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-base": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "code-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "title-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "status-badge": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+          body {
+              background-color: theme('colors.background');
+              color: theme('colors.on-surface');
+          }
+          
+          .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+          }
+          .icon-fill {
+            font-variation-settings: 'FILL' 1;
+          }
+
+          /* Custom Scrollbar for dark theme */
+          ::-webkit-scrollbar {
+              width: 8px;
+              height: 8px;
+          }
+          ::-webkit-scrollbar-track {
+              background: transparent; 
+          }
+          ::-webkit-scrollbar-thumb {
+              background: theme('colors.surface-container-highest'); 
+              border-radius: theme('borderRadius.full');
+          }
+          ::-webkit-scrollbar-thumb:hover {
+              background: theme('colors.outline-variant'); 
+          }
+          
+          .pulse-dot {
+              animation: pulse 2s infinite;
+          }
+          @keyframes pulse {
+              0% { box-shadow: 0 0 0 0 rgba(174, 198, 255, 0.7); }
+              70% { box-shadow: 0 0 0 6px rgba(174, 198, 255, 0); }
+              100% { box-shadow: 0 0 0 0 rgba(174, 198, 255, 0); }
+          }
+          .card-focus:focus-within {
+              border-color: theme('colors.primary');
+              box-shadow: 0 0 0 2px rgba(174, 198, 255, 0.1);
+          }
+          @keyframes subtle-pulse {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0.5; }
+          }
+          .skeleton-loading {
+              animation: subtle-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          }
+      </style>
+</head>
+<body class="bg-background text-on-surface font-body-base min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex flex-col w-sidebar-width fixed left-0 top-0 h-full py-container-margin z-40 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant dark:border-outline-variant">
+<div class="px-container-margin mb-stack-lg flex items-center gap-3">
+<div class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center bg-surface-container-highest">
+<span class="font-code-sm text-primary font-bold">&gt;_</span>
+</div>
+<div>
+<h1 class="font-title-sm text-title-sm text-on-surface leading-tight">Distributed Job Scheduler</h1>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-gutter space-y-unit">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">folder_shared</span>
+<span class="font-label-caps text-label-caps">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container font-bold rounded-lg translate-x-1 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">queue</span>
+<span class="font-label-caps text-label-caps">Queues</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">play_circle</span>
+<span class="font-label-caps text-label-caps">Jobs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">engineering</span>
+<span class="font-label-caps text-label-caps">Workers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">skull</span>
+<span class="font-label-caps text-label-caps">Dead Letter Queue</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-sidebar-width flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-50 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant">
+<!-- Mobile Menu Trigger & Logo (Hidden on desktop) -->
+<div class="md:hidden flex items-center gap-2">
+<button class="text-on-surface-variant p-2 mr-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary">DJS</span>
+</div>
+<div class="hidden md:flex items-center gap-4">
+<div class="flex items-center bg-surface-container-highest rounded-full px-3 py-1">
+<span class="w-2 h-2 rounded-full bg-primary pulse-dot mr-2"></span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Live</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center mr-4">
+<span class="font-code-sm text-code-sm text-on-surface-variant mr-2">admin@system.local</span>
+<span class="font-label-caps text-label-caps text-inverse-primary bg-primary-fixed/10 px-2 py-1 rounded border border-primary-fixed/20">ADMIN</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-full transition-colors flex items-center justify-center" title="Logout">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<div class="p-container-margin flex-1 flex flex-col gap-container-margin max-w-[1600px] mx-auto w-full">
+<!-- Queue Detail Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
+<div>
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-on-surface-variant font-label-caps text-label-caps mb-2">
+<a class="hover:text-primary transition-colors" href="#">QUEUES</a>
+<span class="material-symbols-outlined" style="font-size: 14px;">chevron_right</span>
+<span class="text-on-surface">DATA_PIPELINE_HIGH</span>
+</div>
+<div class="flex items-center gap-4">
+<h1 class="font-headline-md text-headline-md text-on-surface">data-pipeline-high</h1>
+<!-- Live Indicator & Status Badge -->
+<div class="flex items-center gap-2 bg-[#1b1c1c] border border-[#333333] rounded-full px-3 py-1">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="font-status-badge text-status-badge text-primary">Active</span>
+</div>
+</div>
+</div>
+<!-- Top Actions -->
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-lg border border-[#444] bg-transparent text-on-surface font-title-sm text-title-sm hover:border-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">pause</span>
+                    Pause Queue
+                </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-title-sm text-title-sm hover:bg-primary-fixed-dim transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined icon-fill">add</span>
+                    Create Job
+                </button>
+</div>
+</div>
+<!-- Configuration Cards (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
+<!-- Card 1: Concurrency -->
+<div class="bg-[#111111] border border-[#333333] rounded-xl p-stack-md flex flex-col gap-stack-sm hover:border-outline-variant transition-colors card-focus" tabindex="0">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-caps text-label-caps mb-2">
+<span class="material-symbols-outlined" style="font-size: 16px;">speed</span>
+                        CONCURRENCY
+                    </div>
+<div class="flex items-end gap-2">
+<span class="font-display-lg text-display-lg leading-none">128</span>
+<span class="text-on-surface-variant font-body-base text-body-base mb-1">/ 256 max</span>
+</div>
+<div class="mt-auto w-full bg-[#1b1c1c] h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 50%;"></div>
+</div>
+<div class="text-xs text-on-surface-variant mt-1 text-right">50% utilization</div>
+</div>
+<!-- Card 2: Priority -->
+<div class="bg-[#111111] border border-[#333333] rounded-xl p-stack-md flex flex-col gap-stack-sm hover:border-outline-variant transition-colors card-focus" tabindex="0">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined" style="font-size: 16px;">priority_high</span>
+                            PRIORITY LEVEL
+                        </div>
+</div>
+<div class="flex-1 flex items-center">
+<span class="text-tertiary font-headline-md text-headline-md">High (10)</span>
+</div>
+<div class="mt-auto text-xs text-on-surface-variant bg-[#1b1c1c] p-2 rounded border border-[#333333]">
+                        Preempts standard and low priority queues.
+                    </div>
+</div>
+<!-- Card 3: Retry Policy -->
+<div class="bg-[#111111] border border-[#333333] rounded-xl p-stack-md flex flex-col gap-stack-sm hover:border-outline-variant transition-colors card-focus" tabindex="0">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-caps text-label-caps mb-2">
+<span class="material-symbols-outlined" style="font-size: 16px;">replay</span>
+                        RETRY POLICY
+                    </div>
+<div class="flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Max Attempts:</span>
+<span class="font-title-sm text-title-sm text-on-surface">3</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Strategy:</span>
+<span class="font-code-sm text-code-sm text-primary">exponential_backoff</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Base Delay:</span>
+<span class="font-code-sm text-code-sm text-on-surface">5000ms</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Job List Table -->
+<div class="bg-[#111111] border border-[#333333] rounded-xl flex flex-col flex-1 overflow-hidden">
+<!-- Table Header Controls -->
+<div class="p-stack-md border-b border-[#333333] flex justify-between items-center bg-[#161616]">
+<h2 class="font-title-sm text-title-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined">list_alt</span>
+                        Jobs
+                        <span class="bg-[#292a2a] text-on-surface-variant px-2 py-0.5 rounded text-xs ml-2">1,204</span>
+</h2>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<div class="relative w-full sm:w-64 border border-[#444] rounded-lg bg-[#111111] focus-within:border-primary transition-colors flex items-center px-3 py-1">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" style="font-size: 18px;">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-full placeholder-on-surface-variant p-0 m-0" placeholder="Search Job ID..." type="text"/>
+</div>
+<button class="p-1.5 rounded-lg border border-[#444] bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-[#1b1c1c] transition-colors" title="Filter">
+<span class="material-symbols-outlined" style="font-size: 20px;">filter_list</span>
+</button>
+<button class="p-1.5 rounded-lg border border-[#444] bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-[#1b1c1c] transition-colors" title="Density">
+<span class="material-symbols-outlined" style="font-size: 20px;">density_medium</span>
+</button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="bg-[#111111] border-b border-[#333333]">
+<th class="py-3 px-4 font-label-caps text-label-caps text-[#888888] sticky top-0">JOB ID</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-[#888888] sticky top-0">TYPE</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-[#888888] sticky top-0">STATUS</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-[#888888] sticky top-0">PRIORITY</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-[#888888] sticky top-0">ATTEMPTS</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-[#888888] sticky top-0">CREATED AT</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-[#888888] sticky top-0 text-right">ACTIONS</th>
+</tr>
+</thead>
+<tbody class="font-body-base text-body-base divide-y divide-[#333333]">
+<!-- Row 1: Running -->
+<tr class="hover:bg-[#161616] transition-colors group cursor-pointer h-12">
+<td class="py-3 px-4 font-code-sm text-code-sm text-primary">job-9a8b-7c6d</td>
+<td class="py-3 px-4 font-body-base text-body-base text-on-surface">DataIngestWorker</td>
+<td class="py-3 px-4">
+<div class="inline-flex items-center gap-1.5 bg-[rgba(174,198,255,0.1)] px-2 py-1 rounded text-primary font-status-badge text-status-badge border border-[rgba(174,198,255,0.2)]">
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+                                            Running
+                                        </div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">1</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">1/3</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">10:42:01 AM</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-[#292a2a] transition-colors" title="View Details">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-[#292a2a] transition-colors" title="Kill Job">
+<span class="material-symbols-outlined" style="font-size: 18px;">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Queued -->
+<tr class="hover:bg-[#161616] transition-colors group cursor-pointer h-12">
+<td class="py-3 px-4 font-code-sm text-code-sm text-on-surface">job-1f2e-3d4c</td>
+<td class="py-3 px-4 font-body-base text-body-base text-on-surface">ModelTrainTask</td>
+<td class="py-3 px-4">
+<div class="inline-flex items-center gap-1.5 bg-[#1b1c1c] px-2 py-1 rounded text-on-surface-variant font-status-badge text-status-badge border border-[#333333]">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+                                            Queued
+                                        </div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">2</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">0/3</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">10:41:55 AM</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-[#292a2a] transition-colors" title="View Details">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Failed -->
+<tr class="hover:bg-[#161616] transition-colors group cursor-pointer h-12">
+<td class="py-3 px-4 font-code-sm text-code-sm text-on-surface">job-5b6a-798c</td>
+<td class="py-3 px-4 font-body-base text-body-base text-on-surface">SyncDatabaseUser</td>
+<td class="py-3 px-4">
+<div class="inline-flex items-center gap-1.5 bg-[rgba(255,180,171,0.1)] px-2 py-1 rounded text-error font-status-badge text-status-badge border border-[rgba(255,180,171,0.2)]">
+<div class="w-1.5 h-1.5 rounded-full bg-error"></div>
+                                            Failed
+                                        </div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">1</td>
+<td class="py-3 px-4 text-error font-code-sm text-code-sm">3/3</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">10:40:12 AM</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-[#292a2a] transition-colors" title="Retry">
+<span class="material-symbols-outlined" style="font-size: 18px;">replay</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-[#292a2a] transition-colors" title="View Details">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Completed -->
+<tr class="hover:bg-[#161616] transition-colors group cursor-pointer h-12">
+<td class="py-3 px-4 font-code-sm text-code-sm text-on-surface">job-99zz-88yy</td>
+<td class="py-3 px-4 font-body-base text-body-base text-on-surface text-on-surface-variant">DataIngestWorker</td>
+<td class="py-3 px-4">
+<div class="inline-flex items-center gap-1.5 bg-[rgba(163,222,176,0.1)] px-2 py-1 rounded text-[#a3deb0] font-status-badge text-status-badge border border-[rgba(163,222,176,0.2)]">
+<div class="w-1.5 h-1.5 rounded-full bg-[#a3deb0]"></div>
+                                            Completed
+                                        </div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">3</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">1/3</td>
+<td class="py-3 px-4 text-on-surface-variant font-code-sm text-code-sm">10:35:00 AM</td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-[#292a2a] transition-colors" title="View Details">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Loading Skeleton Example -->
+<tr class="h-12 border-t border-[#333333]">
+<td class="px-4 py-3"><div class="h-4 bg-[#292a2a] rounded w-24 skeleton-loading"></div></td>
+<td class="px-4 py-3"><div class="h-4 bg-[#292a2a] rounded w-32 skeleton-loading"></div></td>
+<td class="px-4 py-3"><div class="h-6 bg-[#292a2a] rounded w-20 skeleton-loading"></div></td>
+<td class="px-4 py-3"><div class="h-4 bg-[#292a2a] rounded w-8 skeleton-loading"></div></td>
+<td class="px-4 py-3"><div class="h-4 bg-[#292a2a] rounded w-8 skeleton-loading"></div></td>
+<td class="px-4 py-3"><div class="h-4 bg-[#292a2a] rounded w-24 skeleton-loading"></div></td>
+<td class="px-4 py-3"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="p-3 border-t border-[#333333] bg-[#161616] flex justify-between items-center text-sm text-on-surface-variant">
+<div>Showing 1 to 5 of 1,204 jobs</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded border border-[#444] hover:bg-[#292a2a] disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1 rounded border border-[#444] hover:bg-[#292a2a]">Next</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

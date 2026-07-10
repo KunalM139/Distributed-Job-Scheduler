@@ -1,15 +1,19 @@
-# Community 20: authController
+# Community 20: WorkersPage
 
-**Members:** 3
+**Members:** 5
 
 ## Nodes
 
-- **authController** (`src_controllers_authcontroller_js`, File, degree: 2)
-- **login()** (`src_controllers_authcontroller_js_login`, Function, degree: 1)
-- **register()** (`src_controllers_authcontroller_js_register`, Function, degree: 1)
+- **WorkersPage** (`frontend_src_pages_workerspage_jsx`, File, degree: 4)
+- **../hooks/usePolling/usePolling** (`frontend_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling`, Module, degree: 1)
+- **react/useState** (`frontend_src_pages_workerspage_jsx_import_react_usestate`, Module, degree: 1)
+- **../services/api/api** (`frontend_src_pages_workerspage_jsx_import_services_api_api`, Module, degree: 1)
+- **WorkersPage()** (`frontend_src_pages_workerspage_jsx_workerspage`, Function, degree: 1)
 
 ## Relationships
 
-- src_controllers_authcontroller_js → src_controllers_authcontroller_js_register (defines)
-- src_controllers_authcontroller_js → src_controllers_authcontroller_js_login (defines)
+- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_import_react_usestate (imports)
+- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_import_services_api_api (imports)
+- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_import_hooks_usepolling_usepolling (imports)
+- frontend_src_pages_workerspage_jsx → frontend_src_pages_workerspage_jsx_workerspage (defines)
 

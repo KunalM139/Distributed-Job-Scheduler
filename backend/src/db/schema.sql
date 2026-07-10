@@ -21,6 +21,15 @@ CREATE TABLE IF NOT EXISTS projects (
   created_at  TIMESTAMP DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS project_members (
+  id          UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  project_id  UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  user_id     UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  role        VARCHAR(20) NOT NULL CHECK (role IN ('OWNER', 'ADMIN', 'VIEWER')),
+  created_at  TIMESTAMP DEFAULT now(),
+  UNIQUE(project_id, user_id)
+);
+
 CREATE TABLE IF NOT EXISTS retry_policies (
   id                  UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   strategy            VARCHAR(20) NOT NULL CHECK (strategy IN ('fixed', 'linear', 'exponential')),

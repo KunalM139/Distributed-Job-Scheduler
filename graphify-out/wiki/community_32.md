@@ -1,8 +1,13 @@
-# Community 32: setup
+# Community 32: statsController
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 
-- **setup** (`tests_setup_js`, File, degree: 0)
+- **statsController** (`src_controllers_statscontroller_js`, File, degree: 1)
+- **getDashboardStats()** (`src_controllers_statscontroller_js_getdashboardstats`, Function, degree: 1)
+
+## Relationships
+
+- src_controllers_statscontroller_js → src_controllers_statscontroller_js_getdashboardstats (defines)
 

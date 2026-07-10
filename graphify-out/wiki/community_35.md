@@ -1,8 +1,8 @@
-# Community 35: jobs.test
+# Community 35: queue.test
 
 **Members:** 1
 
 ## Nodes
 
-- **jobs.test** (`tests_jobs_test_js`, File, degree: 0)
+- **queue.test** (`tests_queue_test_js`, File, degree: 0)
 
