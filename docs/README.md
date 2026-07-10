@@ -1,89 +1,138 @@
 # Distributed Job Scheduler
 
 ## Project Overview
-A production-inspired distributed job scheduling platform that reliably executes async background jobs across multiple workers. Built to handle robust job queues with priority, concurrency limits, and retry policies, this system guarantees atomic job execution and handles worker failures gracefully.
+A production-ready distributed job scheduling platform that reliably executes async background jobs across multiple workers. Built to handle robust job queues with priority, concurrency limits, and dynamic retry policies, this system guarantees atomic job execution and handles worker failures gracefully.
 
-## Tech Stack
+## Key Features
+- **Job Scheduling:** Immediate, delayed, scheduled (cron), and batch jobs.
+- **Worker Pool:** Multiple worker processes running concurrently, claiming jobs atomically to prevent duplicates.
+- **Robust Retry Policies:** Fixed, linear, and exponential backoff retry strategies for failing jobs.
+- **Dead Letter Queue (DLQ):** Automatically quarantines permanently failed jobs for manual inspection and retry.
+- **AI Failure Summaries:** Integrates with Gemini AI to provide actionable summaries of why jobs failed in the DLQ.
+- **Role-Based Access Control (RBAC):** Projects support Owners, Admins, and Viewers with distinct permissions.
+- **Rate Limiting:** Protects the API from abuse with global and auth-specific rate limiters.
+- **Real-Time Dashboard:** A React-based frontend providing live queue health, worker status, job logs, and overall system metrics powered by WebSockets.
+
+## Technology Stack
 * **Backend**: Node.js, Express.js
-* **Database**: PostgreSQL
+* **Database**: PostgreSQL (serves as both datastore and job queue)
 * **Frontend**: React, Vite, Tailwind CSS, Recharts
 * **Real-time Updates**: Socket.IO
 * **Auth**: JWT
 * **Job scheduling**: node-cron
+* **Testing**: Jest, Supertest
 
-## Architecture Overview
-The system follows a standard distributed architecture: 
+## System Architecture
+
+The system follows a scalable distributed architecture: 
 **Client** → **API Server** → **PostgreSQL (job queue)** → **Worker Pool** → **Dead Letter Queue**. 
 
-Clients submit jobs to the API, which persists them in PostgreSQL. The worker pool continuously polls the database to claim and execute pending jobs atomically. Any jobs that exhaust their retry attempts are safely routed to a Dead Letter Queue (DLQ) for manual inspection and retry.
+![Architecture Diagram](./architecture-diagram.png)
+
+Clients submit jobs to the API, which persists them in PostgreSQL. The worker pool continuously polls the database to claim and execute pending jobs atomically via `SELECT ... FOR UPDATE SKIP LOCKED`. Workers emit heartbeats to indicate health; crashed workers have their running jobs automatically recovered. Any jobs that exhaust their retry attempts are safely routed to a Dead Letter Queue (DLQ) for manual inspection and retry.
+
+## Entity Relationship Diagram (Database Schema)
+
+The PostgreSQL database relies on 11 core tables tightly coupled via foreign keys to ensure referential integrity.
+
+![ER Diagram](./er-diagram.png)
 
 ## Prerequisites
 * Node.js v18+
 * PostgreSQL 14+
 * npm
 
-## Setup Instructions
+## Installation & Setup
 
-**Backend:**
+**1. Clone and Install**
 ```bash
 git clone <repo>
 cd backend
 npm install
-cp .env.example .env
-# Fill in DATABASE_URL and JWT_SECRET in .env
+cd ../frontend
+npm install
+```
+
+**2. Environment Variables**
+Copy `.env.example` to `.env` in both `backend/` and `frontend/` directories.
+- **Backend (`.env`)**:
+  - `DATABASE_URL`: PostgreSQL connection string (e.g. `postgresql://postgres:password@localhost:5432/job_scheduler`)
+  - `JWT_SECRET`: Secret key for signing tokens
+  - `PORT`: API server port (default 3000)
+  - `GEMINI_API_KEY`: API key for Gemini AI failure summaries
+- **Frontend (`.env`)**:
+  - `VITE_API_URL`: Backend API base URL (default `http://localhost:3000`)
+
+**3. Database Initialization**
+```bash
 psql -U postgres -d your_db -f src/db/schema.sql
+```
+
+## Running the Application
+
+**Running Backend:**
+```bash
+cd backend
 npm run dev
 ```
 
-**Frontend:**
+**Running Frontend:**
 ```bash
 cd frontend
-npm install
-cp .env.example .env
-# Set VITE_API_URL=http://localhost:3000
 npm run dev
 ```
 
-**Worker:**
+**Running Workers:**
+Start one or more workers in separate terminal windows to process jobs:
 ```bash
 cd backend
 node src/workers/worker.js
 ```
 
-## Environment Variables
+**Running Tests:**
+```bash
+cd backend
+npm test
+```
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `DATABASE_URL` | Yes | PostgreSQL connection string |
-| `JWT_SECRET` | Yes | Secret key for JWT signing |
-| `PORT` | No | API server port (default 3000) |
-| `VITE_API_URL` | Yes (frontend) | Backend API base URL |
+## Folder Structure
+```text
+distributed-job-scheduler/
+  /backend
+    /src
+      /routes         → API endpoints
+      /controllers    → Business logic
+      /middleware     → JWT, RBAC, Rate Limiting, Validation
+      /models         → Database queries
+      /workers        → Core job execution engine
+      /services       → Retry logic, heartbeats, cron, AI summaries, websockets
+      /db             → Connection pooling and schema
+    /tests            → Jest test suites
+    server.js
+  /frontend
+    /src
+      /pages          → React views (Dashboard, Queues, Workers, DLQ)
+      /components     → Modals, layouts
+      /services       → Axios API client
+      /context        → Auth & Socket contexts
+      /hooks          → Live polling and socket event hooks
+```
 
-## API Endpoints Summary
+## API Overview
+The REST API is secured with JWT authentication and RBAC. For full details, see `api-docs.md`.
+- **Auth**: `/api/auth/register`, `/api/auth/login`
+- **Projects**: `/api/projects`, `/api/projects/:id/members`
+- **Queues**: `/api/projects/:projectId/queues`, `/api/queues/:id`
+- **Jobs**: `/api/queues/:queueId/jobs`, `/api/jobs/:id`, `/api/jobs/:id/retry`
+- **Workers**: `/api/workers`, `/api/workers/:id`
+- **DLQ**: `/api/dlq`, `/api/dlq/:id/retry`
+- **Stats**: `/api/stats`
 
-| Category | Method | Endpoint |
-|----------|--------|----------|
-| **Auth** | POST | `/api/auth/register` |
-| | POST | `/api/auth/login` |
-| **Projects** | GET | `/api/projects` |
-| | POST | `/api/projects` |
-| | DELETE | `/api/projects/:id` |
-| **Queues** | GET | `/api/projects/:projectId/queues` |
-| | POST | `/api/projects/:projectId/queues` |
-| | PATCH | `/api/queues/:id` |
-| | POST | `/api/queues/:id/pause` |
-| | POST | `/api/queues/:id/resume` |
-| | GET | `/api/queues/:id/stats` |
-| **Jobs** | POST | `/api/queues/:queueId/jobs` |
-| | GET | `/api/queues/:queueId/jobs` |
-| | GET | `/api/jobs/:id` |
-| | DELETE | `/api/jobs/:id` |
-| | POST | `/api/jobs/:id/retry` |
-| **Workers** | GET | `/api/workers` |
-| | GET | `/api/workers/:id` |
-| **DLQ** | GET | `/api/dlq` |
-| | POST | `/api/dlq/:id/retry` |
-| **Stats** | GET | `/api/stats` |
+## Bonus Features Implemented
+- **Role-Based Access Control (RBAC):** Granular permissions for project Owners, Admins, and Viewers.
+- **AI Failure Analysis:** Gemini AI automatically analyzes DLQ job failures and suggests fixes.
+- **WebSocket Live Updates:** Instant UI updates when jobs complete or fail.
+- **Rate Limiting:** Protects API routes from excessive polling and abuse.
 
 ## Key Design Decisions
 * **Atomic Job Claiming:** Utilizes PostgreSQL's `SELECT FOR UPDATE SKIP LOCKED` for lock-free, atomic job claiming, ensuring no two concurrent workers ever pick the same job.

@@ -14,31 +14,41 @@ const listDLQ = async (req, res) => {
     const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 20, 1), 100);
     const offset = (page - 1) * limit;
 
-    const [countResult, dataResult] = await Promise.all([
-      db.query('SELECT COUNT(*)::int AS total FROM dead_letter_queue'),
-      db.query(
-        `SELECT
-           dlq.id,
-           dlq.job_id,
-           dlq.queue_id,
-           dlq.failure_reason,
-           dlq.total_attempts,
-           dlq.failed_at,
-           j.type   AS job_type,
-           j.payload AS job_payload,
-           q.name   AS queue_name
-         FROM dead_letter_queue dlq
-         JOIN jobs j   ON j.id = dlq.job_id
-         JOIN queues q ON q.id = dlq.queue_id
-         ORDER BY dlq.failed_at DESC
-         LIMIT $1 OFFSET $2`,
-        [limit, offset]
-      ),
-    ]);
+    const result = await db.query(
+      `SELECT dlq.id,
+              dlq.job_id,
+              dlq.queue_id,
+              dlq.failure_reason,
+              dlq.total_attempts,
+              dlq.failed_at,
+              dlq.ai_summary,
+              j.type   AS job_type,
+              j.payload AS job_payload,
+              q.name   AS queue_name
+       FROM dead_letter_queue dlq
+       JOIN jobs j ON dlq.job_id = j.id
+       JOIN queues q ON dlq.queue_id = q.id
+       LEFT JOIN project_members pm ON q.project_id = pm.project_id
+       JOIN projects p ON q.project_id = p.id
+       WHERE (p.user_id = $1 OR pm.user_id = $1)
+       ORDER BY dlq.failed_at DESC
+       LIMIT $2 OFFSET $3`,
+      [req.user.id, limit, offset]
+    );
+
+    const countRes = await db.query(
+      `SELECT COUNT(DISTINCT dlq.id)::int AS total
+       FROM dead_letter_queue dlq
+       JOIN queues q ON dlq.queue_id = q.id
+       LEFT JOIN project_members pm ON q.project_id = pm.project_id
+       JOIN projects p ON q.project_id = p.id
+       WHERE (p.user_id = $1 OR pm.user_id = $1)`,
+      [req.user.id]
+    );
 
     return res.json({
-      data: dataResult.rows,
-      total: countResult.rows[0].total,
+      data: result.rows,
+      total: countRes.rows[0].total,
       page,
       limit,
     });

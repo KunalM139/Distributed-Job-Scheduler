@@ -1,6 +1,6 @@
 # Community 34: auth.test
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 

@@ -16,25 +16,45 @@
       <data key="node_type">File</data>
       <data key="source_file">.\backend\jest.config.js</data>
     </node>
+    <node id="backend_migrate_js">
+      <data key="label">migrate</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\backend\migrate.js</data>
+    </node>
+    <node id="backend_migrate_js_run">
+      <data key="label">run()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\backend\migrate.js</data>
+    </node>
+    <node id="backend_scripts_backfill_project_members_js">
+      <data key="label">backfill-project-members</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\backend\scripts\backfill-project-members.js</data>
+    </node>
+    <node id="backend_scripts_backfill_project_members_js_runmigration">
+      <data key="label">runMigration()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\backend\scripts\backfill-project-members.js</data>
+    </node>
     <node id="backend_server_js">
       <data key="label">server</data>
       <data key="node_type">File</data>
       <data key="source_file">.\backend\server.js</data>
     </node>
-    <node id="src_controllers_authcontroller_js">
+    <node id="backend_src_controllers_authcontroller_js">
       <data key="label">authController</data>
       <data key="node_type">File</data>
-      <data key="source_file">.\src\controllers\authController.js</data>
+      <data key="source_file">.\backend\src\controllers\authController.js</data>
     </node>
-    <node id="src_controllers_authcontroller_js_register">
+    <node id="backend_src_controllers_authcontroller_js_register">
       <data key="label">register()</data>
       <data key="node_type">Function</data>
-      <data key="source_file">.\src\controllers\authController.js</data>
+      <data key="source_file">.\backend\src\controllers\authController.js</data>
     </node>
-    <node id="src_controllers_authcontroller_js_login">
+    <node id="backend_src_controllers_authcontroller_js_login">
       <data key="label">login()</data>
       <data key="node_type">Function</data>
-      <data key="source_file">.\src\controllers\authController.js</data>
+      <data key="source_file">.\backend\src\controllers\authController.js</data>
     </node>
     <node id="backend_src_controllers_dlqcontroller_js">
       <data key="label">dlqController</data>
@@ -181,15 +201,15 @@
       <data key="node_type">Function</data>
       <data key="source_file">.\backend\src\controllers\queueController.js</data>
     </node>
-    <node id="src_controllers_statscontroller_js">
+    <node id="backend_src_controllers_statscontroller_js">
       <data key="label">statsController</data>
       <data key="node_type">File</data>
-      <data key="source_file">.\src\controllers\statsController.js</data>
+      <data key="source_file">.\backend\src\controllers\statsController.js</data>
     </node>
-    <node id="src_controllers_statscontroller_js_getdashboardstats">
+    <node id="backend_src_controllers_statscontroller_js_getdashboardstats">
       <data key="label">getDashboardStats()</data>
       <data key="node_type">Function</data>
-      <data key="source_file">.\src\controllers\statsController.js</data>
+      <data key="source_file">.\backend\src\controllers\statsController.js</data>
     </node>
     <node id="src_controllers_workercontroller_js">
       <data key="label">workerController</data>
@@ -211,15 +231,30 @@
       <data key="node_type">File</data>
       <data key="source_file">.\src\db\index.js</data>
     </node>
-    <node id="src_middleware_auth_js">
+    <node id="backend_src_middleware_auth_js">
       <data key="label">auth</data>
       <data key="node_type">File</data>
-      <data key="source_file">.\src\middleware\auth.js</data>
+      <data key="source_file">.\backend\src\middleware\auth.js</data>
     </node>
-    <node id="src_middleware_auth_js_authenticate">
+    <node id="backend_src_middleware_auth_js_authenticate">
       <data key="label">authenticate()</data>
       <data key="node_type">Function</data>
-      <data key="source_file">.\src\middleware\auth.js</data>
+      <data key="source_file">.\backend\src\middleware\auth.js</data>
+    </node>
+    <node id="backend_src_middleware_ratelimiter_js">
+      <data key="label">rateLimiter</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\backend\src\middleware\rateLimiter.js</data>
+    </node>
+    <node id="backend_src_middleware_rbac_js">
+      <data key="label">rbac</data>
+      <data key="node_type">File</data>
+      <data key="source_file">.\backend\src\middleware\rbac.js</data>
+    </node>
+    <node id="backend_src_middleware_rbac_js_requirerole">
+      <data key="label">requireRole()</data>
+      <data key="node_type">Function</data>
+      <data key="source_file">.\backend\src\middleware\rbac.js</data>
     </node>
     <node id="src_middleware_validate_js">
       <data key="label">validate</data>
@@ -241,10 +276,10 @@
       <data key="node_type">File</data>
       <data key="source_file">.\src\routes\auth.js</data>
     </node>
-    <node id="src_routes_dlq_js">
+    <node id="backend_src_routes_dlq_js">
       <data key="label">dlq</data>
       <data key="node_type">File</data>
-      <data key="source_file">.\src\routes\dlq.js</data>
+      <data key="source_file">.\backend\src\routes\dlq.js</data>
     </node>
     <node id="backend_src_routes_jobs_js">
       <data key="label">jobs</data>
@@ -256,10 +291,10 @@
       <data key="node_type">File</data>
       <data key="source_file">.\backend\src\routes\projects.js</data>
     </node>
-    <node id="src_routes_queues_js">
+    <node id="backend_src_routes_queues_js">
       <data key="label">queues</data>
       <data key="node_type">File</data>
-      <data key="source_file">.\src\routes\queues.js</data>
+      <data key="source_file">.\backend\src\routes\queues.js</data>
     </node>
     <node id="src_routes_stats_js">
       <data key="label">stats</data>
@@ -1256,38 +1291,13 @@
       <data key="node_type">Module</data>
       <data key="source_file">.\frontend\vite.config.js</data>
     </node>
-    <node id="tests_auth_test_js">
-      <data key="label">auth.test</data>
-      <data key="node_type">File</data>
-      <data key="source_file">.\tests\auth.test.js</data>
-    </node>
-    <node id="tests_jobs_test_js">
-      <data key="label">jobs.test</data>
-      <data key="node_type">File</data>
-      <data key="source_file">.\tests\jobs.test.js</data>
-    </node>
-    <node id="tests_queue_test_js">
-      <data key="label">queue.test</data>
-      <data key="node_type">File</data>
-      <data key="source_file">.\tests\queue.test.js</data>
-    </node>
-    <node id="tests_setup_js">
-      <data key="label">setup</data>
-      <data key="node_type">File</data>
-      <data key="source_file">.\tests\setup.js</data>
-    </node>
-    <node id="tests_worker_test_js">
-      <data key="label">worker.test</data>
-      <data key="node_type">File</data>
-      <data key="source_file">.\tests\worker.test.js</data>
-    </node>
-    <edge id="e0" source="src_controllers_authcontroller_js" target="src_controllers_authcontroller_js_register">
+    <edge id="e0" source="backend_migrate_js" target="backend_migrate_js_run">
       <data key="relation">defines</data>
       <data key="confidence">Extracted</data>
       <data key="confidence_score">1</data>
       <data key="weight">1</data>
     </edge>
-    <edge id="e1" source="src_controllers_authcontroller_js" target="src_controllers_authcontroller_js_login">
+    <edge id="e1" source="backend_scripts_backfill_project_members_js" target="backend_scripts_backfill_project_members_js_runmigration">
       <data key="relation">defines</data>
       <data key="confidence">Extracted</data>
       <data key="confidence_score">1</data>

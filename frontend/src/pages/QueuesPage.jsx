@@ -3,6 +3,7 @@ import { useSocket } from '../context/SocketContext';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
 import StatusBadge from '../components/StatusBadge';
+import useSocketEvent from '../hooks/useSocketEvent';
 import toast from 'react-hot-toast';
 
 const EMPTY_QUEUE = {
@@ -38,7 +39,12 @@ export default function QueuesPage() {
       await Promise.all(
         projs.map(async (p) => {
           const qRes = await api.get(`/api/projects/${p.id}/queues`);
-          qRes.data.data.forEach((q) => allQueues.push({ ...q, project_name: p.name, project_id: p.id }));
+          qRes.data.data.forEach((q) => allQueues.push({ 
+            ...q, 
+            project_name: p.name, 
+            project_id: p.id,
+            user_role: p.user_role 
+          }));
         })
       );
       setQueues(allQueues);
@@ -66,6 +72,10 @@ export default function QueuesPage() {
       socket.off('QUEUE_UPDATED', handleEvent);
     };
   }, [socket, fetchData]);
+
+  // Re-fetch when queues are created or updated via Socket.IO
+  useSocketEvent('queue:created', () => fetchData());
+  useSocketEvent('queue:updated', () => fetchData());
 
   const openModal = () => {
     setForm({ ...EMPTY_QUEUE });

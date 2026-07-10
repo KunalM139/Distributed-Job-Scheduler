@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS dead_letter_queue (
   queue_id       UUID NOT NULL REFERENCES queues(id) ON DELETE CASCADE,
   failure_reason TEXT,
   total_attempts INT NOT NULL,
+  ai_summary     JSONB,
   failed_at      TIMESTAMP DEFAULT now()
 );
 

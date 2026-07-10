@@ -186,15 +186,15 @@
 
 ### Community 9 — queueController (9 nodes, cohesion: 0.39)
 
-- queueController
-- createQueue()
-- getOwnedQueue()
-- getQueueStats()
-- listQueues()
-- pauseQueue()
-- resumeQueue()
-- updateQueue()
-- verifyProjectOwnership()
+- DeadLetterPage
+- DeadLetterPage()
+- ../components/AISummaryModal/AISummaryModal
+- ../hooks/useSocketEvent/useSocketEvent
+- react-hot-toast/toast
+- react/useCallback
+- react/useEffect
+- react/useState
+- ../services/api/api
 
 ### Community 10 — jobController (9 nodes, cohesion: 0.36)
 
@@ -289,9 +289,9 @@
 - ../context/SocketContext/useSocket
 - react/useCallback
 - react/useEffect
-- react/useRef
 - react/useState
-- usePolling()
+- ../services/api/api
+- ProjectsPage()
 
 ### Community 19 — Layout (6 nodes, cohesion: 0.33)
 
@@ -307,8 +307,7 @@
 - WorkersPage
 - ../hooks/usePolling/usePolling
 - react/useState
-- ../services/api/api
-- WorkersPage()
+- usePolling()
 
 ### Community 21 — socket (4 nodes, cohesion: 0.50)
 
@@ -362,8 +361,9 @@
 
 ### Community 29 — api (2 nodes, cohesion: 1.00)
 
-- api
-- axios/axios
+- dlqController
+- listDLQ()
+- retryDLQ()
 
 ### Community 30 — auth (2 nodes, cohesion: 1.00)
 
@@ -387,11 +387,12 @@
 
 ### Community 34 — auth.test (1 nodes, cohesion: 1.00)
 
-- auth.test
+- emitHelper
+- emitEvent()
 
 ### Community 35 — queue.test (1 nodes, cohesion: 1.00)
 
-- queue.test
+- worker.test
 
 ### Community 36 — server (1 nodes, cohesion: 1.00)
 
@@ -445,21 +446,41 @@
 
 - setup
 
+### Community 54 — dlq (1 nodes, cohesion: 1.00)
+
+- dlq
+
+### Community 55 — projects.test (1 nodes, cohesion: 1.00)
+
+- projects.test
+
+### Community 56 — queue.test (1 nodes, cohesion: 1.00)
+
+- queue.test
+
+### Community 57 — auth (1 nodes, cohesion: 1.00)
+
+- auth
+
 ## 🕳️ Knowledge Gaps
 
-**Isolated nodes** (15):
+**Isolated nodes** (19):
 - jest.config
 - server
 - index
+- rateLimiter
 - auth
 - dlq
 - jobs
+- members
 - projects
 - queues
 - stats
 - workers
 - auth.test
+- dlq.test
 - jobs.test
+- projects.test
 - queue.test
 - setup
 - worker.test

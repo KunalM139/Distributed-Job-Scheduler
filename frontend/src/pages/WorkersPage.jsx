@@ -4,11 +4,20 @@ import usePolling from '../hooks/usePolling';
 
 export default function WorkersPage() {
   const [now, setNow] = useState(Date.now());
+  const [refreshSignal, setRefreshSignal] = useState(0);
 
   // Live tick for "X seconds ago" — runs every 1 s
   useState(() => {
     const id = setInterval(() => setNow(Date.now()), 1_000);
     return () => clearInterval(id);
+  });
+
+  // Listen for real-time worker updates
+  useSocketEvent('worker:updated', () => {
+    setRefreshSignal((n) => n + 1);
+  });
+  useSocketEvent('stats:refresh', () => {
+    setRefreshSignal((n) => n + 1);
   });
 
   const fetchWorkers = async () => {

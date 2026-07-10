@@ -11,6 +11,8 @@ const {
   retryJob,
   deleteJob,
 } = require('../controllers/jobController');
+const { jobCreationLimiter } = require('../middleware/rateLimiter');
+const { requireRole } = require('../middleware/rbac');
 
 // All job routes require authentication
 router.use(authenticate);
@@ -18,6 +20,7 @@ router.use(authenticate);
 // POST /api/queues/:queueId/jobs
 router.post(
   '/queues/:queueId/jobs',
+  jobCreationLimiter,
   [
     param('queueId').isUUID().withMessage('Invalid queue ID'),
     body('type')
@@ -47,6 +50,7 @@ router.post(
       .withMessage('Batch must be a non-empty array'),
   ],
   validate,
+  requireRole('owner', 'admin'),
   createJob
 );
 
@@ -69,6 +73,7 @@ router.get(
       .withMessage('Status must be a string'),
   ],
   validate,
+  requireRole('owner', 'admin', 'viewer'),
   listJobs
 );
 
@@ -105,6 +110,7 @@ router.get(
   '/jobs/:id',
   [param('id').isUUID().withMessage('Invalid job ID')],
   validate,
+  requireRole('owner', 'admin', 'viewer'),
   getJob
 );
 
@@ -113,6 +119,7 @@ router.post(
   '/jobs/:id/retry',
   [param('id').isUUID().withMessage('Invalid job ID')],
   validate,
+  requireRole('owner', 'admin'),
   retryJob
 );
 
@@ -121,6 +128,7 @@ router.delete(
   '/jobs/:id',
   [param('id').isUUID().withMessage('Invalid job ID')],
   validate,
+  requireRole('owner', 'admin'),
   deleteJob
 );
 

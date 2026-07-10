@@ -1,6 +1,6 @@
 # Community 37: jest.config
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 

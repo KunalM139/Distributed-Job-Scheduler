@@ -34,6 +34,7 @@ export default function usePolling(fetchFn, intervalMs, socketEvents = []) {
     }
   }, []);
 
+  // Standard polling interval
   useEffect(() => {
     execute(); // call immediately
     const id = setInterval(execute, intervalMs);

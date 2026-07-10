@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const http = require('http');
 require('dotenv').config();
 
 const http = require('http');
@@ -12,19 +13,35 @@ const jobRoutes = require('./src/routes/jobs');
 const workerRoutes = require('./src/routes/workers');
 const dlqRoutes = require('./src/routes/dlq');
 const statsRoutes = require('./src/routes/stats');
+const memberRoutes = require('./src/routes/members');
+
+const socketService = require('./src/services/socketService');
+const notifyService = require('./src/services/notifyService');
+const { generalLimiter, authLimiter } = require('./src/middleware/rateLimiter');
 
 const app = express();
 const server = http.createServer(app);
 
 // --------------- Middleware ---------------
+app.set('trust proxy', 1);
 app.use(cors());
 app.use(express.json());
 
 // --------------- Routes ---------------
-app.use('/api/auth', authRoutes);
+// Prevent browser caching for all API responses to fix stale data after login/logout
+app.use('/api', (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  next();
+});
+
+app.use('/api', generalLimiter); // Apply general limiter globally to /api
+app.use('/api/auth', authLimiter, authRoutes); // Apply auth limiter to /api/auth
 app.use('/api/projects', projectRoutes);
 app.use('/api', queueRoutes);
 app.use('/api', jobRoutes);
+app.use('/api', memberRoutes);
 app.use('/api/workers', workerRoutes);
 app.use('/api/dlq', dlqRoutes);
 app.use('/api/stats', statsRoutes);

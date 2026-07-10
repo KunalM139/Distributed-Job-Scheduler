@@ -1,6 +1,6 @@
 # Community 38: dlq
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 

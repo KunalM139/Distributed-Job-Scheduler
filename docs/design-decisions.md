@@ -16,33 +16,37 @@ This document outlines the key architectural and design choices made while build
 **Choice:** Workers claim jobs inside a database transaction using the `SELECT FOR UPDATE SKIP LOCKED` pattern.  
 **Trade-offs:** This choice prevents duplicate execution with zero application-level coordination. The `SKIP LOCKED` clause means workers skip jobs that are already locked by other active workers instead of blocking and waiting. This maximizes worker throughput and ensures atomic claiming seamlessly.
 
-## Decision 3: Retry Strategies (Fixed, Linear, Exponential Backoff)
+## Decision 3: Worker Architecture and Concurrency Model
+
+**Context:** How should workers process jobs efficiently?
+**Alternatives Considered:** Single-threaded execution, one worker per job, thread pools.
+**Choice:** A Node.js worker pool where each worker claims up to `N` jobs (respecting the queue's concurrency limit) and executes them asynchronously via `Promise.allSettled`.
+**Trade-offs:** Node.js's event loop makes it highly efficient at handling I/O-bound jobs concurrently. CPU-bound jobs might block the event loop, but for a general-purpose async job scheduler, this model maximizes throughput per worker process while preventing memory exhaustion.
+
+## Decision 4: Retry Strategies (Fixed, Linear, Exponential Backoff)
 
 **Context:** Jobs often fail due to transient network issues or downstream service unavailability and need to be retried automatically.  
-**Alternatives Considered:** Fixed delay only, immediate retry, or no built-in retry mechanism.  
 **Choice:** Three configurable retry strategies (fixed, linear, exponential) are available per queue.  
 **Trade-offs:** Different job types require different retry behaviors. Exponential backoff is particularly critical to prevent the "thundering herd" problem; if a downstream service goes down, jobs will gradually back off, ensuring the system doesn't overwhelm the service with retry requests when it comes back online.
 
-## Decision 4: Dead Worker Recovery via Heartbeat Timeout
+## Decision 5: Dead Worker Recovery via Heartbeat Timeout
 
 **Context:** Worker processes can crash or get disconnected from the network abruptly while holding jobs in a "running" state, leaving those jobs stranded.  
-**Alternatives Considered:** TCP connection monitoring at the database level, lease-based locking mechanisms.  
 **Choice:** Workers send heartbeats every 15s. A background process checks for workers with no heartbeat in 45s and automatically re-queues their stranded jobs.  
 **Trade-offs:** This approach is simple, highly reliable, and works across network failures and silent process crashes. The 45-second window offers a solid balance between recovering jobs quickly and avoiding false positives caused by temporary network latency.
 
-## Decision 5: Separate Dead Letter Queue (DLQ) Table
+## Decision 6: Separate Dead Letter Queue (DLQ) Table
 
-**Context:** When jobs exhaust all their configured retry attempts, they must be parked for manual intervention without cluttering the active system.  
-**Alternatives Considered:** Keeping dead jobs in the main `jobs` table with `status='dead'`, or simply deleting permanently failed jobs.  
+**Context:** When jobs exhaust all their configured retry attempts, they must be parked for manual intervention.  
 **Choice:** Permanently failed jobs are moved to a separate DLQ table.  
 **Trade-offs:** Separating dead jobs keeps the active `jobs` table clean and fast for high-throughput queries. DLQ entries can then be independently inspected, bulk-deleted, or replayed back into the active queue without impacting live job processing performance.
 
-## Decision 6: Job Execution History in a Separate Table
+## Decision 7: Role-Based Access Control (RBAC) Design
 
-**Context:** We need to keep a historical record of job attempts to understand failures and track execution trends.  
-**Alternatives Considered:** Storing attempt history as a JSON array on the job row itself, or overwriting error metadata on each retry (losing past history).  
-**Choice:** Every attempt is logged as a distinct row in a `job_executions` table.  
-**Trade-offs:** This provides a comprehensive audit trail. Administrators can see exactly which worker ran which attempt, the exact timestamps for start/finish, and the precise error message. While this uses more database storage, it is critical for debugging production issues and providing clear observability.
+**Context:** How should users access and share projects?
+**Alternatives Considered:** Global admin roles, ownership-only models.
+**Choice:** A `project_members` mapping table that links users to projects with specific roles: `owner`, `admin`, and `viewer`. All API endpoints enforce these roles via middleware.
+**Trade-offs:** This allows granular control for team collaboration. It adds slight complexity to database queries (requiring joins on `project_members`), but provides a robust, multi-tenant environment.
 
 ## Decision 7: WebSockets with Polling Fallback for Frontend Dashboard
 

@@ -1,4 +1,4 @@
-# Community 6: QueuesPage
+# Community 6: main
 
 **Members:** 10
 

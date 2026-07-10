@@ -1,6 +1,6 @@
 # Community 36: server
 
-**Members:** 1
+**Members:** 2
 
 ## Nodes
 

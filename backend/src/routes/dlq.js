@@ -4,6 +4,7 @@ const router = express.Router();
 const authenticate = require('../middleware/auth');
 const { validate } = require('../middleware/validate');
 const { listDLQ, retryDLQ } = require('../controllers/dlqController');
+const { requireRole } = require('../middleware/rbac');
 
 // All DLQ routes require authentication
 router.use(authenticate);
@@ -30,6 +31,7 @@ router.post(
   '/:id/retry',
   [param('id').isUUID().withMessage('Invalid dead-letter queue entry ID')],
   validate,
+  requireRole('owner', 'admin'),
   retryDLQ
 );
 

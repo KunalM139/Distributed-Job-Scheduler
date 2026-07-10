@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../services/api';
 import JobDetailModal from '../components/JobDetailModal';
+import useSocketEvent from '../hooks/useSocketEvent';
 import toast from 'react-hot-toast';
 
 const EMPTY_JOB = { type: '', payload: '{}', priority: 0, scheduled_at: '', cron_expression: '' };

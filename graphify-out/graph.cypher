@@ -1,4 +1,8 @@
 CREATE (nbackend_jest_config_js:File {id: 'backend_jest_config_js', label: 'jest.config', source_file: '.\\backend\\jest.config.js'});
+CREATE (nbackend_migrate_js:File {id: 'backend_migrate_js', label: 'migrate', source_file: '.\\backend\\migrate.js'});
+CREATE (nbackend_migrate_js_run:Function {id: 'backend_migrate_js_run', label: 'run()', source_file: '.\\backend\\migrate.js', source_location: 'L6'});
+CREATE (nbackend_scripts_backfill_project_members_js:File {id: 'backend_scripts_backfill_project_members_js', label: 'backfill-project-members', source_file: '.\\backend\\scripts\\backfill-project-members.js'});
+CREATE (nbackend_scripts_backfill_project_members_js_runmigration:Function {id: 'backend_scripts_backfill_project_members_js_runmigration', label: 'runMigration()', source_file: '.\\backend\\scripts\\backfill-project-members.js', source_location: 'L5'});
 CREATE (nbackend_server_js:File {id: 'backend_server_js', label: 'server', source_file: '.\\backend\\server.js'});
 CREATE (nsrc_controllers_authcontroller_js:File {id: 'src_controllers_authcontroller_js', label: 'authController', source_file: '.\\src\\controllers\\authController.js'});
 CREATE (nsrc_controllers_authcontroller_js_register:Function {id: 'src_controllers_authcontroller_js_register', label: 'register()', source_file: '.\\src\\controllers\\authController.js', source_location: 'L12'});
@@ -38,8 +42,11 @@ CREATE (nsrc_controllers_workercontroller_js:File {id: 'src_controllers_workerco
 CREATE (nsrc_controllers_workercontroller_js_listworkers:Function {id: 'src_controllers_workercontroller_js_listworkers', label: 'listWorkers()', source_file: '.\\src\\controllers\\workerController.js', source_location: 'L8'});
 CREATE (nsrc_controllers_workercontroller_js_getworker:Function {id: 'src_controllers_workercontroller_js_getworker', label: 'getWorker()', source_file: '.\\src\\controllers\\workerController.js', source_location: 'L39'});
 CREATE (nsrc_db_index_js:File {id: 'src_db_index_js', label: 'index', source_file: '.\\src\\db\\index.js'});
-CREATE (nsrc_middleware_auth_js:File {id: 'src_middleware_auth_js', label: 'auth', source_file: '.\\src\\middleware\\auth.js'});
-CREATE (nsrc_middleware_auth_js_authenticate:Function {id: 'src_middleware_auth_js_authenticate', label: 'authenticate()', source_file: '.\\src\\middleware\\auth.js', source_location: 'L7'});
+CREATE (nbackend_src_middleware_auth_js:File {id: 'backend_src_middleware_auth_js', label: 'auth', source_file: '.\\backend\\src\\middleware\\auth.js'});
+CREATE (nbackend_src_middleware_auth_js_authenticate:Function {id: 'backend_src_middleware_auth_js_authenticate', label: 'authenticate()', source_file: '.\\backend\\src\\middleware\\auth.js', source_location: 'L8'});
+CREATE (nbackend_src_middleware_ratelimiter_js:File {id: 'backend_src_middleware_ratelimiter_js', label: 'rateLimiter', source_file: '.\\backend\\src\\middleware\\rateLimiter.js'});
+CREATE (nbackend_src_middleware_rbac_js:File {id: 'backend_src_middleware_rbac_js', label: 'rbac', source_file: '.\\backend\\src\\middleware\\rbac.js'});
+CREATE (nbackend_src_middleware_rbac_js_requirerole:Function {id: 'backend_src_middleware_rbac_js_requirerole', label: 'requireRole()', source_file: '.\\backend\\src\\middleware\\rbac.js', source_location: 'L12'});
 CREATE (nsrc_middleware_validate_js:File {id: 'src_middleware_validate_js', label: 'validate', source_file: '.\\src\\middleware\\validate.js'});
 CREATE (nsrc_middleware_validate_js_errorresponse:Function {id: 'src_middleware_validate_js_errorresponse', label: 'errorResponse()', source_file: '.\\src\\middleware\\validate.js', source_location: 'L10'});
 CREATE (nsrc_middleware_validate_js_validate:Function {id: 'src_middleware_validate_js_validate', label: 'validate()', source_file: '.\\src\\middleware\\validate.js', source_location: 'L18'});
@@ -247,11 +254,6 @@ CREATE (nfrontend_vite_config_js:File {id: 'frontend_vite_config_js', label: 'vi
 CREATE (nfrontend_vite_config_js_import_vite_defineconfig:Module {id: 'frontend_vite_config_js_import_vite_defineconfig', label: 'vite/defineConfig', source_file: '.\\frontend\\vite.config.js', source_location: 'L1'});
 CREATE (nfrontend_vite_config_js_import_vitejs_plugin_react_react:Module {id: 'frontend_vite_config_js_import_vitejs_plugin_react_react', label: '@vitejs/plugin-react/react', source_file: '.\\frontend\\vite.config.js', source_location: 'L2'});
 CREATE (nfrontend_vite_config_js_import_tailwindcss_vite_tailwindcss:Module {id: 'frontend_vite_config_js_import_tailwindcss_vite_tailwindcss', label: '@tailwindcss/vite/tailwindcss', source_file: '.\\frontend\\vite.config.js', source_location: 'L3'});
-CREATE (ntests_auth_test_js:File {id: 'tests_auth_test_js', label: 'auth.test', source_file: '.\\tests\\auth.test.js'});
-CREATE (ntests_jobs_test_js:File {id: 'tests_jobs_test_js', label: 'jobs.test', source_file: '.\\tests\\jobs.test.js'});
-CREATE (ntests_queue_test_js:File {id: 'tests_queue_test_js', label: 'queue.test', source_file: '.\\tests\\queue.test.js'});
-CREATE (ntests_setup_js:File {id: 'tests_setup_js', label: 'setup', source_file: '.\\tests\\setup.js'});
-CREATE (ntests_worker_test_js:File {id: 'tests_worker_test_js', label: 'worker.test', source_file: '.\\tests\\worker.test.js'});
 
 CREATE (nsrc_controllers_authcontroller_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\src\\controllers\\authController.js', weight: 1.00}]->(nsrc_controllers_authcontroller_js_register);
 CREATE (nsrc_controllers_authcontroller_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\src\\controllers\\authController.js', weight: 1.00}]->(nsrc_controllers_authcontroller_js_login);
@@ -294,7 +296,8 @@ CREATE (nbackend_src_controllers_queuecontroller_js_getqueuestats)-[:CALLS  {rel
 CREATE (nsrc_controllers_statscontroller_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\src\\controllers\\statsController.js', weight: 1.00}]->(nsrc_controllers_statscontroller_js_getdashboardstats);
 CREATE (nsrc_controllers_workercontroller_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\src\\controllers\\workerController.js', weight: 1.00}]->(nsrc_controllers_workercontroller_js_listworkers);
 CREATE (nsrc_controllers_workercontroller_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\src\\controllers\\workerController.js', weight: 1.00}]->(nsrc_controllers_workercontroller_js_getworker);
-CREATE (nsrc_middleware_auth_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\src\\middleware\\auth.js', weight: 1.00}]->(nsrc_middleware_auth_js_authenticate);
+CREATE (nbackend_src_middleware_auth_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\src\\middleware\\auth.js', weight: 1.00}]->(nbackend_src_middleware_auth_js_authenticate);
+CREATE (nbackend_src_middleware_rbac_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\backend\\src\\middleware\\rbac.js', weight: 1.00}]->(nbackend_src_middleware_rbac_js_requirerole);
 CREATE (nsrc_middleware_validate_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\src\\middleware\\validate.js', weight: 1.00}]->(nsrc_middleware_validate_js_errorresponse);
 CREATE (nsrc_middleware_validate_js)-[:DEFINES  {relation: 'defines', confidence: 'Extracted', confidence_score: 1.00, source_file: '.\\src\\middleware\\validate.js', weight: 1.00}]->(nsrc_middleware_validate_js_validate);
 CREATE (nsrc_middleware_validate_js_validate)-[:CALLS  {relation: 'calls', confidence: 'Inferred', confidence_score: 0.70, source_file: '.\\src\\middleware\\validate.js', weight: 1.00}]->(nsrc_middleware_validate_js_errorresponse);

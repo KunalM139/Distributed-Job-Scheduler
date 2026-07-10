@@ -19,6 +19,8 @@ const cron = require('node-cron');
 require('dotenv').config();
 
 const db = require('../db');
+const { emitEvent } = require('../services/emitHelper');
+const { generateFailureSummary } = require('../services/aiSummaryService');
 
 const emitWorkerEvent = async (eventName, data = {}) => {
   try {
@@ -193,7 +195,7 @@ async function claimJob() {
  */
 function simulateWork() {
   return new Promise((resolve) => {
-    const delay = 1000 + Math.random() * 2000; // 1-3 s
+    const delay = 1000 + Math.random() * 2000; // 1–3 seconds
     setTimeout(() => {
       const success = Math.random() < 0.8;// 80 % success
       resolve(success);
@@ -311,10 +313,13 @@ async function onJobFailure(job, executionId, errorMsg) {
       [job.id]
     );
 
+    // Generate AI Summary for the permanently failed job
+    const aiSummary = await generateFailureSummary(job, failureMessage, job.attempt_count);
+
     await db.query(
-      `INSERT INTO dead_letter_queue (id, job_id, queue_id, failure_reason, total_attempts)
-       VALUES ($1, $2, $3, $4, $5)`,
-      [uuidv4(), job.id, job.queue_id, failureMessage, job.attempt_count]
+      `INSERT INTO dead_letter_queue (id, job_id, queue_id, failure_reason, total_attempts, ai_summary)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [uuidv4(), job.id, job.queue_id, failureMessage, job.attempt_count, JSON.stringify(aiSummary)]
     );
 
     await db.query(
