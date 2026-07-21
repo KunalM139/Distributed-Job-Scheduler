@@ -1,5 +1,5 @@
 # Distributed Job Scheduler
-itre
+itrer
 ## Project Overview
 A production-ready distributed job scheduling platform that reliably executes async background jobs across multiple workers. Built to handle robust job queues with priority, concurrency limits, and dynamic retry policies, this system guarantees atomic job execution and handles worker failures gracefully.
 
